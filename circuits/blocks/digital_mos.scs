@@ -1,0 +1,121 @@
+// 130 nm 1.2V transistor PFD and experimental CMOS divider/receiver.
+// Includes no PDK source. Top-level must include ordinary n12/p12 and RF
+// n12_ckt_rf models. All bulk terminals tied to the supply rails.
+// Names are private to this library and do not collide with VCO inv/nand2.
+// NO performance claim before unit/interface/PVT tests pass.
+simulator lang=spectre
+
+subckt pll130_inv (vdd vss a y)
+parameters WN=.8u WP=2.4u LL=.13u
+MN (y a vss vss) n12 w=WN l=LL
+MP (y a vdd vdd) p12 w=WP l=LL
+ends pll130_inv
+
+subckt pll130_nand2 (vdd vss a b y)
+parameters WN=1.6u WP=2.4u LL=.13u
+MN0 (y a ns vss) n12 w=WN l=LL
+MN1 (ns b vss vss) n12 w=WN l=LL
+MP0 (y a vdd vdd) p12 w=WP l=LL
+MP1 (y b vdd vdd) p12 w=WP l=LL
+ends pll130_nand2
+
+subckt pll130_nor2 (vdd vss a b y)
+parameters WN=.8u WP=4.8u LL=.13u
+MN0 (y a vss vss) n12 w=WN l=LL
+MN1 (y b vss vss) n12 w=WN l=LL
+MP0 (y a ps vdd) p12 w=WP l=LL
+MP1 (ps b vdd vdd) p12 w=WP l=LL
+ends pll130_nor2
+
+subckt pll130_and2 (vdd vss a b y)
+XN (vdd vss a b yn) pll130_nand2
+XI (vdd vss yn y) pll130_inv
+ends pll130_and2
+
+subckt pll130_or2 (vdd vss a b y)
+XN (vdd vss a b yn) pll130_nor2
+XI (vdd vss yn y) pll130_inv
+ends pll130_or2
+
+// Same six-MOS TSPC topology as supplied pfd_ckt.sp, lines 22-28.
+// a=clock, b=active-high reset, y=complementary latch output.
+// Device widths are new 130nm choices, not linear scaling evidence.
+subckt pll130_pfd_tspc (vdd vss a b y)
+MP0 (n1 b vdd vdd) p12 w=2.4u l=.13u
+MP1 (n2 a n1 vdd) p12 w=2.4u l=.13u
+MN0 (n2 b vss vss) n12 w=.8u l=.13u
+MP2 (y n2 vdd vdd) p12 w=2.4u l=.13u
+MN1 (y a n3 vss) n12 w=.8u l=.13u
+MN2 (n3 n2 vss vss) n12 w=2.4u l=.13u
+ends pll130_pfd_tspc
+
+subckt pll130_pfd (vdd vss ref fb rst up dn)
+XU (vdd vss ref reset upn) pll130_pfd_tspc
+XD (vdd vss fb reset dnn) pll130_pfd_tspc
+XN (vdd vss upn dnn rst0) pll130_nor2
+XI0 (vdd vss rst0 rst1) pll130_inv
+XI1 (vdd vss rst1 rst2) pll130_inv
+XRST (vdd vss rst rst2 reset) pll130_or2
+XIU (vdd vss upn up) pll130_inv
+XID (vdd vss dnn dn) pll130_inv
+ends pll130_pfd
+
+subckt pll130_tg (vdd vss a b en enb)
+MN (a en b vss) n12 w=1.2u l=.13u
+MP (a enb b vdd) p12 w=3.6u l=.13u
+ends pll130_tg
+
+// A static level-sensitive TG latch. Reset disconnects both TGs and clamps
+// the first inverter input low, giving q=0/qb=1 without hard contention.
+// Inputs (open,hold) and their complements are generated outside the latch.
+subckt pll130_latch (vdd vss d open openb hold holdb rst q qb)
+XIN (vdd vss d storage open openb) pll130_tg
+XFB (vdd vss q storage hold holdb) pll130_tg
+XINV0 (vdd vss storage qb) pll130_inv WN=.5u WP=1.5u
+XINV1 (vdd vss qb q) pll130_inv WN=.5u WP=1.5u
+MRST (storage rst vss vss) n12 w=2u l=.13u
+ends pll130_latch
+
+// Positive-edge, master/slave, asynchronous-reset DFF.
+// Separate complement gates cause physical clock skew; unit bench must
+// check race-through, pulse width, input frequency and clock slew corners.
+subckt pll130_dff (vdd vss d clk rst q qb)
+XCLK (vdd vss clk clkb) pll130_inv
+XRST (vdd vss rst rstb) pll130_inv
+XL (vdd vss clkb rstb low_en) pll130_and2
+XH (vdd vss clk rstb high_en) pll130_and2
+XLN (vdd vss low_en low_enb) pll130_inv
+XHN (vdd vss high_en high_enb) pll130_inv
+XM (vdd vss d low_en low_enb high_en high_enb rst qm qmb) pll130_latch
+XS (vdd vss qm high_en high_enb low_en low_enb rst q qb) pll130_latch
+ends pll130_dff
+
+subckt pll130_div2 (vdd vss clk rst q qb)
+XF (vdd vss qb clk rst q qb) pll130_dff
+ends pll130_div2
+
+// Experimental full-swing chain. Unlike original 2CML+3TSPC divide-by-32,
+// this has five static CMOS TG stages. q1..q4 are exported for diagnostics.
+subckt pll130_div32_cmos (vdd vss clk rst q1 q2 q3 q4 q5)
+XD0 (vdd vss clk rst q1 q1b) pll130_div2
+XD1 (vdd vss q1 rst q2 q2b) pll130_div2
+XD2 (vdd vss q2 rst q3 q3b) pll130_div2
+XD3 (vdd vss q3 rst q4 q4b) pll130_div2
+XD4 (vdd vss q4 rst q5 q5b) pll130_div2
+ends pll130_div32_cmos
+
+// Candidate real receiver. This is not the prior purely CML loading test:
+// resistor-loaded RF differential pair followed by two CMOS inverters.
+// Both its input load and its ability to produce rail-valid clk need testing.
+// bn expected around .47V, inp/inn CM around .93V, differential Vpp .25V.
+// RLOAD_RX and TAIL_NF are initial candidates, not measured final values.
+subckt pll130_receiver (vdd vss bn inp inn clk rxp rxn)
+parameters INPUT_WR=1.5u INPUT_NF=4 TAIL_WR=2.5u TAIL_NF=12 RLOAD_RX=3k INV0_WN=.8u INV0_WP=3.2u
+XIP (rxn inp src vss) n12_ckt_rf lr=.13u wr=INPUT_WR nf=INPUT_NF sar=.4u sbr=.4u mr=1 mismod=0
+XIN (rxp inn src vss) n12_ckt_rf lr=.13u wr=INPUT_WR nf=INPUT_NF sar=.4u sbr=.4u mr=1 mismod=0
+XT (src bn vss vss) n12_ckt_rf lr=.39u wr=TAIL_WR nf=TAIL_NF sar=.4u sbr=.4u mr=1 mismod=0
+RP (rxp vdd) resistor r=RLOAD_RX
+RN (rxn vdd) resistor r=RLOAD_RX
+XI0 (vdd vss rxp clkn) pll130_inv WN=INV0_WN WP=INV0_WP
+XI1 (vdd vss clkn clk) pll130_inv WN=1.6u WP=4.8u
+ends pll130_receiver

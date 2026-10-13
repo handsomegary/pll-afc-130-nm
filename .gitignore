@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+config/process_models.local.scs
+config/*.private.scs
+runs/
+*.raw/
+*.psf/
+*.log
+.DS_Store

@@ -1,0 +1,7 @@
+// Copy this file to process_models.local.scs and configure your licensed models.
+// Keep the base-library include before the RF-library include.
+// Required ordinary models: n12 and p12. Required RF wrapper: n12_ckt_rf.
+// Both libraries must support the nominal TT sections used for the recorded run.
+simulator lang=spectre
+include "/path/to/licensed/base_models.lib" section=tt
+include "/path/to/licensed/rf_models.lib" section=mos_tt

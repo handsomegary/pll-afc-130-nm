@@ -1,0 +1,193 @@
+{
+  "schema_version": 1,
+  "repository": "pll130-afc",
+  "process_node_nm": 130,
+  "selected_afc_revision": "r1",
+  "recorded_simulation_status": "historical_source_bound_results_not_new_public_copy_simulation",
+  "private_model_files_included": false,
+  "canonical_electrical_body": "LF; remove blank lines, // comment lines and include/ahdl_include lines; preserve other whitespace and final LF.",
+  "publication_changes": "Relative includes and neutral English metadata; no electrical device or parameter changes.",
+  "results_are_imported_historical_evidence": true,
+  "original_private_paths_distributed": false,
+  "entries": [
+    {
+      "path": ".gitattributes",
+      "original_sha256": null,
+      "publication_sha256": "d11762b78657c4b1576fe4b96f893fbf73acf90ac6e87b52f18ea0d1b98ede9f",
+      "electrical_body_sha256": null,
+      "origin": "New English publication documentation, configuration or portable tool.",
+      "publication_line_endings": "LF, identical in the working tree and Git blob."
+    },
+    {
+      "path": ".gitignore",
+      "original_sha256": null,
+      "publication_sha256": "854ad2d3116200122d5ba95be5f4c56344a3e62b43896fe2fad2eed2314719ee",
+      "electrical_body_sha256": null,
+      "origin": "New English publication documentation, configuration or portable tool."
+    },
+    {
+      "path": "README.md",
+      "original_sha256": null,
+      "publication_sha256": "2659ae02707c7fb9e0114e9a5d77d206de257c50c38dcbc7bbba39072eef1dc8",
+      "electrical_body_sha256": null,
+      "origin": "New English publication documentation, configuration or portable tool."
+    },
+    {
+      "path": "circuits/benches/pll_afc_off.scs",
+      "original_sha256": "508ff6a196f23da3c2f5a9f7f6cec2127b42bce8ac52cf42e44d42e8ffb13f0f",
+      "publication_sha256": "3255dfbb3f47ac52fbbb9b997198877c0022b2076412b8bf6735e04cbacd8713",
+      "electrical_body_sha256": "3a747d98dc8bb6a041c65961d34278e1576d228901772bb7f19dd8a2659abd02",
+      "byte_identical_to_original": false,
+      "transformation": "English header cleanup, LF normalization and portable include paths only; electrical statements unchanged."
+    },
+    {
+      "path": "circuits/benches/pll_afc_on.scs",
+      "original_sha256": "cf1e81b4c17a718eb74adbe81002211a2b7987ccbda280d5a69e2b75733b311b",
+      "publication_sha256": "977e44b4ef911f9ce32f3dbcd8f55e9677c7329f3c203b7c770fc0689bf844f2",
+      "electrical_body_sha256": "1e1de0741cf213a01d31174d4ae7fe062a793b31562fbf7113a99c1aa0e4c8e3",
+      "byte_identical_to_original": false,
+      "transformation": "English header cleanup, LF normalization and portable include paths only; electrical statements unchanged."
+    },
+    {
+      "path": "circuits/blocks/afc_mos.scs",
+      "original_sha256": "12044e0dc052c06682a3372f17c0b8612d637954af88e0d8662cf1d8c0f8f6b8",
+      "publication_sha256": "8792f3e77d6d650b515a8c64a4374a3e25aebd05e381630a9d095fa0878a11d0",
+      "electrical_body_sha256": "33f52b5a816f3ee934ee1491adc07b15bc854e491cb9e5ba8e10c00fcb3c9c12",
+      "byte_identical_to_original": false,
+      "transformation": "English header cleanup, LF normalization and portable include paths only; electrical statements unchanged."
+    },
+    {
+      "path": "circuits/blocks/charge_pump.scs",
+      "original_sha256": "ab4b88ceb198afaab55ce9ae70870ff5afc4a6bb383e2a2c0b8eaa83f17c8000",
+      "publication_sha256": "ab4b88ceb198afaab55ce9ae70870ff5afc4a6bb383e2a2c0b8eaa83f17c8000",
+      "electrical_body_sha256": "19b91b835f433f260bf7d681214fc703cdd8af0b3b0c2ed1274603d5bdffae6d",
+      "byte_identical_to_original": true,
+      "transformation": "English header cleanup, LF normalization and portable include paths only; electrical statements unchanged."
+    },
+    {
+      "path": "circuits/blocks/digital_mos.scs",
+      "original_sha256": "001a25c69655bb7dd1f03549c1171ab8bf06db7fcb9be02d20471cde231ddb21",
+      "publication_sha256": "9e9bada00de8d2cab9524e042d48885d653776e956439d4a8fd076687ddaa7af",
+      "electrical_body_sha256": "acbdcf4838c7488b11b3696e257ac1b9631f96d526618788938cb0f4cdd56170",
+      "byte_identical_to_original": false,
+      "transformation": "English header cleanup, LF normalization and portable include paths only; electrical statements unchanged."
+    },
+    {
+      "path": "circuits/blocks/receiver_ac.scs",
+      "original_sha256": "6aa7482e92b7c5f1481b478bbdd3364fb5e47ed2b782c5fa14fd89550d498201",
+      "publication_sha256": "6aa7482e92b7c5f1481b478bbdd3364fb5e47ed2b782c5fa14fd89550d498201",
+      "electrical_body_sha256": "702d299a86e97cb58c96370ea0c94c2107db702983f296dd2c70a9613d6a5864",
+      "byte_identical_to_original": true,
+      "transformation": "English header cleanup, LF normalization and portable include paths only; electrical statements unchanged."
+    },
+    {
+      "path": "config/afc_portmap.json",
+      "original_sha256": "bf75a28dbd0a3dfad3c56db2e90b5a155faf0072a06a0cf2d38acaa1e94c26c9",
+      "publication_sha256": "8a1b561d00afd3e46ddef5f92e623da219e84ed9b05ff07896087c47bf38eecd",
+      "electrical_body_sha256": null,
+      "byte_identical_to_original": false,
+      "transformation": "English ASCII and LF normalization only.",
+      "publication_line_endings": "LF, identical in the working tree and Git blob."
+    },
+    {
+      "path": "config/process_models.example.scs",
+      "original_sha256": null,
+      "publication_sha256": "270c8ba2ccf5f490d88cf9f5138aa3d6734c80a62860ef2a2448249b3cb08d3e",
+      "electrical_body_sha256": null,
+      "origin": "New English publication documentation, configuration or portable tool."
+    },
+    {
+      "path": "docs/architecture.md",
+      "original_sha256": null,
+      "publication_sha256": "6aadf203517d1d8d2b49350fee5e501d660116110c0dcdd6ca17e4ff0ccc7e3b",
+      "electrical_body_sha256": null,
+      "origin": "New English publication documentation, configuration or portable tool."
+    },
+    {
+      "path": "docs/results.md",
+      "original_sha256": null,
+      "publication_sha256": "93d370c3d4da71805b2c8c83ab082475187dab4916ff4f7f749cf2f6335f4166",
+      "electrical_body_sha256": null,
+      "origin": "New English publication documentation, configuration or portable tool."
+    },
+    {
+      "path": "docs/source_relationship.md",
+      "original_sha256": null,
+      "publication_sha256": "deaf6ea92a7e5e795fbda578b26c775e233ef9552fdf7613a0a3d84f6c0db52f",
+      "electrical_body_sha256": null,
+      "origin": "New English publication documentation, configuration or portable tool."
+    },
+    {
+      "path": "results/afc_off_measurement.json",
+      "original_sha256": "f26c3b7a31538108d239eeff9af5bdf6f34333a527dd7a3a5a39bfe53964c439",
+      "publication_sha256": "aba78ad522caec7b8471e4b311f4545e1ba291685cfa99be1228e670e0f64e3d",
+      "electrical_body_sha256": null,
+      "byte_identical_to_original": false,
+      "transformation": "Private path metadata redacted; numerical values unchanged; not byte-original evidence."
+    },
+    {
+      "path": "results/afc_off_trace.json",
+      "original_sha256": "cf3272b02b38a9553a9b74706513b7a47c59ea4bfe26d682c49cb766528c6874",
+      "publication_sha256": "9c81baa220e35d8e56634364319bd3311ad89c88a481f36389a71271bd007183",
+      "electrical_body_sha256": null,
+      "byte_identical_to_original": false,
+      "transformation": "Private path metadata redacted; numerical values unchanged; not byte-original evidence."
+    },
+    {
+      "path": "results/afc_on_measurement.json",
+      "original_sha256": "dae9968f09c3e0ac26180e1c3524f6f7360460159b555ef339550c1e98bbac5b",
+      "publication_sha256": "30ea3cf53a371421abc4308cf09fc868cba58c8ce4e12e64d6d2d84171d2425a",
+      "electrical_body_sha256": null,
+      "byte_identical_to_original": false,
+      "transformation": "Private path metadata redacted; numerical values unchanged; not byte-original evidence."
+    },
+    {
+      "path": "results/afc_on_trace.json",
+      "original_sha256": "ea8f291a0c067b7fd994739de0450da3ec3aee27f9e0444b7896d0d5120ec30c",
+      "publication_sha256": "93357f740444bce346ec794ac80616d314f77f636bfb02ffebcaa123c2f2a3db",
+      "electrical_body_sha256": null,
+      "byte_identical_to_original": false,
+      "transformation": "Private path metadata redacted; numerical values unchanged; not byte-original evidence."
+    },
+    {
+      "path": "results/nominal_tt.json",
+      "original_sha256": null,
+      "publication_sha256": "a986ca27b5c2f1db2bf9bea58012e77a19e0713ac1d0a5bdcbb4b1dd5d614120",
+      "electrical_body_sha256": null,
+      "origin": "New English publication documentation, configuration or portable tool."
+    },
+    {
+      "path": "results/weak_clamp_measurement.json",
+      "original_sha256": "3e158e505ecc0e1d509bd0ba1f7b691e2cf75d200af879b39358f176701448cb",
+      "publication_sha256": "e324a641e027ca1868ae8f7527be0aaad8d3176a7487ba7115d2393ac9ade84f",
+      "electrical_body_sha256": null,
+      "byte_identical_to_original": false,
+      "transformation": "Private path metadata redacted; numerical values unchanged; not byte-original evidence."
+    },
+    {
+      "path": "tools/measure_afc2009.py",
+      "original_sha256": "b76677ad532103da9302d83d96038a750691fdd833a93891c92d37a0f59f9e26",
+      "publication_sha256": "b76677ad532103da9302d83d96038a750691fdd833a93891c92d37a0f59f9e26",
+      "electrical_body_sha256": null,
+      "byte_identical_to_original": true,
+      "transformation": "English ASCII and LF normalization only."
+    },
+    {
+      "path": "tools/run_simulation.py",
+      "original_sha256": null,
+      "publication_sha256": "f16ce00b75a8110570a63ef90e1795bfff8a6f2683ea30d4cb9ee92de5bb14ad",
+      "electrical_body_sha256": null,
+      "origin": "New English publication documentation, configuration or portable tool."
+    },
+    {
+      "path": "tools/verify_repository.py",
+      "original_sha256": null,
+      "publication_sha256": "fdfefc5b5343cad2441067fffe57a20c24603f8d8064f5760a9552320415321c",
+      "electrical_body_sha256": null,
+      "origin": "New English publication documentation, configuration or portable tool."
+    }
+  ],
+  "publication_date": "2026-10-13",
+  "every_publication_file_except_this_manifest_is_hash_bound": true,
+  "publication_line_endings": "LF; all tracked text uses eol=lf."
+}

@@ -1,0 +1,157 @@
+{
+  "name": "pll_afc_off_code16_ctrl600_ref10000_4p_6500n_v1",
+  "comparison_role": "AFC-off fixed-code16 acquisition control",
+  "status": "measured",
+  "bench": "[private source or simulation path omitted]",
+  "bench_sha256": "508ff6a196f23da3c2f5a9f7f6cec2127b42bce8ac52cf42e44d42e8ffb13f0f",
+  "physical_baseline_sha256": "cc44e0bb56a8de35ff75d1780b99bc790311ec097f33556fa9046eb4bb0e8f44",
+  "frozen_reader_sha256": "b2898c42d28918f00b095e763427f4bacae7cb08e2b6c4ac4d551b328c214d10",
+  "provenance": {
+    "raw_file": "[private source or simulation path omitted]",
+    "raw_sha256": "d379c54a15c942c8b7d321508f43e3fddb64617673d618e5f55c56d4e45bdeca",
+    "raw_bytes": 205488999,
+    "saved_samples": 162501,
+    "raw_unchanged_during_extraction": true,
+    "memory_guard_MiB": 256,
+    "raw_guard_bytes": 536870912,
+    "reader": "Streaming selected-scalar PSF ASCII; digital transition ledgers, compact double analog vectors; no unbounded text load."
+  },
+  "observation_interval_s": [
+    0.0,
+    6.5e-06
+  ],
+  "fine_enable_time_s": 3.000199999999731e-07,
+  "pfd_reset_release_time_s": 3.000199999999731e-07,
+  "code_word_ledger": [
+    [
+      0.0,
+      16
+    ]
+  ],
+  "initial_LPF_IC_V": 0.6,
+  "measured_LPF_voltages": {
+    "ctrl": {
+      "first_saved_V": 0.5999999993574945,
+      "at_enable_V": 0.5999629073701447,
+      "final_saved_V": 1.187545532708909,
+      "observation_min_V": 0.534161912325681,
+      "observation_max_V": 1.198612774871228,
+      "last500ns_min_V": 1.169691399946117,
+      "last500ns_max_V": 1.198610443999183
+    },
+    "filter_mid": {
+      "first_saved_V": 0.599999999999987,
+      "at_enable_V": 0.5999918229118404,
+      "final_saved_V": 1.187882480740346,
+      "observation_min_V": 0.5991312121563501,
+      "observation_max_V": 1.188124552956498,
+      "last500ns_min_V": 1.187574873104531,
+      "last500ns_max_V": 1.188102092733458
+    }
+  },
+  "loop": {
+    "locked": false,
+    "lock_time_s": null,
+    "lock_after_fine_enable_s": null,
+    "final_frequency_Hz": 2469028276.5258255,
+    "final_ctrl_mean_V": 1.187899926881416,
+    "final_differential_vpp_V": 0.2786149536486642,
+    "feedback_minus_reference_principal_static_offset_s": 1.8963481379268773e-09,
+    "physical_noise_jitter_s": null,
+    "definition": {
+      "frequency_tolerance_fraction": 0.001,
+      "frequency_window_s": 1e-07,
+      "frequency_stride_s": 5e-08,
+      "hold_s": 5e-07,
+      "unwrapped_phase_pp_max_s": 1e-10,
+      "differential_vpp_min_V": 0.05,
+      "all_later_complete_hold_windows_must_pass": true
+    },
+    "scope": "No stochastic noise. Engineering acquisition only; static phase offset and deterministic/numerical ripple are not physical jitter."
+  },
+  "violations": [],
+  "power": {
+    "enable_to_observation_end": {
+      "available": true,
+      "interval_s": [
+        3.000199999999731e-07,
+        6.5e-06
+      ],
+      "duration_s": 6.1999800000000265e-06,
+      "branches": {
+        "total_current": {
+          "energy_J": 2.095891569936441e-08,
+          "average_power_W": 0.0033804811788690162
+        },
+        "digital_current": {
+          "energy_J": 9.203782540789907e-09,
+          "average_power_W": 0.0014844858436301193
+        },
+        "cp_current": {
+          "energy_J": 3.241119264880232e-10,
+          "average_power_W": 5.2276285808667415e-05
+        }
+      },
+      "scope": "Saved instantaneous VDD integral. Digital and CP branch currents are diagnostic and are not added again. No AFC branch exists. Ideal external REF and unspecified physical bias-generator implementations are excluded; this is not an exact matched loading/FoM comparison.",
+      "AFC_present": false,
+      "total_already_includes_digital_and_cp": true
+    },
+    "enable_to_lock": null,
+    "last500ns_observation": {
+      "available": true,
+      "interval_s": [
+        5.999999999999999e-06,
+        6.5e-06
+      ],
+      "duration_s": 5.000000000000003e-07,
+      "branches": {
+        "total_current": {
+          "energy_J": 1.6913051826882703e-09,
+          "average_power_W": 0.0033826103653765384
+        },
+        "digital_current": {
+          "energy_J": 7.431774223213571e-10,
+          "average_power_W": 0.0014863548446427133
+        },
+        "cp_current": {
+          "energy_J": 2.5775864824592666e-11,
+          "average_power_W": 5.15517296491853e-05
+        }
+      },
+      "scope": "Saved instantaneous VDD integral. Digital and CP branch currents are diagnostic and are not added again. No AFC branch exists. Ideal external REF and unspecified physical bias-generator implementations are excluded; this is not an exact matched loading/FoM comparison.",
+      "AFC_present": false,
+      "total_already_includes_digital_and_cp": true
+    },
+    "locked_tail": null
+  },
+  "scope": {
+    "afc_success_evaluated": false,
+    "afc_present": false,
+    "bank_driver": "Five original ideal DC voltage sources",
+    "capture_interpretation": "If not locked, only failure to capture in this saved observation window is supported. No infinite-time claim.",
+    "power_comparison": "Active AFC circuitry, clamp and CP enable gates are absent; bank-output loading is different. No exact matched power/FoM claim.",
+    "noise": "No stochastic noise or physical jitter/FoM was evaluated."
+  },
+  "source_unchanged_during_measurement": true,
+  "execution_evidence": {
+    "path": "[private source or simulation path omitted]",
+    "sha256": "de7034a5d4b3bdaa4ae75823c856ef7c7c3c49569cb3e08eaeb3f959354b8185",
+    "numerical_completion": true,
+    "spectre_rc": 0,
+    "bench_matches": true,
+    "source_models_unchanged_at_completion": true,
+    "all_dependency_hashes_match_at_extraction": true
+  },
+  "monitor_source_evidence": {
+    "[private source or simulation path omitted]": "00a210dea69f2df94e39ec9aedc25c27330d5d24c5c6019a97b54fb0abb7359c",
+    "[private source or simulation path omitted] #2": "9180d68015f21059d84d979c5b4a6fe5374b0d932fd161bae152e076e3ace9b7",
+    "[private source or simulation path omitted] #3": "b2898c42d28918f00b095e763427f4bacae7cb08e2b6c4ac4d551b328c214d10",
+    "[private source or simulation path omitted] #4": "ea29260e5ec535556ee95c58e6d688878bff49bc831928ac30b0a8145b9abe87",
+    "[private source or simulation path omitted] #5": "9594c75d3c6d72f0ae7a1aa28766deddb2fa572c343c82c9616f7f262b35ab36"
+  },
+  "publication_provenance": {
+    "original_json_sha256": "f26c3b7a31538108d239eeff9af5bdf6f34333a527dd7a3a5a39bfe53964c439",
+    "transformation": "Private path metadata redacted; numerical values unchanged; not byte-original evidence.",
+    "public_sources_not_resimulated": true
+  }
+}

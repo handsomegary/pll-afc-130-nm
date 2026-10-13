@@ -1,0 +1,112 @@
+{
+  "vdd_V": 1.2,
+  "target_Hz": 3200000000,
+  "reference_Hz": 100000000,
+  "calibration_Hz": 100000000,
+  "clamp_V": 0.6,
+  "clamp_tolerance_V": 0.03,
+  "handoff_guard_s": 1e-09,
+  "decision_settle_s": 1e-09,
+  "minimum_done_to_fine_REF_clocks": 2,
+  "counter_decode_sample_offset_s": 2.5e-09,
+  "analogs": {
+    "out0": "out0",
+    "out180": "out180",
+    "ref": "ref",
+    "fb": "fb",
+    "ctrl": "ctrl",
+    "filter_mid": "filter_mid",
+    "vhold": "vhold",
+    "vdd": "vdd",
+    "total_current": "VDD:p",
+    "afc_current": "VDDAFC:p",
+    "digital_current": "VDDIG:p",
+    "cp_current": "VDDCP:p"
+  },
+  "digitals": {
+    "enable": "afc_start",
+    "done": "afc_done",
+    "fail": "afc_fail",
+    "fine_enable": "fine_enable",
+    "hold": "hold_all",
+    "trial_arm": "XAFC.arm",
+    "epoch_ack": "XAFC.seen",
+    "divcal": "XAFC.counter_fb_clock",
+    "counter_reset": "XAFC.count_rst",
+    "count_run": "XAFC.count_run",
+    "ref_lead": "XAFC.lead_clock",
+    "ref_lag": "XAFC.lag_clock",
+    "reference": "ref",
+    "phase_select": "XAFC.phase",
+    "decision_valid": "XAFC.decision",
+    "decision_slow": "XAFC.was_slow",
+    "decision_fast": "XAFC.was_fast",
+    "decision_near": "XAFC.was_near",
+    "up": "up_g",
+    "dn": "dn_g",
+    "raw_PFD_up": "up",
+    "raw_PFD_dn": "dn",
+    "pfd_reset": "pfd_reset",
+    "raw_divcal": "fb"
+  },
+  "words": {
+    "code": [
+      "s0",
+      "s1",
+      "s2",
+      "s3",
+      "s4"
+    ],
+    "n_lead": [
+      "XAFC.dl0",
+      "XAFC.dl1",
+      "XAFC.dl2",
+      "XAFC.dl3",
+      "XAFC.dl4",
+      "XAFC.dl5",
+      "XAFC.dl6",
+      "XAFC.dl7"
+    ],
+    "n_lag": [
+      "XAFC.dg0",
+      "XAFC.dg1",
+      "XAFC.dg2",
+      "XAFC.dg3",
+      "XAFC.dg4",
+      "XAFC.dg5",
+      "XAFC.dg6",
+      "XAFC.dg7"
+    ],
+    "n_div": [
+      "XAFC.dd0",
+      "XAFC.dd1",
+      "XAFC.dd2",
+      "XAFC.dd3",
+      "XAFC.dd4",
+      "XAFC.dd5",
+      "XAFC.dd6",
+      "XAFC.dd7"
+    ]
+  },
+  "counter_contract": {
+    "lead_word": "n_lead",
+    "lag_word": "n_lag",
+    "div_word": "n_div",
+    "snapshot_anchor": "decision_falling",
+    "snapshot_delay_s": 1e-09,
+    "decision_guard_counts": 2,
+    "initial_credit": {
+      "lead": 1,
+      "lag": 0,
+      "div": 0
+    },
+    "first_div_edge_increments_div_to_one": true,
+    "same_direction_observations": 2,
+    "CDC": "registered 8-bit native Gray to two matched REF-stage synchronizers",
+    "near_window_lag_counts": 128,
+    "freeze_required_at_decision": true,
+    "first_div_clock": "XAFC.counter_fb_clock"
+  },
+  "map_status": "R1 physical source12044e0dc052c06682a3372f17c0b8612d637954af88e0d8662cf1d8c0f8f6b8: first epoch/phase at gated counter FB clock. Analog fb remains physicalPLL feedback for lock.",
+  "counter_proof_scope": "Frozen decision snapshots support sign; first-edge aperture and CDC metastability require separate unit/PVT verification."
+}
