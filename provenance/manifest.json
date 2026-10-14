@@ -19,6 +19,13 @@
       "publication_line_endings": "LF, identical in the working tree and Git blob."
     },
     {
+      "path": ".github/workflows/verify.yml",
+      "original_sha256": null,
+      "publication_sha256": "5f78456b5183d8c641345fe1677c43761a298cf842b5e51797edd94777b2316d",
+      "electrical_body_sha256": null,
+      "origin": "New portable download verification, historical evidence exporter or CI; no circuit changes."
+    },
+    {
       "path": ".gitignore",
       "original_sha256": null,
       "publication_sha256": "854ad2d3116200122d5ba95be5f4c56344a3e62b43896fe2fad2eed2314719ee",
@@ -28,9 +35,10 @@
     {
       "path": "README.md",
       "original_sha256": null,
-      "publication_sha256": "2659ae02707c7fb9e0114e9a5d77d206de257c50c38dcbc7bbba39072eef1dc8",
+      "publication_sha256": "f373e2df949e208516926e3a5274d7135e369f0a93b0521b68a01e7847073f3a",
       "electrical_body_sha256": null,
-      "origin": "New English publication documentation, configuration or portable tool."
+      "origin": "New English publication documentation, configuration or portable tool.",
+      "packaging_change": "Download usability: offline result export, non-launching preflight and tests."
     },
     {
       "path": "circuits/benches/pll_afc_off.scs",
@@ -165,6 +173,13 @@
       "transformation": "Private path metadata redacted; numerical values unchanged; not byte-original evidence."
     },
     {
+      "path": "tests/test_download.py",
+      "original_sha256": null,
+      "publication_sha256": "26619dbf415c2087856a87af58abb08630f57b07090289ef859dcbda313a7e95",
+      "electrical_body_sha256": null,
+      "origin": "New portable download verification, historical evidence exporter or CI; no circuit changes."
+    },
+    {
       "path": "tools/measure_afc2009.py",
       "original_sha256": "b76677ad532103da9302d83d96038a750691fdd833a93891c92d37a0f59f9e26",
       "publication_sha256": "b76677ad532103da9302d83d96038a750691fdd833a93891c92d37a0f59f9e26",
@@ -173,11 +188,20 @@
       "transformation": "English ASCII and LF normalization only."
     },
     {
+      "path": "tools/reproduce_saved_results.py",
+      "original_sha256": null,
+      "publication_sha256": "46b38a1df1e9ca5c77c5ad0067e2ac529edd6cc989bc896c96b834d0113f34df",
+      "electrical_body_sha256": null,
+      "origin": "New portable download verification, historical evidence exporter or CI; no circuit changes.",
+      "packaging_change": "Download usability: offline result export, non-launching preflight and tests."
+    },
+    {
       "path": "tools/run_simulation.py",
       "original_sha256": null,
-      "publication_sha256": "f16ce00b75a8110570a63ef90e1795bfff8a6f2683ea30d4cb9ee92de5bb14ad",
+      "publication_sha256": "7336801fb7d2d292b5818af175c4238001a6943fc58f3b77e5cbd3950bc5e4a8",
       "electrical_body_sha256": null,
-      "origin": "New English publication documentation, configuration or portable tool."
+      "origin": "New English publication documentation, configuration or portable tool.",
+      "packaging_change": "Download usability: offline result export, non-launching preflight and tests."
     },
     {
       "path": "tools/verify_repository.py",

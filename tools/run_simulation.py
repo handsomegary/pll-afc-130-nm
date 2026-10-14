@@ -85,6 +85,8 @@ def main():
     parser.add_argument('--spectre', default='spectre', help='Spectre executable or absolute path')
     parser.add_argument('--threads', type=int, choices=[1, 2, 4], default=4)
     parser.add_argument('--timeout', type=int, default=7200, help='Child-process deadline, seconds')
+    parser.add_argument('--check-only', action='store_true',
+                        help='Validate executable/include files without launching Spectre')
     args = parser.parse_args()
     if not 60 <= args.timeout <= 7200:
         parser.error('--timeout must be between 60 and 7200 seconds.')
@@ -104,6 +106,13 @@ def main():
     if not inside(runs, root) or runs == root:
         parser.error('The runs directory must resolve inside the repository.')
     public, private = dependency_hashes(bench, root, adapter)
+    if args.check_only:
+        print(json.dumps({'status': 'preflight_passed', 'bench': args.bench,
+                          'public_dependencies': len(public),
+                          'local_model_dependencies': len(private),
+                          'simulator_started': False,
+                          'electrical_or_model_semantics_verified': False}, indent=2))
+        return 0
     runs.mkdir(parents=True, exist_ok=True)
     lock_path = runs / 'exclusive.lock'
     try:

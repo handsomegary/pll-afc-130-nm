@@ -26,6 +26,18 @@ The principal benches are [AFC enabled](circuits/benches/pll_afc_on.scs) and [AF
 
 ## Run with a local process installation
 
+For a first offline result after cloning, use Python's standard library:
+
+```sh
+python tools/verify_repository.py
+python tests/test_download.py
+python tools/reproduce_saved_results.py
+```
+
+The last command writes a verified historical summary and two compact trace CSVs
+under `runs/saved-results/`. It requires neither Spectre nor private models and
+does not claim a new simulation or remeasure the full original raw waveform.
+
 The repository does not contain process model libraries, simulator binaries, licensed design-kit files, or the reference PDFs. A compatible locally installed process library and Spectre are required. Another 130 nm library is not automatically an electrically equivalent replacement.
 
 1. Create `config/process_models.local.scs` using local model-library paths and the required model sections. This file is ignored by Git. Match the device model names referenced by the circuit blocks, including the RF device dependencies.
@@ -40,6 +52,11 @@ The repository does not contain process model libraries, simulator binaries, lic
    ```sh
    python tools/run_simulation.py --bench on --spectre /path/to/spectre --threads 4 --timeout 7200
    ```
+
+   Add `--check-only` first to resolve every include and check the executable
+   without starting a simulator or creating a run. This catches missing local
+   model files before an expensive run; it does not qualify model sections,
+   device compatibility, electrical behavior or simulator licensing.
 
    For the fixed-code capture control, use `--bench off`. The runner uses a single-job lock to prevent overlapping runs through this tool. A requested thread count does not guarantee that the simulator uses that many threads.
 

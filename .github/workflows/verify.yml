@@ -1,0 +1,15 @@
+name: Portable repository and saved results
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python tools/verify_repository.py
+      - run: python tests/test_download.py
+      - run: python tools/reproduce_saved_results.py
