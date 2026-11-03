@@ -1,0 +1,20 @@
+{
+  "fixtures_passed": 13,
+  "checks": [
+    "Reset-masked old first clock excluded; next eligible edge has adjacent 5ns low-phase bracket",
+    "Wrong captured phase fails instead of manufacturing preceding-fall/following-rise 15ns proof",
+    "Actually captured phase at epoch plus settling is checked; stimulus fixture expectation cannot replace it",
+    "Valid high-phase adjacent rise/fall bracket accepted",
+    "Missing bounding REF edge violates half-period adjacency rather than spanning longer interval",
+    "Epoch acknowledgment preceding actual first eligible clock rejected",
+    "REF tie aperture stays unknown rather than claiming a phase proof",
+    "Missing physical reset release cannot support an ARM-only first-edge proof",
+    "Clock after release but while reset reasserted remains ineligible",
+    "Raw stimulus FB edge cannot substitute for physically gated counter clock",
+    "Clock exactly at reset threshold release gets no credited post-reset first edge",
+    "Original lag before reset but buffered lag after reset remains credit-unproven; phase proof stays separate",
+    "Absent native-clock/reset increment evidence cannot become initial counter-credit proof"
+  ],
+  "simulator_started": false,
+  "scope": "Synthetic parser regressions only. No new MOS simulation, circuit repair, metastability, setup/hold, PVT, jitter or silicon proof."
+}

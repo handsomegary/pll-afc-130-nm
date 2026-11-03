@@ -1,0 +1,23 @@
+{
+  "fixtures_passed": 16,
+  "checks": [
+    "Success-gated handoff with frozen tested code",
+    "Actual-edge engineering lock with physical noise left unknown",
+    "Total integral retains diagnostic AFC power without double counting",
+    "Post-fine code mutation rejected",
+    "Fine-enable before two-REF delay rejected",
+    "Watchdog fail keeps CP disabled and control held",
+    "Failure plus fine-enable rejected",
+    "CP pulse while clamped rejected",
+    "Phase jump cannot qualify the pre-slip hold window",
+    "Absent CDC snapshot contract never becomes sign proof",
+    "Decision-falling anchor selects newly latched counters; exact guard2 accepted",
+    "One-count snapshot cannot substantiate guarded two-count direction",
+    "Contradictory fast and slow snapshot rejected",
+    "Interpolated exact-boundary integration matches analytic 44.2pJ",
+    "Streaming reader reconstructs coherent code and interpolated digital edge",
+    "Malformed saved-vector timeline rejected"
+  ],
+  "simulator_started": false,
+  "scope": "Postprocessor correctness and engineering-criterion fixtures only. No AFC MOS, CDC metastability, PVT, jitter or silicon verification implied."
+}

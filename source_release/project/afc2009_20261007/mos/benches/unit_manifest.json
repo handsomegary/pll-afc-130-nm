@@ -1,0 +1,72 @@
+[
+  {
+    "name": "afc_unit_near100_phase_high",
+    "path": "@PROJECT_ROOT@/afc2009_20261007/mos/benches/afc_unit_near100_phase_high.scs",
+    "sha256": "1eb605b38c973ca8aeede1e821da544c9437be390056585a5a808225b0ba4501",
+    "mos_source_sha256": "4b0874902106b01e21f2498b28336dcd5f01bfa88c8de0f41f57354bbd761dde",
+    "feedback_Hz": 100000000.0,
+    "feedback_delay_s": 1.3e-08,
+    "reference_Hz": 100000000.0,
+    "duration_s": 1.8e-06,
+    "maxstep_s": 2e-11,
+    "strobeperiod_s": 2e-11,
+    "expected": "DONE code16, provisional near",
+    "actual_status": "not_run"
+  },
+  {
+    "name": "afc_unit_near100_phase_low",
+    "path": "@PROJECT_ROOT@/afc2009_20261007/mos/benches/afc_unit_near100_phase_low.scs",
+    "sha256": "076ab0451a13a62cc23231ba76721cff65f1cb180eab32881ddd723674c2cd27",
+    "mos_source_sha256": "4b0874902106b01e21f2498b28336dcd5f01bfa88c8de0f41f57354bbd761dde",
+    "feedback_Hz": 100000000.0,
+    "feedback_delay_s": 1.7e-08,
+    "reference_Hz": 100000000.0,
+    "duration_s": 1.8e-06,
+    "maxstep_s": 2e-11,
+    "strobeperiod_s": 2e-11,
+    "expected": "DONE code16, provisional near",
+    "actual_status": "not_run"
+  },
+  {
+    "name": "afc_unit_fast140",
+    "path": "@PROJECT_ROOT@/afc2009_20261007/mos/benches/afc_unit_fast140.scs",
+    "sha256": "fb9deaa6346d794142b13cade09795d1a257d9394f7a417104a619ad63e45ce0",
+    "mos_source_sha256": "4b0874902106b01e21f2498b28336dcd5f01bfa88c8de0f41f57354bbd761dde",
+    "feedback_Hz": 140000000.0,
+    "feedback_delay_s": 1.3e-08,
+    "reference_Hz": 100000000.0,
+    "duration_s": 1.8e-06,
+    "maxstep_s": 2e-11,
+    "strobeperiod_s": 2e-11,
+    "expected": "FAIL at code1, no handover",
+    "actual_status": "not_run"
+  },
+  {
+    "name": "afc_unit_slow70",
+    "path": "@PROJECT_ROOT@/afc2009_20261007/mos/benches/afc_unit_slow70.scs",
+    "sha256": "8689a5d50d5027bf28544323926b5781a1a859d8a05a7225fd42e85da6ef1c44",
+    "mos_source_sha256": "4b0874902106b01e21f2498b28336dcd5f01bfa88c8de0f41f57354bbd761dde",
+    "feedback_Hz": 70000000.0,
+    "feedback_delay_s": 1.3e-08,
+    "reference_Hz": 100000000.0,
+    "duration_s": 1.8e-06,
+    "maxstep_s": 2e-11,
+    "strobeperiod_s": 2e-11,
+    "expected": "FAIL at code31, no handover",
+    "actual_status": "not_run"
+  },
+  {
+    "name": "afc_unit_no_feedback",
+    "path": "@PROJECT_ROOT@/afc2009_20261007/mos/benches/afc_unit_no_feedback.scs",
+    "sha256": "8e07d2f42aa797fb04580dd095fb44fe3afe6f89e3ea11602414e6a5fd5b79fe",
+    "mos_source_sha256": "4b0874902106b01e21f2498b28336dcd5f01bfa88c8de0f41f57354bbd761dde",
+    "feedback_Hz": 0,
+    "feedback_delay_s": 0,
+    "reference_Hz": 100000000.0,
+    "duration_s": 6.5e-07,
+    "maxstep_s": 2e-11,
+    "strobeperiod_s": 2e-11,
+    "expected": "FAIL ARM watchdog, no handover",
+    "actual_status": "not_run"
+  }
+]

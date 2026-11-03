@@ -1,0 +1,11 @@
+simulator lang=spectre
+global 0
+include "@TECH_ROOT@/models/spectre/ms013_io33_v2p6_7p_spe.lib" section=tt
+VDD (vdd 0) vsource dc=1.2
+VIN (in 0) vsource type=pulse val0=0 val1=1.2 period=2n width=1n rise=50p fall=50p
+MN (out in 0 0) n12 w=1u l=0.13u
+MP (out in vdd vdd) p12 w=2u l=0.13u
+CL (out 0) capacitor c=20f
+simulatorOptions options reltol=1e-4 vabstol=1u iabstol=1p temp=40
+tran tran stop=10n maxstep=5p
+save in out vdd VDD:p

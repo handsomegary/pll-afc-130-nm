@@ -1,0 +1,78 @@
+\begin{figure*}[t]
+\centering\resizebox{.97\textwidth}{!}{%
+\begin{circuitikz}[american,x=1cm,y=1cm,font=\small]
+\begin{scope}
+ \node[pmos] (pi) at (0,2.1) {}; \node[nmos] (ni) at (0,.55) {};
+ \draw (pi.S) -- (0,2.9) node[above]{VDD};
+ \draw (ni.S) -- (0,-.2) node[below]{VSS};
+ \draw (pi.D) -- (ni.D); \draw (0,1.325) node[circ]{} -- ++(.65,0) node[right]{$Y$};
+ \draw (pi.G) -- (-.84,2.1) -- (-.84,.55) -- (ni.G);
+ \draw (-.84,1.325) node[circ]{} -- ++(-.35,0) node[left]{$A$};
+ \node at (0,-1.64) {(a) INV};
+\end{scope}
+\begin{scope}[shift={(3.55,0)}]
+ \node[pmos] (pa) at (-.55,2.1) {}; \node[pmos,xscale=-1] (pb) at (.55,2.1) {};
+ \node[nmos] (na) at (0,.75) {}; \node[nmos] (nb) at (0,-.28) {};
+ \draw (pa.S) -- (-.55,2.92) -- (.55,2.92) -- (pb.S);
+ \node[above] at (0,2.92) {VDD};
+ \draw (pa.D) -- (-.55,1.42) -- (.55,1.42) -- (pb.D);
+ \draw (0,1.42) node[circ]{} -- (na.D); \draw (na.S) -- (nb.D);
+ \draw (.55,1.42) -- ++(.55,0) node[right]{$Y$};
+ \draw (nb.S) -- (0,-.99) node[below]{VSS};
+ \draw (pa.G) -- ++(-.12,0) node[left]{$A$}; \draw (pb.G) -- ++(.12,0) node[right]{$B$};
+ \draw (na.G) -- ++(-.12,0) node[left]{$A$}; \draw (nb.G) -- ++(-.12,0) node[left]{$B$};
+ \node at (0,-1.64) {(b) NAND2};
+\end{scope}
+\begin{scope}[shift={(7.6,0)}]
+ \node[pmos] (pb) at (0,2.35) {}; \node[pmos] (pa) at (0,1.32) {};
+ \node[nmos] (na) at (-.55,-.05) {}; \node[nmos,xscale=-1] (nb) at (.55,-.05) {};
+ \draw (pb.S) -- (0,3.02) node[above]{VDD}; \draw (pb.D) -- (pa.S);
+ \draw (pa.D) -- (0,.64) node[circ]{}; \draw (na.D) -- (-.55,.64) -- (.55,.64) -- (nb.D);
+ \draw (.55,.64) -- ++(.55,0) node[right]{$Y$};
+ \draw (na.S) -- (-.55,-.81) -- (.55,-.81) -- (nb.S); \node[below] at (0,-.81) {VSS};
+ \draw (pa.G) -- ++(-.12,0) node[left]{$A$}; \draw (pb.G) -- ++(-.12,0) node[left]{$B$};
+ \draw (na.G) -- ++(-.12,0) node[left]{$A$}; \draw (nb.G) -- ++(.12,0) node[right]{$B$};
+ \node at (0,-1.64) {(c) NOR2};
+\end{scope}
+\begin{scope}[shift={(11.6,0)}]
+ \foreach \i/\gate in {0/A,1/B,2/C,3/D}{
+   \node[pmos,scale=.77] (p\i) at ({1.02*\i},1.45) {};
+   \draw (p\i.S) -- ({1.02*\i},2.02); \draw (p\i.D) -- ({1.02*\i},.85);
+   \draw (p\i.G) -- ++(-.05,0) node[left,font=\scriptsize]{$\gate$};
+ }
+ \draw (0,2.02) -- (3.06,2.02); \node[above] at (1.53,2.02) {VDD};
+ \draw (0,.85) -- (3.06,.85); \node[below] at (1.53,.85) {$Y$};
+ \foreach \i/\gate in {0/A,1/B,2/C,3/D}{
+   \node[nmos,scale=.78] (m\i) at (4.30,{2.1-.9*\i}) {};
+   \draw (m\i.G) -- ++(-.05,0) node[left,font=\scriptsize]{$\gate$};
+ }
+ \draw (m0.D) -- ++(0,.12) node[above]{$Y$};
+ \draw (m0.S) -- (m1.D); \draw (m1.S) -- (m2.D); \draw (m2.S) -- (m3.D);
+ \draw (m3.S) -- ++(0,-.12) node[below]{VSS};
+ \node at (1.95,-1.64) {(d) NAND4};
+\end{scope}
+\begin{scope}[shift={(19.0,0)}]
+ \node[pmos,rotate=-90] (pg) at (0,1.8) {};
+ \node[nmos,rotate=90] (ng) at (0,.5) {};
+ \draw (pg.D) -- (-.85,1.8) -- (-.85,.5) -- (ng.D);
+ \draw (pg.S) -- (.85,1.8) -- (.85,.5) -- (ng.S);
+ \draw (-.85,1.13) node[circ]{} -- ++(-.3,0) node[left]{$X$};
+ \draw (.85,1.13) node[circ]{} -- ++(.3,0) node[right]{$Z$};
+ \draw (ng.G) -- ++(0,-.14) node[below]{$E$};
+ \draw (pg.G) -- ++(0,.14) node[above]{$\overline E$};
+ \node at (0,-1.64) {(e) TG};
+\end{scope}
+\end{circuitikz}}
+\caption{Distinct gate topologies of the R1 AFC. For the NAND4 the two networks share output $Y$. The transmission gate (TG) connects $X$ and $Z$ when $E=1$. The latch adds the reset NMOS shown in Fig.~\ref{fig:r1afc-latch}.}
+\label{fig:r1afc-cells}
+\end{figure*}
+
+The default inverter has $W_n/W_p=0.8/2.4~\mu\mathrm{m}$. Its latch and
+clock-driver variants use $0.5/1.5$ and $8/24~\mu\mathrm{m}$.
+NAND2, NOR2 and NAND4 use per-device widths of $1.6/2.4$,
+$0.8/4.8$ and $3.2/2.4~\mu\mathrm{m}$, respectively. The TG uses
+$1.2/3.6~\mu\mathrm{m}$. For an XOR, the generator forms
+$U=\overline{AB}$ and then
+$Y=\overline{\overline{AU}\,\overline{BU}}$. A two-input multiplexer
+uses NAND2 cells and a complemented select. These same cells form the
+Gray converters, incrementers, difference detectors and code update logic.

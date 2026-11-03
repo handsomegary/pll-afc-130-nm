@@ -1,0 +1,36 @@
+// Authored cmos130 1.2-V gate-switched, dual-reference charge-pump candidate.
+// This is NOT the report Fig.4 source-switched/opamp-matched circuit.
+// Physical n12/p12 MOS; reference IREF_CP remains an ideal current source.
+// Device sizes are candidates to characterize, NOT validated current/matching.
+simulator lang=spectre
+
+subckt pll130_cp_inv (vdd vss a z)
+    MN (z a vss vss) n12 w=0.5u l=0.13u
+    MP (z a vdd vdd) p12 w=1.5u l=0.13u
+ends pll130_cp_inv
+
+subckt pll130_cp_transistor (vdd vss up dn ctrl)
+    parameters IREF_CP=20u WN_CP=4u WP_CP=12u L_CP=1.04u
+    parameters WN_SW=0.5u WP_SW=1.5u L_SW=0.13u
+    IREF (vdd bncp) isource dc=IREF_CP
+    MNREF (bncp bncp vss vss) n12 w=WN_CP l=L_CP
+    MNPMIRROR (bpcp bncp vss vss) n12 w=WN_CP l=L_CP
+    MPREF (bpcp bpcp vdd vdd) p12 w=WP_CP l=L_CP
+
+    XUPINV (vdd vss up upbar) pll130_cp_inv
+    XDNINV (vdd vss dn dnbar) pll130_cp_inv
+
+    // Select PMOS reference gate for UP=1; select VDD for UP=0.
+    MNUPBIAS (gp up bpcp vss) n12 w=WN_SW l=L_SW
+    MPUPBIAS (gp upbar bpcp vdd) p12 w=WP_SW l=L_SW
+    MNUPRAIL (gp upbar vdd vss) n12 w=WN_SW l=L_SW
+    MPUPRAIL (gp up vdd vdd) p12 w=WP_SW l=L_SW
+    MPUP (ctrl gp vdd vdd) p12 w=WP_CP l=L_CP
+
+    // Select NMOS reference gate for DN=1; select VSS for DN=0.
+    MNDNBIAS (gn dn bncp vss) n12 w=WN_SW l=L_SW
+    MPDNBIAS (gn dnbar bncp vdd) p12 w=WP_SW l=L_SW
+    MNDNRAIL (gn dnbar vss vss) n12 w=WN_SW l=L_SW
+    MPDNRAIL (gn dn vss vdd) p12 w=WP_SW l=L_SW
+    MNDN (ctrl gn vss vss) n12 w=WN_CP l=L_CP
+ends pll130_cp_transistor

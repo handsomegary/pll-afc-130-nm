@@ -1,0 +1,115 @@
+{
+  "scope": "External model records bound to the selected R1 run. File content stays in the licensed technology installation.",
+  "files": [
+    {
+      "relative_path": "models/spectre/gc_rf.va",
+      "bytes": 695,
+      "sha256": "8f944bbd251defd16d01f29fbd726c0f39db6b46869a368248efa4ebe543febe"
+    },
+    {
+      "relative_path": "models/spectre/ms013_io33_rf_3T_diff_ind_v1p9_spe.ckt",
+      "bytes": 65412,
+      "sha256": "79aa4e47c3a27aec3c0ae2107ab4be57761f55b8a133a4d3bb61c0a4c5edbaf6"
+    },
+    {
+      "relative_path": "models/spectre/ms013_io33_rf_3Tdiff_1talpa_psub_spe_v1p9.ckt",
+      "bytes": 17810,
+      "sha256": "9b63c44f83c8c0c46e18546b98ab145d880fcf969b783662b90bc901e0d238e8"
+    },
+    {
+      "relative_path": "models/spectre/ms013_io33_rf_3Tdiff_1talpa_spe_v1p9.ckt",
+      "bytes": 17277,
+      "sha256": "cbe58bdf0ab92a4907796735c23bf7e4c54636df31c8879143f3a14d4329b6d5"
+    },
+    {
+      "relative_path": "models/spectre/ms013_io33_rf_diff_ind_v1p9_spe.ckt",
+      "bytes": 10565,
+      "sha256": "14568279c0d892956f33cd74d3845548a9aac7a9f5cf8907c05db5c651cbe00a"
+    },
+    {
+      "relative_path": "models/spectre/ms013_io33_rf_mim_v1p9_spe.ckt",
+      "bytes": 12704,
+      "sha256": "0812aa13d7d014d1b79e77048f7e92d11fd16186fc246c841287811f6a9298bf"
+    },
+    {
+      "relative_path": "models/spectre/ms013_io33_rf_mom_v1p9_spe.ckt",
+      "bytes": 11665,
+      "sha256": "75dc37a9779a79895ffcbd1fc6b687c2eb749f9f8594c10a24901cb14366e881"
+    },
+    {
+      "relative_path": "models/spectre/ms013_io33_rf_mos_v1p9_spe.ckt",
+      "bytes": 66848,
+      "sha256": "a926bb021230afd9dd99d76a1c1dbd2c0011007783a504b21f26834296f1e1b5"
+    },
+    {
+      "relative_path": "models/spectre/ms013_io33_rf_res_v1p9_spe.ckt",
+      "bytes": 23207,
+      "sha256": "184c8d489d8566f31518f8de01fe10d666168d9401c6b1a2e6c78aff4675281d"
+    },
+    {
+      "relative_path": "models/spectre/ms013_io33_rf_spi_mf_ind_psub_spe_v1p9.ckt",
+      "bytes": 6451,
+      "sha256": "f79e0266669750b44d390c84719dbe664b96c56a2ba92d6547c0a7fefe087922"
+    },
+    {
+      "relative_path": "models/spectre/ms013_io33_rf_spi_mf_ind_spe_v1p9.ckt",
+      "bytes": 6315,
+      "sha256": "3b47d9b24f14a03e3a7773683ae3ab4b3f62d489b5577553a83642d12d900352"
+    },
+    {
+      "relative_path": "models/spectre/ms013_io33_rf_spir_ind_spe_v1p9.ckt",
+      "bytes": 103605,
+      "sha256": "1ec8ccf4bf1d3d782e64472304b3a3c4ddffd4225819367859ca8a007d983f0d"
+    },
+    {
+      "relative_path": "models/spectre/ms013_io33_rf_v1p9_spe.lib",
+      "bytes": 31836,
+      "sha256": "96af223bafabc830b2f18a7af2942938825d94efaafc8e9b06e3970a3a462273"
+    },
+    {
+      "relative_path": "models/spectre/ms013_io33_rf_var_v1p9_spe.ckt",
+      "bytes": 11773,
+      "sha256": "c3742f4e38b4c5c648f32e7057b91d93c8bf79c9dd478ba4a9b51401cdf7ff21"
+    },
+    {
+      "relative_path": "models/spectre/ms013_io33_v2p6_7p_bjt_spe.mdl",
+      "bytes": 16363,
+      "sha256": "bdbc31c73b86f6a32aefa5f82d6bc9b39e5182434287c6670360cdca91f4eb88"
+    },
+    {
+      "relative_path": "models/spectre/ms013_io33_v2p6_7p_dio_spe.mdl",
+      "bytes": 15116,
+      "sha256": "5ba0097d9e019b58eb0379fd19d7200a5f9e24a2b8627a903eb9d9210be52c97"
+    },
+    {
+      "relative_path": "models/spectre/ms013_io33_v2p6_7p_mim_spe.mdl",
+      "bytes": 2973,
+      "sha256": "5b95cd9cb1ce5bcd1df950c03a9cea80a853efb96741c1158c08cd9e30afc921"
+    },
+    {
+      "relative_path": "models/spectre/ms013_io33_v2p6_7p_mis_spe.mdl",
+      "bytes": 28512,
+      "sha256": "6a4dc696e40c2075c01ebe60bd4032c8158126ca5359ca3115b3db4c717c5b5c"
+    },
+    {
+      "relative_path": "models/spectre/ms013_io33_v2p6_7p_res_spe.mdl",
+      "bytes": 14613,
+      "sha256": "8eeb33a9c86856f41abaaaacf595667f315e22221cb96ae82e6931a3904766ac"
+    },
+    {
+      "relative_path": "models/spectre/ms013_io33_v2p6_7p_spe.lib",
+      "bytes": 121538,
+      "sha256": "fb70ef1fc3e536d9bbd993b954218c913b2ab1468d101a66d4a3033fd4f8cf7d"
+    },
+    {
+      "relative_path": "models/spectre/ms013_io33_v2p6_7p_spe.mdl",
+      "bytes": 62443,
+      "sha256": "90128ad8c3f453f47f8098c47f43b8c124c74cb3b189649c83e89869938302b2"
+    },
+    {
+      "relative_path": "models/spectre/res_rf.va",
+      "bytes": 4598,
+      "sha256": "e860e73ce14557220b769b21acf4c4aa5d2f3c3dcd102658d44035c69e7d5097"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+simulator lang=spectre
+global 0
+include "@TECH_ROOT@/models/spectre/ms013_io33_v2p6_7p_spe.lib" section=tt
+include "@PROJECT_ROOT@/pll_full/analog/pll130_cp_transistor.scs"
+simulatorOptions options temp=25 reltol=1e-5 vabstol=1e-7 iabstol=1e-12
+VDD (vdd 0) vsource dc=1.2
+// UP 20-22ns; DN 30-32ns; both 40-40.2ns.
+// Useful for charge feedthrough, settling and matching screen.
+VUP (up 0) vsource type=pwl wave=[0 0 20n 0 20.02n 1.2 22n 1.2 22.02n 0 40n 0 40.02n 1.2 40.2n 1.2 40.22n 0 60n 0]
+VDN (dn 0) vsource type=pwl wave=[0 0 30n 0 30.02n 1.2 32n 1.2 32.02n 0 40n 0 40.02n 1.2 40.2n 1.2 40.22n 0 60n 0]
+XCP (vdd 0 up dn ctrl) pll130_cp_transistor WN_SW=2.0u WP_SW=6.0u
+CSHUNT (ctrl 0) capacitor c=3.3843747954e-13
+RSERIES (ctrl filter_mid) resistor r=49501.46753
+CSERIES (filter_mid 0) capacitor c=6.43031211126e-12
+ic ctrl=0.8359375 filter_mid=0.8359375
+saveOptions options save=selected
+save ctrl filter_mid up dn VDD:p XCP.bncp XCP.bpcp XCP.gp XCP.gn XCP.MPUP:d XCP.MNDN:d
+tran tran stop=60n maxstep=10p errpreset=conservative skipdc=yes

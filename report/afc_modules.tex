@@ -1,0 +1,92 @@
+% Inline source for IEEEtran. Requires graphicx, amsmath and american circuitikz.
+\section{Transistor Implementation of the AFC}
+\label{sec:r1afc}
+The R1 AFC compares edges of the 100-MHz reference and the physical
+divide-by-32 feedback. A higher five-bit code increases the ring frequency.
+The controller starts at code 16 and can test four further candidates
+using steps of 8, 4, 2, and 1. Each candidate reaches the detector before
+the controller can hand it to the fine loop.
+
+\begin{figure*}[t]
+\centering\resizebox{0.98\textwidth}{!}{%
+\begin{circuitikz}[american,x=1cm,y=1cm,font=\small,
+ blk/.style={draw,rounded corners=1.5pt,align=center,minimum width=2.5cm,
+ minimum height=.76cm,inner sep=4pt}, ar/.style={->,>=latex}]
+  \node[blk] (ep) at (1.7,2.2) {First FB edge\\sample REF level};
+  \node[blk] (sel) at (5.1,2.2) {Phase selector\\REF or inverted REF};
+  \node[blk] (count) at (8.8,2.2) {Lead / lag counters\\8-bit Gray, init.\ 1 / 0};
+  \node[blk] (fbg) at (1.7,.55) {FB gate\\enable latched low};
+  \node[blk] (div) at (5.1,.55) {FB counter\\8-bit Gray, init.\ 0};
+  \node[blk] (sync) at (12.3,1.38) {Two DFFs per bit\\then Gray decode};
+  \node[blk] (cmp) at (12.3,-.7) {Compare counts\\qualify direction};
+  \node[blk] (snap) at (8.8,-.7) {Decision snapshot\\$3\times8$ bits + direction};
+  \node[blk] (fsm) at (5.1,-.7) {Trial controller\\state and timers};
+  \node[blk] (code) at (1.7,-.95) {Five-bit band register\\steps $8,4,2,1$};
+  \draw[ar] (-.95,2.2) node[left]{REF} -- (ep.west);
+  \draw[ar] (-.95,.55) node[left]{FB} -- (fbg.west);
+  \draw[ar] (ep.east) -- (sel.west); \draw[ar] (sel.east) -- (count.west);
+  \draw[ar] (fbg.east) -- (div.west);
+  \draw[ar] (3.26,.55) node[circ]{} -- (3.26,1.32) -| (ep.south);
+  \draw[ar] (count.east) -- ++(.20,0) |- ([yshift=2.5mm]sync.west);
+  \draw[ar] (div.east) -- (10.35,.55) |- ([yshift=-2.5mm]sync.west);
+  \draw[ar] (sync.south) -- (cmp.north); \draw[ar] (cmp.west) -- (snap.east);
+  \draw[ar] (snap.west) -- (fsm.east); \draw[ar] (fsm.west) -- ++(-.27,0) |- (code.east);
+  \draw[ar] (code.west) -- ++(-.85,0) node[left]{$S[4{:}0]$};
+  \draw[ar] (fsm.south) -- ++(0,-.54) node[below]{DONE, FAIL, HOLD, FineEnable, PFD reset};
+\end{circuitikz}}
+\caption{R1 frequency detector and search controller. The phase selector also receives REF and its complement. The gated FB clocks both the FB counter and the first-edge sample. The synchronized counts share the controller clock. Trial control supplies the counter enables and resets.}
+\label{fig:r1afc-datapath}
+\end{figure*}
+
+The first admitted FB edge samples the reference level and assigns
+the two reference phases to lead and lag counters (Fig.~\ref{fig:r1afc-datapath}).
+The lead counter starts with one credit. A chain of 16 inverters guards
+reference-counter reset release after that first edge. The controller
+samples each Gray word through two flip-flops per bit, then decodes it.
+With lead, lag, and divided-feedback counts $C_L,C_G,C_D$, respectively,
+it qualifies a slow decision when $C_G-C_D\geq 2$ and a fast decision
+when $C_D-C_L\geq 2$. The unsigned subtractors check the carry first.
+Two consecutive observations in the same direction qualify a request.
+Reaching lag count 128 without a qualified direction ends a trial as near.
+
+\begin{figure}[t]
+\centering\resizebox{.93\columnwidth}{!}{%
+\begin{circuitikz}[american,x=1cm,y=1cm,font=\small,
+ s/.style={draw,rounded corners=1.5pt,minimum width=1.72cm,
+ minimum height=.60cm,inner sep=3pt,align=center}, a/.style={->,>=latex}]
+ \node[s] (set) at (1,1.5) {SETTLE}; \node[s] (arm) at (4.8,1.5) {ARM};
+ \node[s] (meas) at (4.8,0) {MEASURE}; \node[s] (dr) at (1,0) {DRAIN};
+ \node[s] (ok) at (1,-1.8) {DONE}; \node[s] (fail) at (4.8,-1.8) {FAIL};
+ \draw[a] (1,2.32) node[above]{START} -- (set.north);
+ \draw[a] (set.east) -- node[above]{4 REF} (arm.west);
+ \draw[a] (arm.south) -- node[right,font=\scriptsize]{epoch valid} (meas.north);
+ \draw[a] (meas.west) -- node[above]{decision} (dr.east);
+ \draw[a] (dr.west) -- ++(-.45,0) |- ([yshift=-1mm]set.west);
+ \node[rotate=90,anchor=south,font=\scriptsize] at (-.33,.75) {next code};
+ \draw[a] (dr.south) -- node[left,font=\scriptsize]{accept} (ok.north);
+ \draw[a] (meas.south) -- node[right,font=\scriptsize]{watchdog / conflict} (fail.north);
+ \draw[a] ([yshift=1mm]arm.east) -- ++(1.62,0) |- (fail.east);
+ \node[rotate=90,anchor=south,font=\scriptsize] at (7.15,.5) {ARM timeout};
+ \draw[a] ([xshift=4mm]dr.south) -- ++(0,-.91) -| ([xshift=-5mm]fail.north);
+ \node[anchor=south,font=\scriptsize] at (2.95,-1.2) {endpoint failure};
+\end{circuitikz}}
+\caption{R1 state transitions. DRAIN holds the captured counts for two controller cycles. A terminal decision accepts a near result or the last tested candidate. An outward direction at code 1 or 31 on a terminal decision sets FAIL.}
+\label{fig:r1afc-fsm}
+\end{figure}
+
+An empty ARM window times out after 32 reference clocks. MEASURE has
+a 192-clock watchdog. The circuit stores the three decision words and
+direction before ending the measurement. On success, two further
+reference clocks separate DONE from FineEnable. HOLD is the complement
+of FineEnable. The PFD reset is asserted when reset is high or FineEnable
+is low.
+
+\subsection{Static CMOS Cells}
+The generator expands the gates into one flat Spectre subcircuit.
+Figure~\ref{fig:r1afc-cells} shows the transistor connections of the
+gate constructors. All devices use $L=0.13~\mu\mathrm{m}$. NMOS bulk
+connects to VSS and PMOS bulk connects to VDD. Repeated
+input labels in a panel denote the same electrical net.
+
+\input{afc/device_cells}
+\input{afc/latch_and_clock}

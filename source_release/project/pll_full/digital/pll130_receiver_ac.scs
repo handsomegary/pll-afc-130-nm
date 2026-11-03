@@ -1,0 +1,18 @@
+// Alternative receiver ONLY. Does not replace the original DC-coupled model.
+// Actual RF differential pair: same 6um per input /30um tail as original.
+// AC coupling blocks the high CML common mode. 1M feedback biases the first
+// CMOS inverter at its own transfer point; two CMOS stages restore the clock.
+// Real capacitor/resistor are ideal Spectre passives (no layout/PEX model).
+simulator lang=spectre
+subckt pll130_receiver_ac (vdd vss bn inp inn clk rxp rxn)
+parameters INPUT_WR=1.5u INPUT_NF=4 TAIL_WR=2.5u TAIL_NF=12 RLOAD_RX=3k CC=20f RB=1M
+XIP (rxn inp src vss) n12_ckt_rf lr=.13u wr=INPUT_WR nf=INPUT_NF sar=.4u sbr=.4u mr=1 mismod=0
+XIN (rxp inn src vss) n12_ckt_rf lr=.13u wr=INPUT_WR nf=INPUT_NF sar=.4u sbr=.4u mr=1 mismod=0
+XT (src bn vss vss) n12_ckt_rf lr=.39u wr=TAIL_WR nf=TAIL_NF sar=.4u sbr=.4u mr=1 mismod=0
+RP (rxp vdd) resistor r=RLOAD_RX
+RN (rxn vdd) resistor r=RLOAD_RX
+CAC (rxp inv_bias) capacitor c=CC
+RBIAS (clkn inv_bias) resistor r=RB
+XI0 (vdd vss inv_bias clkn) pll130_inv WN=.8u WP=3.2u
+XI1 (vdd vss clkn clk) pll130_inv WN=1.6u WP=4.8u
+ends pll130_receiver_ac

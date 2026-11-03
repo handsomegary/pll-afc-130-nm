@@ -1,0 +1,243 @@
+{
+  "version": "driven-physical-pll-noise-v1",
+  "ready_to_launch": false,
+  "ready_meaning": "Prepared only; root must explicitly schedule bounded jobs after source/model review.",
+  "source_transient_path": "pll_full/digital/benches/pll_stage3_physical_code28_ctrl835938_cpdrain_bounded2p.scs",
+  "source_transient_sha256": "cc44e0bb56a8de35ff75d1780b99bc790311ec097f33556fa9046eb4bb0e8f44",
+  "frozen_periodic_base_sha256": "64e5d70280faf69e3144489661da69578bc4e523ff426288ff2ecf639ad9fab9",
+  "source_locked_case": "pll_stage3_physical_code28_ctrl835938_cpdrain_bounded2p",
+  "source_lock_time_s": 1.269760355478449e-06,
+  "measured_IC": {
+    "ctrl_V": 0.8231795786221926,
+    "filter_mid_V": 0.8216557867533114
+  },
+  "frozen_sources": [
+    {
+      "instance": "VRSTD",
+      "node": "div_rst",
+      "dc_V": 0
+    },
+    {
+      "instance": "VRSTP",
+      "node": "rst",
+      "dc_V": 0
+    },
+    {
+      "instance": "VEN",
+      "node": "enable",
+      "dc_V": 1.2
+    }
+  ],
+  "actual_warm_node_snapshot": {
+    "time_s": 2e-06,
+    "reference_period_s": 1e-08,
+    "node_voltage_V": {
+      "out0": 0.9208695330450305,
+      "out90": 0.9905414738252258,
+      "out180": 0.9321691478892263,
+      "out270": 0.871022774387272,
+      "bn": 0.4703825114127978,
+      "bp": 0.723969348974261,
+      "clk": 0.8845078353642171,
+      "rxp": 0.9877806039992335,
+      "rxn": 0.8512324396441093,
+      "q1": 0.9576059930297007,
+      "q2": 0.028667191227865887,
+      "q3": 1.199279520460545,
+      "q4": 1.199998997258761,
+      "fb": 1.199991150717332,
+      "up": -1.324791800841074e-07,
+      "dn": 1.199998375126191,
+      "XRX.src": 0.3549324441231052,
+      "XRX.inv_bias": 0.6873477714384852,
+      "XRX.clkn": 0.3939077493218656,
+      "XCP.bncp": 0.4899667644330917,
+      "XCP.bpcp": 0.7171617801059696,
+      "XCP.pinternal": 1.198583385049365,
+      "XCP.ninternal": 0.5998164081291871
+    },
+    "scope": "Actual saved-node voltages at the last time-zero-aligned reference period boundary; interpolated only between saved samples. No unsaved FF state is assumed. Preparation requires integer-period reference delay and actual lock."
+  },
+  "locked_own_dependency_sha256": "9efd698a017e194e7911deb4cd8fd0830370d540fce0b0290b09a24da348d13e",
+  "locked_external_model_set_sha256": "e95dffa961fcb27f0755cba4fc287e2693c3356a3754d4a2dd3b16b67bc9359e",
+  "locked_external_model_dependencies": {
+    "@TECH_ROOT@/models/spectre/ms013_io33_rf_3T_diff_ind_v1p9_spe.ckt": {
+      "bytes": 65412,
+      "sha256": "79aa4e47c3a27aec3c0ae2107ab4be57761f55b8a133a4d3bb61c0a4c5edbaf6"
+    },
+    "@TECH_ROOT@/models/spectre/ms013_io33_rf_3Tdiff_1talpa_psub_spe_v1p9.ckt": {
+      "bytes": 17810,
+      "sha256": "9b63c44f83c8c0c46e18546b98ab145d880fcf969b783662b90bc901e0d238e8"
+    },
+    "@TECH_ROOT@/models/spectre/ms013_io33_rf_3Tdiff_1talpa_spe_v1p9.ckt": {
+      "bytes": 17277,
+      "sha256": "cbe58bdf0ab92a4907796735c23bf7e4c54636df31c8879143f3a14d4329b6d5"
+    },
+    "@TECH_ROOT@/models/spectre/ms013_io33_rf_diff_ind_v1p9_spe.ckt": {
+      "bytes": 10565,
+      "sha256": "14568279c0d892956f33cd74d3845548a9aac7a9f5cf8907c05db5c651cbe00a"
+    },
+    "@TECH_ROOT@/models/spectre/ms013_io33_rf_mim_v1p9_spe.ckt": {
+      "bytes": 12704,
+      "sha256": "0812aa13d7d014d1b79e77048f7e92d11fd16186fc246c841287811f6a9298bf"
+    },
+    "@TECH_ROOT@/models/spectre/ms013_io33_rf_mom_v1p9_spe.ckt": {
+      "bytes": 11665,
+      "sha256": "75dc37a9779a79895ffcbd1fc6b687c2eb749f9f8594c10a24901cb14366e881"
+    },
+    "@TECH_ROOT@/models/spectre/ms013_io33_rf_mos_v1p9_spe.ckt": {
+      "bytes": 66848,
+      "sha256": "a926bb021230afd9dd99d76a1c1dbd2c0011007783a504b21f26834296f1e1b5"
+    },
+    "@TECH_ROOT@/models/spectre/ms013_io33_rf_res_v1p9_spe.ckt": {
+      "bytes": 23207,
+      "sha256": "184c8d489d8566f31518f8de01fe10d666168d9401c6b1a2e6c78aff4675281d"
+    },
+    "@TECH_ROOT@/models/spectre/ms013_io33_rf_spi_mf_ind_psub_spe_v1p9.ckt": {
+      "bytes": 6451,
+      "sha256": "f79e0266669750b44d390c84719dbe664b96c56a2ba92d6547c0a7fefe087922"
+    },
+    "@TECH_ROOT@/models/spectre/ms013_io33_rf_spi_mf_ind_spe_v1p9.ckt": {
+      "bytes": 6315,
+      "sha256": "3b47d9b24f14a03e3a7773683ae3ab4b3f62d489b5577553a83642d12d900352"
+    },
+    "@TECH_ROOT@/models/spectre/ms013_io33_rf_spir_ind_spe_v1p9.ckt": {
+      "bytes": 103605,
+      "sha256": "1ec8ccf4bf1d3d782e64472304b3a3c4ddffd4225819367859ca8a007d983f0d"
+    },
+    "@TECH_ROOT@/models/spectre/ms013_io33_rf_v1p9_spe.lib": {
+      "bytes": 31836,
+      "sha256": "96af223bafabc830b2f18a7af2942938825d94efaafc8e9b06e3970a3a462273"
+    },
+    "@TECH_ROOT@/models/spectre/ms013_io33_rf_var_v1p9_spe.ckt": {
+      "bytes": 11773,
+      "sha256": "c3742f4e38b4c5c648f32e7057b91d93c8bf79c9dd478ba4a9b51401cdf7ff21"
+    },
+    "@TECH_ROOT@/models/spectre/ms013_io33_v2p6_7p_bjt_spe.mdl": {
+      "bytes": 16363,
+      "sha256": "bdbc31c73b86f6a32aefa5f82d6bc9b39e5182434287c6670360cdca91f4eb88"
+    },
+    "@TECH_ROOT@/models/spectre/ms013_io33_v2p6_7p_dio_spe.mdl": {
+      "bytes": 15116,
+      "sha256": "5ba0097d9e019b58eb0379fd19d7200a5f9e24a2b8627a903eb9d9210be52c97"
+    },
+    "@TECH_ROOT@/models/spectre/ms013_io33_v2p6_7p_mim_spe.mdl": {
+      "bytes": 2973,
+      "sha256": "5b95cd9cb1ce5bcd1df950c03a9cea80a853efb96741c1158c08cd9e30afc921"
+    },
+    "@TECH_ROOT@/models/spectre/ms013_io33_v2p6_7p_mis_spe.mdl": {
+      "bytes": 28512,
+      "sha256": "6a4dc696e40c2075c01ebe60bd4032c8158126ca5359ca3115b3db4c717c5b5c"
+    },
+    "@TECH_ROOT@/models/spectre/ms013_io33_v2p6_7p_res_spe.mdl": {
+      "bytes": 14613,
+      "sha256": "8eeb33a9c86856f41abaaaacf595667f315e22221cb96ae82e6931a3904766ac"
+    },
+    "@TECH_ROOT@/models/spectre/ms013_io33_v2p6_7p_spe.lib": {
+      "bytes": 121538,
+      "sha256": "fb70ef1fc3e536d9bbd993b954218c913b2ab1468d101a66d4a3033fd4f8cf7d"
+    },
+    "@TECH_ROOT@/models/spectre/ms013_io33_v2p6_7p_spe.mdl": {
+      "bytes": 62443,
+      "sha256": "90128ad8c3f453f47f8098c47f43b8c124c74cb3b189649c83e89869938302b2"
+    }
+  },
+  "own_model_dependencies": [
+    {
+      "path": "@PROJECT_ROOT@/pll_full/analog/pll130_cp_drain_candidate.scs",
+      "relative_path": "analog/pll130_cp_drain_candidate.scs",
+      "sha256": "ab4b88ceb198afaab55ce9ae70870ff5afc4a6bb383e2a2c0b8eaa83f17c8000"
+    },
+    {
+      "path": "@PROJECT_ROOT@/pll_full/digital/pll130_digital_mos.scs",
+      "relative_path": "digital/pll130_digital_mos.scs",
+      "sha256": "001a25c69655bb7dd1f03549c1171ab8bf06db7fcb9be02d20471cde231ddb21"
+    },
+    {
+      "path": "@PROJECT_ROOT@/pll_full/digital/pll130_receiver_ac.scs",
+      "relative_path": "digital/pll130_receiver_ac.scs",
+      "sha256": "6aa7482e92b7c5f1481b478bbdd3364fb5e47ed2b782c5fa14fd89550d498201"
+    }
+  ],
+  "cases": [
+    {
+      "name": "fullpll_driven_pss_sb128",
+      "path": "pll_full/analog/benches/fullpll_driven_pss_sb128.scs",
+      "bench_sha256": "03bf5c395b4fb7bd3e11ca5c6f13ad01834ceae5ad493bec36e01c97361a6b2c",
+      "kind": "pss",
+      "maxsideband": null,
+      "PSS_saved_harmonics": 128,
+      "PSS_fund_Hz": 100000000.0,
+      "carrier_harmonic": 32,
+      "maxstep_s": 1e-12,
+      "tstab_s": 2e-07,
+      "walltime_limit_s": 600,
+      "prerequisite": null,
+      "optional": false,
+      "scope": "TT1.2V25C pre-layout physical VCO/AC receiver/CMOS divider/PFD/drain CP fine loop; coarse code frozen. Ideal stiff VDD/reference clock and ideal bias current sources exclude their real noise. Ideal-geometry R/C and no PEX; resistor thermal noise follows the Spectre model/default."
+    },
+    {
+      "name": "fullpll_driven_local_sb128",
+      "path": "pll_full/analog/benches/fullpll_driven_local_sb128.scs",
+      "bench_sha256": "64695ef9fbd13ed794a96c90f24b970137fa6b3afd236e9b6fdc8f609b6b57ea",
+      "kind": "local",
+      "maxsideband": 128,
+      "PSS_saved_harmonics": 128,
+      "PSS_fund_Hz": 100000000.0,
+      "carrier_harmonic": 32,
+      "maxstep_s": 1e-12,
+      "tstab_s": 2e-07,
+      "walltime_limit_s": 600,
+      "prerequisite": "completed passing physical PLL PSS screen",
+      "optional": false,
+      "scope": "TT1.2V25C pre-layout physical VCO/AC receiver/CMOS divider/PFD/drain CP fine loop; coarse code frozen. Ideal stiff VDD/reference clock and ideal bias current sources exclude their real noise. Ideal-geometry R/C and no PEX; resistor thermal noise follows the Spectre model/default."
+    },
+    {
+      "name": "fullpll_driven_band_sb128",
+      "path": "pll_full/analog/benches/fullpll_driven_band_sb128.scs",
+      "bench_sha256": "13d07c9ba27f09f96334f1d89adbd03291e569d015c4657ef8e200bcbe84c998",
+      "kind": "band",
+      "maxsideband": 128,
+      "PSS_saved_harmonics": 128,
+      "PSS_fund_Hz": 100000000.0,
+      "carrier_harmonic": 32,
+      "maxstep_s": 1e-12,
+      "tstab_s": 2e-07,
+      "walltime_limit_s": 900,
+      "prerequisite": "completed passing physical PLL PSS screen",
+      "optional": false,
+      "scope": "TT1.2V25C pre-layout physical VCO/AC receiver/CMOS divider/PFD/drain CP fine loop; coarse code frozen. Ideal stiff VDD/reference clock and ideal bias current sources exclude their real noise. Ideal-geometry R/C and no PEX; resistor thermal noise follows the Spectre model/default."
+    },
+    {
+      "name": "fullpll_driven_band_sb192",
+      "path": "pll_full/analog/benches/fullpll_driven_band_sb192.scs",
+      "bench_sha256": "b9f54bedf0a5afa8b899b890f91ac2fb5f252040e59d4f511297b81a501b4528",
+      "kind": "band",
+      "maxsideband": 192,
+      "PSS_saved_harmonics": 128,
+      "PSS_fund_Hz": 100000000.0,
+      "carrier_harmonic": 32,
+      "maxstep_s": 1e-12,
+      "tstab_s": 2e-07,
+      "walltime_limit_s": 900,
+      "prerequisite": "completed passing physical PLL PSS screen",
+      "optional": true,
+      "scope": "TT1.2V25C pre-layout physical VCO/AC receiver/CMOS divider/PFD/drain CP fine loop; coarse code frozen. Ideal stiff VDD/reference clock and ideal bias current sources exclude their real noise. Ideal-geometry R/C and no PEX; resistor thermal noise follows the Spectre model/default."
+    }
+  ],
+  "execution_policy": {
+    "max_workers": 1,
+    "max_total_walltime_s": 1800,
+    "max_attempts_per_case": 1,
+    "order": [
+      "pss128 screen",
+      "local128",
+      "band128",
+      "optional band192"
+    ],
+    "on_timeout_or_failure": "Keep diagnostics; mark unavailable/unknown; do not infer jitter."
+  },
+  "comparison_scope": "Same physical source, same PSS128 solution settings; only noise sidebands128/192.",
+  "free_VCO_comparison_warning": "100MHz PLL sideband indexing differs from3.2GHz autonomous VCO; 128/192 here are not convergence equivalent to free-VCO60 sidebands.",
+  "scope": "TT1.2V25C pre-layout physical VCO/AC receiver/CMOS divider/PFD/drain CP fine loop; coarse code frozen. Ideal stiff VDD/reference clock and ideal bias current sources exclude their real noise. Ideal-geometry R/C and no PEX; resistor thermal noise follows the Spectre model/default."
+}

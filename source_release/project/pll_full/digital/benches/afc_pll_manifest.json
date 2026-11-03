@@ -1,0 +1,38 @@
+[
+  {
+    "case_id": "pll_afc_stage1_initial0",
+    "name": "pll_afc_stage1_initial0",
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\digital\\benches\\pll_afc_stage1_initial0.scs",
+    "initial_code": 0,
+    "bench_sha256": "6453e125400baf02f395be4d796af14e273516acd7c2a00671e7122b734b28a3",
+    "vco_source_sha256": "7e3a3b99b097c4a2d4a3b8fbe0355f5d1ec01ea7451b4a18cfd284bf21eef342",
+    "afc_enable_s": 3.001e-07,
+    "duration_s": 3e-06,
+    "scope": "MOS VCO + ideal event AFC/divider/PFD/CP, ideal LPF/reference; no physical digital power/noise/PEX",
+    "validity": "AFC done required before fine-loop lock accepted"
+  },
+  {
+    "case_id": "pll_afc_stage1_initial16",
+    "name": "pll_afc_stage1_initial16",
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\digital\\benches\\pll_afc_stage1_initial16.scs",
+    "initial_code": 16,
+    "bench_sha256": "06a20e73fb177fddbad5317d14dc8ec49384a8fbd7b59d8be4d300425d24e569",
+    "vco_source_sha256": "7e3a3b99b097c4a2d4a3b8fbe0355f5d1ec01ea7451b4a18cfd284bf21eef342",
+    "afc_enable_s": 3.001e-07,
+    "duration_s": 3e-06,
+    "scope": "MOS VCO + ideal event AFC/divider/PFD/CP, ideal LPF/reference; no physical digital power/noise/PEX",
+    "validity": "AFC done required before fine-loop lock accepted"
+  },
+  {
+    "case_id": "pll_afc_stage1_initial31",
+    "name": "pll_afc_stage1_initial31",
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\digital\\benches\\pll_afc_stage1_initial31.scs",
+    "initial_code": 31,
+    "bench_sha256": "b34b48d302fba05cec3edc827bb283e8bccdb9787741b355d089aeb05570dc78",
+    "vco_source_sha256": "7e3a3b99b097c4a2d4a3b8fbe0355f5d1ec01ea7451b4a18cfd284bf21eef342",
+    "afc_enable_s": 3.001e-07,
+    "duration_s": 3e-06,
+    "scope": "MOS VCO + ideal event AFC/divider/PFD/CP, ideal LPF/reference; no physical digital power/noise/PEX",
+    "validity": "AFC done required before fine-loop lock accepted"
+  }
+]

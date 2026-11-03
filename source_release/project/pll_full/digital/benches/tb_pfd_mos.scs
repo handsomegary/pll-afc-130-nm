@@ -1,0 +1,18 @@
+simulator lang=spectre
+global 0
+include "@TECH_ROOT@/models/spectre/ms013_io33_v2p6_7p_spe.lib" section=tt
+include "../pll130_digital_mos.scs"
+parameters VD=1.2 REF_DELAY=5n FB_DELAY=6n
+simulatorOptions options temp=25 reltol=1e-5 vabstol=1e-7 iabstol=1e-12
+VDD (vdd 0) vsource dc=VD
+VRST (rst 0) vsource type=pulse val0=0 val1=VD delay=0 rise=20p fall=20p width=3n period=200n
+VREF (ref 0) vsource type=pulse val0=0 val1=VD delay=REF_DELAY rise=20p fall=20p width=5n period=10n
+VFB (fb 0) vsource type=pulse val0=0 val1=VD delay=FB_DELAY rise=20p fall=20p width=5n period=10n
+XPFD (vdd 0 ref fb rst up dn) pll130_pfd
+CUP (up 0) capacitor c=5f
+CDN (dn 0) capacitor c=5f
+saveOptions options save=selected
+save vdd rst ref fb up dn VDD:p XPFD.reset XPFD.upn XPFD.dnn
+tran tran stop=100n maxstep=5p errpreset=conservative
+// REF_DELAY=5n,FB_DELAY=6n must produce average UP greater than average DN.
+// Reverse REF_DELAY=7n: UP must be less than DN. Also test equal-delay deadzone.

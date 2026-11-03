@@ -1,0 +1,173 @@
+// Physical cmos130 PLL with a two-phase counter/early-stop MOS AFC.
+// Adapted from Jeong2009 to 100MHz REF and increasing-frequency ring bank.
+// All active VCO/RX/DIV/PFD/CP/AFC/clamp/enable devices are PDK MOS.
+// External REF and bias IREF, ideal R/Cs, and oscillator IC seed remain.
+// DONE selects a provisional coarse candidate; actual fine lock qualifies it.
+
+simulator lang=spectre
+global 0
+include "@TECH_ROOT@/models/spectre/ms013_io33_v2p6_7p_spe.lib" section=tt
+include "@TECH_ROOT@/models/spectre/ms013_io33_rf_v1p9_spe.lib" section=mos_tt
+parameters VDDVAL=1.2
+parameters WMAIN=54u WREGEN=24u LCORE=0.13u
+parameters LTAIL=0.39u WREF=8u WREFP=4.067826928898993u
+parameters WMAIN_TAIL=25.4u WREGEN_TAIL=30u WBANK=1.1u
+parameters LFINE=5.2u WFINE=0.8u WSUP=0.2u
+parameters WEXTRA24=0.4714285714285715u WEXTRA16=0.23571428571428574u
+parameters WSW=0.5u RLOAD=620 IREFVAL=13.55942309632998u
+parameters WLOGICN=0.5u WLOGICP=1.8u LLOGIC=0.13u
+simulatorOptions options temp=25 reltol=1e-4 vabstol=1e-6 iabstol=1e-12
+subckt inv (vdd vss in out)
+    MN (out in vss vss) n12 w=WLOGICN l=LLOGIC
+    MP (out in vdd vdd) p12 w=WLOGICP l=LLOGIC
+ends inv
+subckt tg_delay (vdd vss in out)
+    MN (out vdd in vss) n12 w=WLOGICN l=LLOGIC
+    MP (out vss in vdd) p12 w=WLOGICP l=LLOGIC
+ends tg_delay
+subckt nor2 (vdd vss in1 in2 out)
+    MN1 (out in1 vss vss) n12 w=WLOGICN l=LLOGIC
+    MN2 (out in2 vss vss) n12 w=WLOGICN l=LLOGIC
+    MP1 (out in1 pseries vdd) p12 w=WLOGICP l=LLOGIC
+    MP2 (pseries in2 vdd vdd) p12 w=WLOGICP l=LLOGIC
+ends nor2
+subckt nand2 (vdd vss in1 in2 out)
+    MN1 (out in1 nseries vss) n12 w=WLOGICN l=LLOGIC
+    MN2 (nseries in2 vss vss) n12 w=WLOGICN l=LLOGIC
+    MP1 (out in1 vdd vdd) p12 w=WLOGICP l=LLOGIC
+    MP2 (out in2 vdd vdd) p12 w=WLOGICP l=LLOGIC
+ends nand2
+subckt or2 (vdd vss in1 in2 out)
+    XNOR (vdd vss in1 in2 out_n) nor2
+    XINV (vdd vss out_n out) inv
+ends or2
+subckt and2 (vdd vss in1 in2 out)
+    XNAND (vdd vss in1 in2 out_n) nand2
+    XINV (vdd vss out_n out) inv
+ends and2
+subckt bf_2inv (vdd vss in out)
+    XINV0 (vdd vss in n1) inv
+    XINV1 (vdd vss n1 out) inv
+ends bf_2inv
+subckt s_to_d (vdd vss in out_p out_n)
+    XINV0 (vdd vss in n1) inv
+    XDELAY (vdd vss in n2) tg_delay
+    XINV1 (vdd vss n1 out_p) inv
+    XINV2 (vdd vss n2 out_n) inv
+ends s_to_d
+subckt current_ref (vdd vss bn bp)
+    IREF (vdd bn) isource dc=IREFVAL
+    MNREF (bn bn vss vss) n12 w=WREF l=LREF
+    MNPMIRROR (bp bn vss vss) n12 w=WREF l=LREF
+    MPREF (bp bp vdd vdd) p12 w=WREFP l=LTAIL
+ends current_ref
+subckt two_stage_ring (vdd vss bn ctrl s0 s1 s2 s3 s4 in_p in_n out_p out_n)
+    XMAIN1 (out_n in_p cs1 vss) n12_ckt_rf lr=LCORE wr=3u nf=12 sar=0.4u sbr=0.4u mr=1 mismod=0
+    XMAIN2 (out_p in_n cs1 vss) n12_ckt_rf lr=LCORE wr=3u nf=12 sar=0.4u sbr=0.4u mr=1 mismod=0
+    XTAILMAIN (cs1 bn vss vss) n12_ckt_rf lr=LTAIL wr=3u nf=12 sar=0.4u sbr=0.4u mr=1 mismod=0
+    XREGEN1 (out_n out_p cs2 vss) n12_ckt_rf lr=LCORE wr=3u nf=8 sar=0.4u sbr=0.4u mr=1 mismod=0
+    XREGEN2 (out_p out_n cs2 vss) n12_ckt_rf lr=LCORE wr=3u nf=8 sar=0.4u sbr=0.4u mr=1 mismod=0
+    XTAILREGEN (cs2 bn vss vss) n12_ckt_rf lr=LTAIL wr=3u nf=16 sar=0.4u sbr=0.4u mr=1 mismod=0
+    RNEG (out_n vdd) resistor r=RLOAD
+    RPOS (out_p vdd) resistor r=RLOAD
+    MFINE (cs1 ctrl vss vss) n12 w=WFINE l=LFINE
+    MSUP0 (cs1 g8up vss vss) n12 w=WSUP l=LFINE m=1
+    MSUP1 (cs1 g16up vss vss) n12 w=WSUP l=LFINE m=2
+    MSUP2 (cs1 g24up vss vss) n12 w=WSUP l=LFINE m=3
+    MSUPCTRL0 (g8up s8up_p ctrl vss) n12 w=WSW l=LCORE
+    PSUPCTRL0 (g8up s8up_n ctrl vdd) p12 w=1.5u l=LCORE
+    MSUPGND0 (g8up s8up_n vss vss) n12 w=WSW l=LCORE
+    MSUPCTRL1 (g16up s16up_p ctrl vss) n12 w=WSW l=LCORE
+    PSUPCTRL1 (g16up s16up_n ctrl vdd) p12 w=1.5u l=LCORE
+    MSUPGND1 (g16up s16up_n vss vss) n12 w=WSW l=LCORE
+    MSUPCTRL2 (g24up s24up_p ctrl vss) n12 w=WSW l=LCORE
+    PSUPCTRL2 (g24up s24up_n ctrl vdd) p12 w=1.5u l=LCORE
+    MSUPGND2 (g24up s24up_n vss vss) n12 w=WSW l=LCORE
+    XSTD0 (vdd vss s0 s0_p s0_n) s_to_d
+    XSTD1 (vdd vss s1 s1_p s1_n) s_to_d
+    XSTD2 (vdd vss s2 s2_p s2_n) s_to_d
+    XSTD3 (vdd vss s3 s3_p s3_n) s_to_d
+    XSTD4 (vdd vss s4 s4_p s4_n) s_to_d
+    XSTD8 (vdd vss s8up s8up_p s8up_n) s_to_d
+    XSTD16 (vdd vss s16up s16up_p s16up_n) s_to_d
+    XSTD24 (vdd vss s24up s24up_p s24up_n) s_to_d
+    MBAND0 (cs1 g0 vss vss) n12 w=WBANK l=LTAIL m=1
+    MBAND1 (cs1 g1 vss vss) n12 w=WBANK l=LTAIL m=2
+    MBAND2 (cs1 g2 vss vss) n12 w=WBANK l=LTAIL m=4
+    MBAND3 (cs1 g3 vss vss) n12 w=WBANK l=LTAIL m=8
+    MBAND4 (cs1 g4 vss vss) n12 w=WBANK l=LTAIL m=16
+    MBAND24UP (cs1 g5 vss vss) n12 w=WEXTRA24 l=LTAIL
+    MBAND16UP (cs1 g6 vss vss) n12 w=WEXTRA16 l=LTAIL
+    MSWBN0 (g0 s0_p bn vss) n12 w=WSW l=LCORE
+    MSWGND0 (g0 s0_n vss vss) n12 w=WSW l=LCORE
+    MSWBN1 (g1 s1_p bn vss) n12 w=WSW l=LCORE
+    MSWGND1 (g1 s1_n vss vss) n12 w=WSW l=LCORE
+    MSWBN2 (g2 s2_p bn vss) n12 w=WSW l=LCORE
+    MSWGND2 (g2 s2_n vss vss) n12 w=WSW l=LCORE
+    MSWBN3 (g3 s3_p bn vss) n12 w=WSW l=LCORE
+    MSWGND3 (g3 s3_n vss vss) n12 w=WSW l=LCORE
+    MSWBN4 (g4 s4_p bn vss) n12 w=WSW l=LCORE
+    MSWGND4 (g4 s4_n vss vss) n12 w=WSW l=LCORE
+    MSWBN5 (g5 s24up_p bn vss) n12 w=WSW l=LCORE
+    MSWGND5 (g5 s24up_n vss vss) n12 w=WSW l=LCORE
+    MSWBN6 (g6 s16up_p bn vss) n12 w=WSW l=LCORE
+    MSWGND6 (g6 s16up_n vss vss) n12 w=WSW l=LCORE
+    XOR8 (vdd vss s3 s4 s8up) or2
+    XBUF16 (vdd vss s4 s16up) bf_2inv
+    XAND24 (vdd vss s3 s4 s24up) and2
+ends two_stage_ring
+subckt two_stage_ring_vco (vdd vss bn ctrl s0 s1 s2 s3 s4 out0 out90 out180 out270)
+    XSTAGE0 (vdd vss bn ctrl s0 s1 s2 s3 s4 out0 out180 out90 out270) two_stage_ring
+    XSTAGE1 (vdd vss bn ctrl s0 s1 s2 s3 s4 out270 out90 out0 out180) two_stage_ring
+ends two_stage_ring_vco
+VDD (vdd 0) vsource dc=VDDVAL
+XREF (vdd 0 bn bp) current_ref
+CBIAS (bn 0) capacitor c=1p
+XOSC (vdd 0 bn ctrl s0 s1 s2 s3 s4 out0 out90 out180 out270) two_stage_ring_vco
+parameters LREF=3.12u
+include "@PROJECT_ROOT@/pll_full/digital/pll130_digital_mos.scs"
+include "@PROJECT_ROOT@/pll_full/digital/pll130_receiver_ac.scs"
+VDDIG (vdddig vdd) vsource dc=0
+VRSTD (div_rst 0) vsource type=pwl wave=[0 1.2 2n 1.2 2.01n 0]
+XRX (vdddig 0 bn out0 out180 clk rxp rxn) pll130_receiver_ac CC=4e-14 RB=1000000
+XD (vdddig 0 clk div_rst q1 q2 q3 q4 fb) pll130_div32_cmos
+CQ (fb 0) capacitor c=5f
+include "@PROJECT_ROOT@/pll_full/analog/pll130_cp_drain_candidate.scs"
+VDDCP (vddcp vdd) vsource dc=0
+VREF (ref 0) vsource type=pulse val0=0 val1=1.2 delay=1e-08 rise=20p fall=20p width=4.98n period=10n
+CSHUNT (ctrl 0) capacitor c=3.3843747954e-13
+RSERIES (ctrl filter_mid) resistor r=49501.46753
+CSERIES (filter_mid 0) capacitor c=6.43031211126e-12
+include "@PROJECT_ROOT@/afc2009_20261007/mos/afc2009_mos.scs"
+
+VDDAFC (vddafc vdd) vsource dc=0
+// Half-supply clamp reference uses two ideal resistors, not a powered ideal
+// voltage source. Its36uW nominal quiescent draw is included in VDD and AFC.
+RHOLDUP (vddafc vhold) resistor r=20k
+RHOLDDN (vhold 0) resistor r=20k
+CHOLD (vhold 0) capacitor c=1p
+VRSTAFC (afc_rst 0) vsource type=pwl wave=[0 1.2 100n 1.2 100.02n 0]
+VSTARTAFC (afc_start 0) vsource type=pwl wave=[0 0 300n 0 300.02n 1.2]
+XAFC (vddafc 0 ref fb afc_rst afc_start s0 s1 s2 s3 s4 afc_done afc_fail hold_all fine_enable pfd_reset afc_active) afc2009_mos
+XCPUPEN (vdddig 0 up fine_enable up_g) pll130_and2
+XCPDNEN (vdddig 0 dn fine_enable dn_g) pll130_and2
+XPFD (vdddig 0 ref fb pfd_reset up dn) pll130_pfd
+XCP (vddcp 0 up_g dn_g ctrl) pll130_cp_drain
+XHOLDINV (vddafc 0 hold_all hold_b) pll130_inv
+MHOLDCTRL (ctrl hold_all vhold 0) n12 w=4u l=.13u
+PHOLDCTRL (ctrl hold_b vhold vddafc) p12 w=8u l=.13u
+MHOLDMID (filter_mid hold_all vhold 0) n12 w=4u l=.13u
+PHOLDMID (filter_mid hold_b vhold vddafc) p12 w=8u l=.13u
+// Both LPF capacitor nodes precharge during calibration; no ideal Vctrl drive.
+ic ctrl=.6 filter_mid=.6 vhold=.6 out0=.935 out180=.933 out90=.934 out270=.934
+saveOptions options save=selected
+save vdd vdddig vddcp vddafc vhold bn bp ctrl filter_mid ref fb clk
+save VDD:p VDDIG:p VDDCP:p VDDAFC:p out0 out180
+save afc_rst afc_start afc_done afc_fail hold_all fine_enable pfd_reset afc_active
+save s0 s1 s2 s3 s4 up dn up_g dn_g
+save XAFC.phase XAFC.arm XAFC.seen XAFC.decision XAFC.was_slow XAFC.was_fast XAFC.was_near
+save XAFC.lead_clock XAFC.lag_clock XAFC.count_run XAFC.count_rst XAFC.measure_watchdog
+save XAFC.dl0 XAFC.dl1 XAFC.dl2 XAFC.dl3 XAFC.dl4 XAFC.dl5 XAFC.dl6 XAFC.dl7
+save XAFC.dg0 XAFC.dg1 XAFC.dg2 XAFC.dg3 XAFC.dg4 XAFC.dg5 XAFC.dg6 XAFC.dg7
+save XAFC.dd0 XAFC.dd1 XAFC.dd2 XAFC.dd3 XAFC.dd4 XAFC.dd5 XAFC.dd6 XAFC.dd7
+tran tran stop=6.5e-06 maxstep=4p errpreset=moderate skipdc=no strobeperiod=40p strobeoutput=strobeonly

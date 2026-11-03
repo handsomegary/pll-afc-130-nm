@@ -1,0 +1,16 @@
+simulator lang=spectre
+global 0
+ahdl_include "../pll130_digital_va.va"
+ahdl_include "afc_test_source.va"
+parameters VD=1.2
+VDD (vdd 0) vsource dc=VD
+VEN (enable 0) vsource dc=VD
+VCTRL (ctrl 0) vsource dc=.85
+VREF (ref 0) vsource type=pulse val0=0 val1=VD delay=5n rise=20p fall=20p width=5n period=10n
+XSRC (vdd 0 s0 s1 s2 s3 s4 fb) pll130_afc_test_source
+XAFC (vdd 0 ref fb ctrl enable s0 s1 s2 s3 s4 hold done) pll130_afc_va
+saveOptions options save=selected
+save ref fb ctrl enable s0 s1 s2 s3 s4 hold done
+tran tran stop=2.1u maxstep=100p errpreset=conservative
+// Must freeze code26 and assert done with this test map. Negative cases:
+// remove fb (missing-clock fail), set VCTRL=.5 (bad-control fail), reverse map.

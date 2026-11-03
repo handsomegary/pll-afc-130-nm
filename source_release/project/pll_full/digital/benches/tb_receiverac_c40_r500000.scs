@@ -1,0 +1,23 @@
+// Alternative AC self-bias receiver; original MOS divider unchanged.
+simulator lang=spectre
+global 0
+include "@TECH_ROOT@/models/spectre/ms013_io33_v2p6_7p_spe.lib" section=tt
+include "@TECH_ROOT@/models/spectre/ms013_io33_rf_v1p9_spe.lib" section=mos_tt
+include "../pll130_digital_mos.scs"
+include "../pll130_receiver_ac.scs"
+parameters VD=1.2 FIN=3.2G INPUT_CM=.93 INPUT_DIFF_VPP=.25 BN=.4704
+simulatorOptions options temp=25 reltol=1e-5 vabstol=1e-7 iabstol=1e-12
+VDD (vdd 0) vsource dc=VD
+VBN (bn 0) vsource dc=BN
+VRST (rst 0) vsource type=pulse val0=0 val1=VD delay=0 rise=10p fall=10p width=2n period=200n
+// Individual sine amplitude=diff_Vpp/4; differential peak-to-peak=.25V.
+VP (inp 0) vsource type=sine dc=INPUT_CM ampl=INPUT_DIFF_VPP/4 freq=FIN
+VN (inn 0) vsource type=sine dc=INPUT_CM ampl=-INPUT_DIFF_VPP/4 freq=FIN
+XRX (vdd 0 bn inp inn clk rxp rxn) pll130_receiver_ac CC=40f RB=500000
+XD (vdd 0 clk rst q1 q2 q3 q4 q5) pll130_div32_cmos
+CQ (q5 0) capacitor c=5f
+saveOptions options save=selected
+save vdd bn inp inn rxp rxn clk rst q1 q2 q3 q4 q5 VDD:p VP:p VN:p XRX.src XRX.XT.main:d XRX.inv_bias XRX.clkn
+tran tran stop=100n maxstep=2p errpreset=conservative strobeperiod=2p strobeoutput=strobeonly
+// This bench tests amplitude/common-mode acceptance with ideal clock drivers.
+// It does NOT test loading of the actual oscillator; attach to XOSC next.

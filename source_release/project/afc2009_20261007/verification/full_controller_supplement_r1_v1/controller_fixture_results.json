@@ -1,0 +1,23 @@
+{
+  "fixtures_passed": 14,
+  "checks": [
+    "Synthetic saved-controller Booleans/one-hot/stop controls supported without native-credit or CDC proof",
+    "Qualifier edge time and preceding saved raw history exported only from observed digital ledgers",
+    "Stable raw1/prev1/qualified0 mismatch is reported, not guessed from frozen sign",
+    "Persisting one-hot state overlap fails only from stable observed state samples",
+    "Short overlap at sampling point is logged as uncertified/transient, without manufacturing stable-state failure",
+    "ARM reentry without new count-reset release remains an actual FSM observable error",
+    "Controller restart after fine is rejected from actual saved clock rising",
+    "Late saved gated-FB clock violates stop observables without claiming every unsaved internal clock",
+    "Saved gated CP pulse during hold is reported",
+    "Buffered REF phase clocks may toggle after fine even with supported native gate-stop controls",
+    "Missing saved comparator history remains unsupported rather than fabricated from snapshot counts",
+    "Failed/partial cache is refused before controller raw extraction",
+    "Supplement cannot mix measurements from different completed executions",
+    "Partial EOF raw is refused even when a synthetic cache claims completed rc0"
+  ],
+  "simulator_started": false,
+  "analogue_actual_results_generated": false,
+  "physical_FULL_PASS": null,
+  "scope": "Synthetic digital-controller and input-binding parser fixtures only; no physical circuit result."
+}

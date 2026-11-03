@@ -1,0 +1,16 @@
+simulator lang=spectre
+global 0
+include "@TECH_ROOT@/models/spectre/ms013_io33_v2p6_7p_spe.lib" section=tt
+include "../pll130_digital_mos.scs"
+parameters VD=1.2 FIN=3.2G
+simulatorOptions options temp=25 reltol=1e-5 vabstol=1e-7 iabstol=1e-12
+VDD (vdd 0) vsource dc=VD
+VRST (rst 0) vsource type=pulse val0=0 val1=VD delay=0 rise=10p fall=10p width=2n period=200n
+VCLK (clk 0) vsource type=pulse val0=0 val1=VD delay=1n rise=10p fall=10p width=.5/FIN period=1/FIN
+XD (vdd 0 clk rst q1 q2 q3 q4 q5) pll130_div32_cmos
+CQ (q5 0) capacitor c=5f
+saveOptions options save=selected
+save vdd rst clk q1 q2 q3 q4 q5 VDD:p
+tran tran stop=100n maxstep=2p errpreset=conservative
+// After 15ns: all stage frequencies must be FIN/2, /4, /8, /16, /32.
+// Rail criteria >=0.9VD at high, <=0.1VD at low; also check wrong extra edges.

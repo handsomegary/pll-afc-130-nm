@@ -1,0 +1,53 @@
+[
+  {
+    "name": "cp_gate4_pulse",
+    "kind": "pulse",
+    "model": "gate-switched",
+    "gate_mux_width_scale": 4,
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\analog\\benches\\cp_gate4_pulse.scs",
+    "source_sha256": "6fc6c6f8bae238f88efc4aec83c87638cd9832b4b745a885564fa6204b4d11b0"
+  },
+  {
+    "name": "cp_gate8_pulse",
+    "kind": "pulse",
+    "model": "gate-switched",
+    "gate_mux_width_scale": 8,
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\analog\\benches\\cp_gate8_pulse.scs",
+    "source_sha256": "3fc70c889e9494a453dff964d845f8380546f47f6e534beaa1c4c3dfaf8b2c04"
+  },
+  {
+    "name": "cp_drain_pulse",
+    "kind": "pulse",
+    "model": "drain-switched",
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\analog\\benches\\cp_drain_pulse.scs",
+    "source_sha256": "d78476f52c4870533d9287797dc4e70efdc958fc5301528af52340dad93d680b"
+  },
+  {
+    "name": "cp_drain_dc_v835938_up",
+    "kind": "dc",
+    "model": "drain-switched",
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\analog\\benches\\cp_drain_dc_v835938_up.scs",
+    "source_sha256": "54d31188ba53d078f88aa9d76c62f5d43760b53e2a13cf4647ffbe9243c7770b"
+  },
+  {
+    "name": "cp_drain_dc_v835938_dn",
+    "kind": "dc",
+    "model": "drain-switched",
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\analog\\benches\\cp_drain_dc_v835938_dn.scs",
+    "source_sha256": "2e9e1873c76d52a03efb9a0adb77a05110385392e4b05c5df2b843b1cff0edaa"
+  },
+  {
+    "name": "cp_drain_dc_v835938_both",
+    "kind": "dc",
+    "model": "drain-switched",
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\analog\\benches\\cp_drain_dc_v835938_both.scs",
+    "source_sha256": "159a96284c5204b21f9f64def9abcae8cdf137d1b79f20e20a1767c2fa7548e7"
+  },
+  {
+    "name": "cp_drain_dc_v835938_off",
+    "kind": "dc",
+    "model": "drain-switched",
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\analog\\benches\\cp_drain_dc_v835938_off.scs",
+    "source_sha256": "115449fe5e7fb3a96bf7fed656e2e068c3fa1489001299680aaf3e7d544e2344"
+  }
+]

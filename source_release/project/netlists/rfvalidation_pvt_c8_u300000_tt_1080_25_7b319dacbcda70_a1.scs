@@ -1,0 +1,194 @@
+// cmos130 two-stage differential ring VCO seed.
+// Architecture follows the original two_stage_ring_vco_tb_final.sp:
+// resistor-loaded input pair, cross-coupled regeneration, 5-bit current
+// bank, band-dependent fine-current compensation, and twisted stage 2.
+// No AFC, divider, charge pump, or output buffer in this characterization.
+// Porting revision: complementary TGs pass the fine control voltage without NMOS threshold clipping.
+
+simulator lang=spectre
+global 0
+
+include "@TECH_ROOT@/models/spectre/ms013_io33_v2p6_7p_spe.lib" section=tt
+include "@TECH_ROOT@/models/spectre/ms013_io33_rf_v1p9_spe.lib" section=mos_tt
+
+// Set all five CODE parameters together when selecting another band.
+parameters VDDVAL=1.08 VCTRLVAL=0.3
+parameters CODE0=0 CODE1=0 CODE2=0 CODE3=1 CODE4=0
+parameters WMAIN=54u WREGEN=24u LCORE=0.13u
+parameters LTAIL=0.39u WREF=8u WREFP=4.067826928898993u
+parameters WMAIN_TAIL=25.4u WREGEN_TAIL=30u WBANK=1.1u
+parameters LFINE=5.2u WFINE=0.8u WSUP=0.2u
+parameters WEXTRA24=0.4714285714285715u WEXTRA16=0.23571428571428574u
+parameters WSW=0.5u RLOAD=620 IREFVAL=13.55942309632998u
+parameters WLOGICN=0.5u WLOGICP=1.8u LLOGIC=0.13u
+
+simulatorOptions options temp=25 reltol=1e-5 vabstol=1e-7 iabstol=1e-12
+
+// Only the static gates used by the original VCO band circuitry.
+subckt inv (vdd vss in out)
+    MN (out in vss vss) n12 w=WLOGICN l=LLOGIC
+    MP (out in vdd vdd) p12 w=WLOGICP l=LLOGIC
+ends inv
+
+// Original always-on transmission gate used as a noninverting tg_delay.
+subckt tg_delay (vdd vss in out)
+    MN (out vdd in vss) n12 w=WLOGICN l=LLOGIC
+    MP (out vss in vdd) p12 w=WLOGICP l=LLOGIC
+ends tg_delay
+
+subckt nor2 (vdd vss in1 in2 out)
+    MN1 (out in1 vss vss) n12 w=WLOGICN l=LLOGIC
+    MN2 (out in2 vss vss) n12 w=WLOGICN l=LLOGIC
+    MP1 (out in1 pseries vdd) p12 w=WLOGICP l=LLOGIC
+    MP2 (pseries in2 vdd vdd) p12 w=WLOGICP l=LLOGIC
+ends nor2
+
+subckt nand2 (vdd vss in1 in2 out)
+    MN1 (out in1 nseries vss) n12 w=WLOGICN l=LLOGIC
+    MN2 (nseries in2 vss vss) n12 w=WLOGICN l=LLOGIC
+    MP1 (out in1 vdd vdd) p12 w=WLOGICP l=LLOGIC
+    MP2 (out in2 vdd vdd) p12 w=WLOGICP l=LLOGIC
+ends nand2
+
+subckt or2 (vdd vss in1 in2 out)
+    XNOR (vdd vss in1 in2 out_n) nor2
+    XINV (vdd vss out_n out) inv
+ends or2
+
+subckt and2 (vdd vss in1 in2 out)
+    XNAND (vdd vss in1 in2 out_n) nand2
+    XINV (vdd vss out_n out) inv
+ends and2
+
+subckt bf_2inv (vdd vss in out)
+    XINV0 (vdd vss in n1) inv
+    XINV1 (vdd vss n1 out) inv
+ends bf_2inv
+
+subckt s_to_d (vdd vss in out_p out_n)
+    XINV0 (vdd vss in n1) inv
+    XDELAY (vdd vss in n2) tg_delay
+    XINV1 (vdd vss n1 out_p) inv
+    XINV2 (vdd vss n2 out_n) inv
+ends s_to_d
+
+// Only ideal current branch: 13.55942309632998 uA reference for area8.
+// RF main/regen/tails; ordinary n12 reference, coarse bank and fine branches.
+subckt current_ref (vdd vss bn bp)
+    IREF (vdd bn) isource dc=IREFVAL
+    MNREF (bn bn vss vss) n12 w=WREF l=LREF
+    MNPMIRROR (bp bn vss vss) n12 w=WREF l=LREF
+    MPREF (bp bp vdd vdd) p12 w=WREFP l=LTAIL
+ends current_ref
+
+subckt two_stage_ring (vdd vss bn ctrl s0 s1 s2 s3 s4 in_p in_n out_p out_n)
+    // Main input pair. Bodies are tied to VSS, not their moving sources.
+    XMAIN1 (out_n in_p cs1 vss) n12_ckt_rf lr=LCORE wr=3u nf=12 sar=0.4u sbr=0.4u mr=1 mismod=0
+    XMAIN2 (out_p in_n cs1 vss) n12_ckt_rf lr=LCORE wr=3u nf=12 sar=0.4u sbr=0.4u mr=1 mismod=0
+    XTAILMAIN (cs1 bn vss vss) n12_ckt_rf lr=LTAIL wr=3u nf=12 sar=0.4u sbr=0.4u mr=1 mismod=0
+
+    // Cross-coupled regenerative pair and independent reference-biased tail.
+    XREGEN1 (out_n out_p cs2 vss) n12_ckt_rf lr=LCORE wr=3u nf=8 sar=0.4u sbr=0.4u mr=1 mismod=0
+    XREGEN2 (out_p out_n cs2 vss) n12_ckt_rf lr=LCORE wr=3u nf=8 sar=0.4u sbr=0.4u mr=1 mismod=0
+    XTAILREGEN (cs2 bn vss vss) n12_ckt_rf lr=LTAIL wr=3u nf=16 sar=0.4u sbr=0.4u mr=1 mismod=0
+
+    RNEG (out_n vdd) resistor r=RLOAD
+    RPOS (out_p vdd) resistor r=RLOAD
+
+    // Analog fine-control current and original band-dependent additions.
+    MFINE (cs1 ctrl vss vss) n12 w=WFINE l=LFINE
+    MSUP0 (cs1 g8up vss vss) n12 w=WSUP l=LFINE m=1
+    MSUP1 (cs1 g16up vss vss) n12 w=WSUP l=LFINE m=2
+    MSUP2 (cs1 g24up vss vss) n12 w=WSUP l=LFINE m=3
+
+    MSUPCTRL0 (g8up s8up_p ctrl vss) n12 w=WSW l=LCORE
+    PSUPCTRL0 (g8up s8up_n ctrl vdd) p12 w=1.5u l=LCORE
+    MSUPGND0 (g8up s8up_n vss vss) n12 w=WSW l=LCORE
+    MSUPCTRL1 (g16up s16up_p ctrl vss) n12 w=WSW l=LCORE
+    PSUPCTRL1 (g16up s16up_n ctrl vdd) p12 w=1.5u l=LCORE
+    MSUPGND1 (g16up s16up_n vss vss) n12 w=WSW l=LCORE
+    MSUPCTRL2 (g24up s24up_p ctrl vss) n12 w=WSW l=LCORE
+    PSUPCTRL2 (g24up s24up_n ctrl vdd) p12 w=1.5u l=LCORE
+    MSUPGND2 (g24up s24up_n vss vss) n12 w=WSW l=LCORE
+
+    XSTD0 (vdd vss s0 s0_p s0_n) s_to_d
+    XSTD1 (vdd vss s1 s1_p s1_n) s_to_d
+    XSTD2 (vdd vss s2 s2_p s2_n) s_to_d
+    XSTD3 (vdd vss s3 s3_p s3_n) s_to_d
+    XSTD4 (vdd vss s4 s4_p s4_n) s_to_d
+    XSTD8 (vdd vss s8up s8up_p s8up_n) s_to_d
+    XSTD16 (vdd vss s16up s16up_p s16up_n) s_to_d
+    XSTD24 (vdd vss s24up s24up_p s24up_n) s_to_d
+
+    MBAND0 (cs1 g0 vss vss) n12 w=WBANK l=LTAIL m=1
+    MBAND1 (cs1 g1 vss vss) n12 w=WBANK l=LTAIL m=2
+    MBAND2 (cs1 g2 vss vss) n12 w=WBANK l=LTAIL m=4
+    MBAND3 (cs1 g3 vss vss) n12 w=WBANK l=LTAIL m=8
+    MBAND4 (cs1 g4 vss vss) n12 w=WBANK l=LTAIL m=16
+
+    // Original small additional coarse-current compensation.
+    MBAND24UP (cs1 g5 vss vss) n12 w=WEXTRA24 l=LTAIL
+    MBAND16UP (cs1 g6 vss vss) n12 w=WEXTRA16 l=LTAIL
+
+    MSWBN0 (g0 s0_p bn vss) n12 w=WSW l=LCORE
+    MSWGND0 (g0 s0_n vss vss) n12 w=WSW l=LCORE
+    MSWBN1 (g1 s1_p bn vss) n12 w=WSW l=LCORE
+    MSWGND1 (g1 s1_n vss vss) n12 w=WSW l=LCORE
+    MSWBN2 (g2 s2_p bn vss) n12 w=WSW l=LCORE
+    MSWGND2 (g2 s2_n vss vss) n12 w=WSW l=LCORE
+    MSWBN3 (g3 s3_p bn vss) n12 w=WSW l=LCORE
+    MSWGND3 (g3 s3_n vss vss) n12 w=WSW l=LCORE
+    MSWBN4 (g4 s4_p bn vss) n12 w=WSW l=LCORE
+    MSWGND4 (g4 s4_n vss vss) n12 w=WSW l=LCORE
+    MSWBN5 (g5 s24up_p bn vss) n12 w=WSW l=LCORE
+    MSWGND5 (g5 s24up_n vss vss) n12 w=WSW l=LCORE
+    MSWBN6 (g6 s16up_p bn vss) n12 w=WSW l=LCORE
+    MSWGND6 (g6 s16up_n vss vss) n12 w=WSW l=LCORE
+
+    // Retain the original decoder: OR(s3,s4), buffer(s4), AND(s3,s4).
+    XOR8 (vdd vss s3 s4 s8up) or2
+    XBUF16 (vdd vss s4 s16up) bf_2inv
+    XAND24 (vdd vss s3 s4 s24up) and2
+ends two_stage_ring
+
+subckt two_stage_ring_vco (vdd vss bn ctrl s0 s1 s2 s3 s4 out0 out90 out180 out270)
+    XSTAGE0 (vdd vss bn ctrl s0 s1 s2 s3 s4 out0 out180 out90 out270) two_stage_ring
+    // Twisted differential connection is intentional and matches original L87.
+    XSTAGE1 (vdd vss bn ctrl s0 s1 s2 s3 s4 out270 out90 out0 out180) two_stage_ring
+ends two_stage_ring_vco
+
+VDD (vdd 0) vsource dc=VDDVAL
+VCTRL (ctrl 0) vsource dc=VCTRLVAL
+VS0 (s0 0) vsource dc=VDDVAL*CODE0
+VS1 (s1 0) vsource dc=VDDVAL*CODE1
+VS2 (s2 0) vsource dc=VDDVAL*CODE2
+VS3 (s3 0) vsource dc=VDDVAL*CODE3
+VS4 (s4 0) vsource dc=VDDVAL*CODE4
+
+XREF (vdd 0 bn bp) current_ref
+CBIAS (bn 0) capacitor c=1p
+XOSC (vdd 0 bn ctrl s0 s1 s2 s3 s4 out0 out90 out180 out270) two_stage_ring_vco
+
+// Small differential perturbation; no ideal periodic forcing at oscillator nodes.
+// skipdc=no ensures the specified initial node values seed the transient.
+ic out0=0.901 out180=0.899 out90=0.900 out270=0.900
+
+// Selected voltages, supply current, and actual current-branch drain currents.
+saveOptions options save=selected
+
+// Time-dependent operating points for signal pairs and tails. These permit
+// gm, VDS, VDSAT and current/headroom inspection throughout the limit cycle.
+
+
+
+
+
+// Protected RF geometry: wr=3u; main nf=12, regen nf=8; tails nf=12/16, lr=.39u.
+// Ordinary fine WFINE=.8u/LFINE=5.2u; coarse WBANK=1.1u/LTAIL=.39u.
+// area8: reference W=8u, L=3.12u; nominal W/L conserved; IREF DC calibrated; actual area scale=64.
+parameters LREF=3.12u
+// Actual code 26 = 11010; control=0.8359375V.
+save vdd ctrl bn bp out0 out180 out90 out270 VDD:p
+save XOSC.XSTAGE0.cs1 XOSC.XSTAGE0.cs2 XOSC.XSTAGE0.XTAILMAIN.main:d XOSC.XSTAGE0.XTAILREGEN.main:d
+save XOSC.XSTAGE1.cs1 XOSC.XSTAGE1.cs2 XOSC.XSTAGE1.XTAILMAIN.main:d XOSC.XSTAGE1.XTAILREGEN.main:d
+tran tran stop=70n maxstep=1p errpreset=conservative skipdc=no

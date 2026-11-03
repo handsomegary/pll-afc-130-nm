@@ -1,0 +1,22 @@
+[
+  {
+    "name": "cp_drain_phase_m400",
+    "phase_skew_s": -4e-10,
+    "common_reset_s": 2e-10,
+    "ctrl_V": 0.8359375,
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\analog\\benches\\cp_drain_phase_m400.scs",
+    "ideal_net_charge_C": -8e-15,
+    "source_sha256": "c62b895648229521b705676420c1056e06dfa33989229c3da67a6c158b1a04a9",
+    "scope": "Physical drain-switched MOS CP with ideal reference/controls/voltage clamp; no PFD noise."
+  },
+  {
+    "name": "cp_drain_phase_m300",
+    "phase_skew_s": -3e-10,
+    "common_reset_s": 2e-10,
+    "ctrl_V": 0.8359375,
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\analog\\benches\\cp_drain_phase_m300.scs",
+    "ideal_net_charge_C": -6.0000000000000005e-15,
+    "source_sha256": "cf1b5929c64266012e3d4c00603d0521108837cd8a55ff055009a954c125068b",
+    "scope": "Physical drain-switched MOS CP with ideal reference/controls/voltage clamp; no PFD noise."
+  }
+]

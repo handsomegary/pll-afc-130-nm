@@ -1,0 +1,12 @@
+// Isolated DC reference fixture; force actual baseline PSS mean BN.
+simulator lang=spectre
+global 0
+include "@TECH_ROOT@/models/spectre/ms013_io33_v2p6_7p_spe.lib" section=tt
+fixtureOptions options temp=25 reltol=1e-6 vabstol=1e-8 iabstol=1e-13
+VDD (vdd 0) vsource dc=1.2
+VBN (bn 0) vsource dc=0.470395318762472
+MNREF (bn bn 0 0) n12 w=4u l=0.39u
+saveOptions options save=selected
+save bn vdd MNREF:d VBN:p
+dcBias dc
+dcOP info what=oppoint where=rawfile

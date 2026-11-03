@@ -1,0 +1,8 @@
+openResults("@PROJECT_ROOT@/results/vco_tg_noise")
+printf("RESULTS: %L\n" results())
+pn = phaseNoise(1 "pss_fd" ?result "pnoise_pm")
+ocnPrint(?output "@PROJECT_ROOT@/results/tg_pn_ssb.txt" ?precision 12 ?width 20 ?numberNotation 'scientific pn)
+printf("PN1MHz=%g\n" value(pn 1e6))
+printf("PN10MHz=%g\n" value(pn 1e7))
+exit()
+

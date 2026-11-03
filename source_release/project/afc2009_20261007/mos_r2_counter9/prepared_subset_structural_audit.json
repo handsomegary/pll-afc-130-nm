@@ -1,0 +1,11 @@
+{
+  "status": "prepared_structural_checks_passed",
+  "source_sha256": "35521452cdc051cc6dcdb2ab324949b9861735b0fad554b46c0acedf2d1c876c",
+  "bench_sha256": "ed75a6920ea355e3ad31c9005ff073ed1c7d491857b19d7119cfc6e5b7f90910",
+  "MOS_count": 2400,
+  "DFF_count": 54,
+  "all_native_and_CDC_words_9bits": true,
+  "simulation_started": false,
+  "limits": "Source MOS syntax class, body rails, storage width, inventory and digests only. No Spectre parsing, electrical, waveform, timing or CDC validation.",
+  "errors": []
+}

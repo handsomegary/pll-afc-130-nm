@@ -18,6 +18,10 @@ These are results from the original completed runs. The repository copies have p
 
 ## Read the design
 
+The [IEEE-style design report](report/pll130-afc.pdf) presents the nominal acquisition experiment and American CircuitikZ schematics for the signal path, VCO current bank, receiver, divider, PFD, charge pump, clamps and AFC logic. [Editable LaTeX and build instructions](report/README.md) accompany the PDF.
+
+The [historical source archive](source_release/README.md) contains the project-wide Spectre, SKILL and OCEAN sources and their supporting scripts. Its inventory preserves individual sweep decks, failed revisions and host-side variants. Use the six portable electrical sources under `circuits/` to start with the selected design. Use the archive to inspect how an earlier run was constructed.
+
 - [Architecture and handoff](docs/architecture.md): the ring oscillator, two-phase detector, counters, search, and analog clamp.
 - [Results and acceptance criteria](docs/results.md): the successful case, the retained failed clamp case, and the AFC-off control.
 - [Relationship to the supplied papers and circuits](docs/source_relationship.md): what was reused, changed, and newly implemented.

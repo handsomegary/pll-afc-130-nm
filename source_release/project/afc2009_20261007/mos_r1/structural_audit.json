@@ -1,0 +1,69 @@
+{
+  "status": "structural_pass",
+  "source_sha256": "12044e0dc052c06682a3372f17c0b8612d637954af88e0d8662cf1d8c0f8f6b8",
+  "MOS_count": 7135,
+  "DFF_count": 146,
+  "all_devices_body_rails_checked": true,
+  "physical_output_ports_checked": [
+    "s0",
+    "s1",
+    "s2",
+    "s3",
+    "s4",
+    "done",
+    "fail",
+    "hold",
+    "fine_enable",
+    "pfd_reset",
+    "active"
+  ],
+  "duplicate_device_names": false,
+  "transistor_only": true,
+  "all_lengths_um": [
+    0.13
+  ],
+  "largest_gate_terminal_fanout": [
+    [
+      "count_rst",
+      132
+    ],
+    [
+      "rst",
+      107
+    ],
+    [
+      "clk_highb2864",
+      106
+    ],
+    [
+      "clk_lowb2862",
+      106
+    ],
+    [
+      "clk_low2861",
+      106
+    ],
+    [
+      "clk_high2863",
+      106
+    ],
+    [
+      "clk_highb111",
+      96
+    ],
+    [
+      "clk_lowb109",
+      96
+    ],
+    [
+      "clk_low108",
+      96
+    ],
+    [
+      "clk_high110",
+      96
+    ]
+  ],
+  "limits": "Counts, syntax class, output-drive presence and source digest only; not Spectre parsing, functional, timing, CDC, PVT or noise proof.",
+  "errors": []
+}

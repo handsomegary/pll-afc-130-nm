@@ -1,0 +1,33 @@
+{
+  "status": "prepared_software_guards_checked_not_physically_simulated",
+  "R2_selected": false,
+  "simulator_started": false,
+  "VM_contacted": false,
+  "analog_vectors_created": false,
+  "PSF_files_created": false,
+  "physical_subset_unit_pass": null,
+  "software_guard_fixtures_passed": 27,
+  "python_syntax_checks_passed": true,
+  "required_saved_stop_s": 0.0000057,
+  "saved_stop_tolerance_s": 1e-15,
+  "required_maximum_saved_spacing_s": 1.05e-10,
+  "required_second_epoch_CLK_edges": 20,
+  "required_second_epoch_verified_REF_samples": 20,
+  "required_second_epoch_last_sampled_CLK_ordinal": 20,
+  "raw_END_marker_required": true,
+  "completed_execution_wrapper_required_for_unit_PASS": true,
+  "live_owned_and_allowed_model_hashes_required": true,
+  "allowed_model_count": 7,
+  "reader_v2_sha256": "f801be937ebbccb34392d04dfee8c75fd1933cd5c20d2a6e3d70a8ba33e79211",
+  "completed_wrapper_v2_sha256": "35b6247705ef8fcb173e9742d95755bd0a8ba9542f55ec204b62ddef61607a86",
+  "completion_policy_v2_sha256": "eb664931de6b47400e37681feb75ed15586f252c47a7de4fd1f2abe59b38481b",
+  "runner_cases_v2_sha256": "bd97bfb6cacfc6c85c25c93a0044c46ee7e9b3d4a7a0d534d45773f0b7e4d777",
+  "preserved_inputs": {
+    "read_counter9_exercise.py": "1fa72a1552676fe839d51da5654e1f6c75b9a957fa1114daff032b09303e548e",
+    "counter9_gray_cdc_mos.scs": "35521452cdc051cc6dcdb2ab324949b9861735b0fad554b46c0acedf2d1c876c",
+    "counter9_gray_cdc_tb.scs": "ed75a6920ea355e3ad31c9005ff073ed1c7d491857b19d7119cfc6e5b7f90910",
+    "counter9_manifest.json": "69e0a25b5a90ccb2b84c16db303548c8fdb2052918568c1ea5593871b397c8be",
+    "R2_AFC_source": "45654975e7b53873559fd157955c1d8a922f40550fea81687dfd675fe9de4cc0"
+  },
+  "scope": "Pure metadata guard tests plus Python syntax checks. No waveform generation, physical counter simulation or MOS PASS; R1 actual results do not apply to unselected R2. Light-load subset remains outside full-AFC CDC, timing, metastability and PVT signoff."
+}

@@ -1,0 +1,181 @@
+`include "constants.vams"
+`include "disciplines.vams"
+
+// STAGED FUNCTIONAL MODELS. They are ideal event-based circuits, not a
+// transistor divider/AFC/PFD or a source of their power, jitter or delay FoM.
+// vdd/vss: 1.2 V nominal; all digital outputs track the supplied rails.
+// Accellera Verilog-AMS 2.4 events cross(), initial_step(), timer(), transition().
+
+module pll130_div32_va(vdd, vss, inp, inn, enable, fb);
+  inout vdd, vss, inp, inn, enable, fb;
+  electrical vdd, vss, inp, inn, enable, fb;
+  parameter integer DIVIDE = 32 from [2:inf);
+  parameter real TD = 0 from [0:inf);
+  parameter real TR = 5p from (0:inf);
+  parameter real CIN_EACH = 0 from [0:inf);
+  integer count, bit_state;
+  analog begin
+    @(initial_step) begin
+      count = 0;
+      bit_state = 0;
+      if ((DIVIDE % 2) != 0) $strobe("pll130_div32_va: DIVIDE must be even");
+    end
+    @(cross(V(enable,vss)-0.5*V(vdd,vss), -1)) begin
+      count = 0; bit_state = 0;
+    end
+    @(cross(V(inp,inn), +1, 1p, 1u)) begin
+      if (V(enable,vss) > 0.5*V(vdd,vss)) begin
+        count = count + 1;
+        if (count >= DIVIDE/2) begin
+          count = 0; bit_state = 1-bit_state;
+        end
+      end
+    end
+    // Explicit default CIN=0: the model has NO real divider input loading.
+    I(inp,vss) <+ CIN_EACH*ddt(V(inp,vss));
+    I(inn,vss) <+ CIN_EACH*ddt(V(inn,vss));
+    V(fb,vss) <+ V(vdd,vss)*transition(bit_state,TD,TR,TR);
+  end
+endmodule
+
+module pll130_pfd_va(vdd, vss, ref, fb, rst, up, dn);
+  inout vdd, vss, ref, fb, rst, up, dn;
+  electrical vdd, vss, ref, fb, rst, up, dn;
+  parameter real RESET_DELAY = 30p from (0:inf);
+  parameter real TR = 5p from (0:inf);
+  integer up_state, dn_state;
+  real reset_at;
+  analog begin
+    @(initial_step) begin
+      up_state = 0; dn_state = 0; reset_at = 1.0;
+    end
+    @(cross(V(rst,vss)-0.5*V(vdd,vss), +1)) begin
+      up_state = 0; dn_state = 0; reset_at = 1.0;
+    end
+    @(cross(V(ref,vss)-0.5*V(vdd,vss), +1, 1p, 1u)) begin
+      if (V(rst,vss) < 0.5*V(vdd,vss)) begin
+        up_state = 1;
+        if (dn_state == 1) reset_at = $abstime + RESET_DELAY;
+      end
+    end
+    @(cross(V(fb,vss)-0.5*V(vdd,vss), +1, 1p, 1u)) begin
+      if (V(rst,vss) < 0.5*V(vdd,vss)) begin
+        dn_state = 1;
+        if (up_state == 1) reset_at = $abstime + RESET_DELAY;
+      end
+    end
+    @(timer(reset_at)) begin
+      up_state = 0; dn_state = 0; reset_at = 1.0;
+    end
+    V(up,vss) <+ V(vdd,vss)*transition(up_state,0,TR,TR);
+    V(dn,vss) <+ V(vdd,vss)*transition(dn_state,0,TR,TR);
+  end
+endmodule
+
+// Coarse-search prototype: monotonic binary search, not paper S<-S+E RTL.
+// hold=1 requires the TOP-LEVEL to clamp Vctrl at the stated calibration value
+// and prevent the fine-loop CP from integrating during each frequency window.
+// Frequency is estimated from actual first/last divided-clock edges, so it
+// includes no physical synchronizer/metastability/counter quantization model.
+// done=1 only if a completed search meets MAX_REL_ERROR. Otherwise done=0,
+// hold=0 and afc_failed=1. A finite attempt limit always terminates the search.
+module pll130_afc_va(vdd, vss, ref, fb, vctrl, enable,
+                    s0, s1, s2, s3, s4, hold, done);
+  inout vdd, vss, ref, fb, vctrl, enable;
+  inout s0, s1, s2, s3, s4, hold, done;
+  electrical vdd, vss, ref, fb, vctrl, enable;
+  electrical s0, s1, s2, s3, s4, hold, done;
+  parameter integer INITIAL_CODE = 16 from [0:31];
+  parameter integer SETTLE_REF_CYCLES = 4 from [1:inf);
+  parameter integer WINDOW_REF_CYCLES = 16 from [3:inf);
+  parameter integer MAX_ROUNDS = 7 from [1:inf);
+  parameter real MAX_REL_ERROR = 0.02 from (0:1);
+  parameter real CONTROL_EXPECTED = 0.85;
+  parameter real CONTROL_TOL = 0.03 from (0:inf);
+  parameter real WATCHDOG_TIMEOUT = 2u from (0:inf);
+  parameter real TR = 10p from (0:inf);
+  integer code, low_code, high_code, best_code;
+  integer state, ref_count, fb_count, round_count, hold_state, done_state;
+  integer afc_failed, control_bad;
+  real ref_first, ref_last, fb_first, fb_last, ref_freq, fb_freq;
+  real error_now, best_abs_error;
+  real watchdog_at;
+  analog begin
+    @(initial_step or cross(V(enable,vss)-0.5*V(vdd,vss),+1)) begin
+      code = INITIAL_CODE; low_code = 0; high_code = 31;
+      best_code = INITIAL_CODE; best_abs_error = 1.0e30;
+      state = 0; ref_count = 0; fb_count = 0; round_count = 0;
+      hold_state = 1; done_state = 0; afc_failed = 0; control_bad = 0;
+      ref_first = 0; ref_last = 0; fb_first = 0; fb_last = 0;
+      ref_freq = 0; fb_freq = 0; error_now = 0;
+      watchdog_at = $abstime + WATCHDOG_TIMEOUT;
+      if (V(enable,vss) < 0.5*V(vdd,vss)) begin
+        state = 2; hold_state = 0;
+      end
+    end
+    @(cross(V(enable,vss)-0.5*V(vdd,vss),-1)) begin
+      state = 2; hold_state = 0; done_state = 0;
+    end
+    @(timer(watchdog_at)) begin
+      if (state != 2) begin
+        afc_failed = 1; state = 2; hold_state = 0; done_state = 0;
+        $strobe("AFC failed: search watchdog expired");
+      end
+    end
+    @(cross(V(fb,vss)-0.5*V(vdd,vss),+1,1p,1u)) begin
+      if ((state == 1) && (V(enable,vss) > 0.5*V(vdd,vss))) begin
+        if (fb_count == 0) fb_first = $abstime;
+        fb_last = $abstime; fb_count = fb_count + 1;
+      end
+    end
+    @(cross(V(ref,vss)-0.5*V(vdd,vss),+1,1p,1u)) begin
+      if ((state != 2) && (V(enable,vss) > 0.5*V(vdd,vss))) begin
+        ref_count = ref_count + 1;
+        if (state == 0) begin
+          if (ref_count >= SETTLE_REF_CYCLES) begin
+            state = 1; ref_count = 0; fb_count = 0;
+            ref_first = $abstime; ref_last = $abstime;
+          end
+        end else begin
+          ref_last = $abstime;
+          if (abs(V(vctrl,vss)-CONTROL_EXPECTED) > CONTROL_TOL) control_bad = 1;
+          if (ref_count >= WINDOW_REF_CYCLES) begin
+            round_count = round_count + 1;
+            if ((fb_count >= 3) && (fb_last > fb_first) && (ref_last > ref_first)
+                && (control_bad == 0)) begin
+              ref_freq = ref_count/(ref_last-ref_first);
+              fb_freq = (fb_count-1)/(fb_last-fb_first);
+              error_now = (fb_freq-ref_freq)/ref_freq;
+              if (abs(error_now) < best_abs_error) begin
+                best_abs_error = abs(error_now); best_code = code;
+              end
+              $strobe("AFC round=%d code=%d ref=%g fb=%g relative_error=%g",round_count,code,ref_freq,fb_freq,error_now);
+              if (error_now < 0) low_code = code+1;
+              else high_code = code-1;
+              if ((low_code > high_code) || (round_count >= MAX_ROUNDS)
+                  || (abs(error_now) < 0.0001)) begin
+                code = best_code; state = 2; hold_state = 0;
+                if (best_abs_error <= MAX_REL_ERROR) done_state = 1;
+                else afc_failed = 1;
+              end else begin
+                code = (low_code+high_code)/2;
+                state = 0; ref_count = 0; fb_count = 0;
+              end
+            end else begin
+              afc_failed = 1; state = 2; hold_state = 0;
+              $strobe("AFC failed: missing clock edges or Vctrl not clamped at calibration value");
+            end
+          end
+        end
+      end
+    end
+    V(s0,vss) <+ V(vdd,vss)*transition(code%2,0,TR,TR);
+    V(s1,vss) <+ V(vdd,vss)*transition((code/2)%2,0,TR,TR);
+    V(s2,vss) <+ V(vdd,vss)*transition((code/4)%2,0,TR,TR);
+    V(s3,vss) <+ V(vdd,vss)*transition((code/8)%2,0,TR,TR);
+    V(s4,vss) <+ V(vdd,vss)*transition((code/16)%2,0,TR,TR);
+    V(hold,vss) <+ V(vdd,vss)*transition(hold_state,0,TR,TR);
+    V(done,vss) <+ V(vdd,vss)*transition(done_state,0,TR,TR);
+    @(final_step) $strobe("AFC final code=%d done=%d failed=%d rounds=%d best_relative_error=%g",code,done_state,afc_failed,round_count,best_abs_error);
+  end
+endmodule

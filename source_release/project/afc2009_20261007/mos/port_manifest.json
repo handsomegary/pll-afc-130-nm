@@ -1,0 +1,203 @@
+{
+  "module": "afc2009_mos",
+  "version": "1.0-source-design-unverified",
+  "port_order": [
+    "vdd",
+    "vss",
+    "ref",
+    "fb",
+    "rst",
+    "start",
+    "s0",
+    "s1",
+    "s2",
+    "s3",
+    "s4",
+    "done",
+    "fail",
+    "hold",
+    "fine_enable",
+    "pfd_reset",
+    "active"
+  ],
+  "polarity": {
+    "rst": "asynchronous active high",
+    "start": "active high request while idle, remains accepted only once until reset",
+    "code": "s0 least significant; larger code increases ring VCO frequency",
+    "done": "candidate selected; provisional coarse result, not fine lock",
+    "fail": "no handover",
+    "hold": "active high control-voltage clamp",
+    "fine_enable": "CP enable, two REF clocks after done",
+    "pfd_reset": "high until fine_enable or during rst"
+  },
+  "reference_frequency_Hz": 100000000,
+  "feedback_divisor": 32,
+  "target_frequency_Hz": 3200000000,
+  "initial_code": 16,
+  "candidate_steps": [
+    8,
+    4,
+    2,
+    1,
+    0
+  ],
+  "guard_counts": 2,
+  "same_direction_observations": 2,
+  "window_lag_counts": 128,
+  "settle_REF_clocks": 4,
+  "arm_timeout_REF_clocks": 32,
+  "drain_REF_clocks": 2,
+  "fine_enable_after_done_REF_clocks": 2,
+  "diagnostic_hierarchy": {
+    "phase": "phase",
+    "first_feedback_seen": "seen",
+    "state": [
+      "settle",
+      "arm",
+      "measure",
+      "drain"
+    ],
+    "step": [
+      "step1",
+      "step2",
+      "step4",
+      "step8"
+    ],
+    "counts_lead": [
+      "cl0",
+      "cl1",
+      "cl2",
+      "cl3",
+      "cl4",
+      "cl5",
+      "cl6",
+      "cl7"
+    ],
+    "counts_lag": [
+      "cg0",
+      "cg1",
+      "cg2",
+      "cg3",
+      "cg4",
+      "cg5",
+      "cg6",
+      "cg7"
+    ],
+    "counts_div": [
+      "cd0",
+      "cd1",
+      "cd2",
+      "cd3",
+      "cd4",
+      "cd5",
+      "cd6",
+      "cd7"
+    ],
+    "decision_lead": [
+      "dl0",
+      "dl1",
+      "dl2",
+      "dl3",
+      "dl4",
+      "dl5",
+      "dl6",
+      "dl7"
+    ],
+    "decision_lag": [
+      "dg0",
+      "dg1",
+      "dg2",
+      "dg3",
+      "dg4",
+      "dg5",
+      "dg6",
+      "dg7"
+    ],
+    "decision_div": [
+      "dd0",
+      "dd1",
+      "dd2",
+      "dd3",
+      "dd4",
+      "dd5",
+      "dd6",
+      "dd7"
+    ],
+    "decision": "decision",
+    "latched_direction": {
+      "fast": "was_fast",
+      "slow": "was_slow",
+      "near": "was_near"
+    },
+    "sampled_fast": "fast_raw",
+    "sampled_slow": "slow_raw",
+    "qualified_fast": "fast_qualified",
+    "qualified_slow": "slow_qualified",
+    "counter_run": "count_run",
+    "counter_reset": "count_rst",
+    "reference_counter_reset": "reference_count_rst",
+    "epoch_valid": "epoch_valid",
+    "lead_clock": "lead_clock",
+    "lag_clock": "lag_clock",
+    "controller_clock": "control_clock",
+    "measure_watchdog": "measure_watchdog"
+  },
+  "limitations": [
+    "2009 inspired two-phase first-feedback epoch adaptation; not a literal copy of underspecified Fig.5 circuit",
+    "Matched registered Gray words and two-stage CDC added; no ideal timestamps",
+    "lead counter initial credit one; first divided-VCO edge credits Div counter one",
+    "Finite edge aperture, reset release, metastability, CDC robustness and PVT require electrical verification",
+    "near and fifth tested candidate remain provisional until actual physical PLL capture is verified",
+    "Ideal external REF, bias/current reference, clamp-voltage source and startup ICs remain testbench elements"
+  ],
+  "source_sha256": "4b0874902106b01e21f2498b28336dcd5f01bfa88c8de0f41f57354bbd761dde",
+  "transistor_count": 6908,
+  "DFF_count": 145,
+  "primitive_counts": {
+    "NOR2": 77,
+    "INV": 487,
+    "NAND2": 754,
+    "TG": 580,
+    "LATCH": 290
+  },
+  "flattened_MOS": true,
+  "active_models": [
+    "n12",
+    "p12"
+  ],
+  "model_files_distributed": false,
+  "geometry_um": {
+    "logic_inv": {
+      "WN": 0.8,
+      "WP": 2.4,
+      "L": 0.13
+    },
+    "nand2": {
+      "WN_each": 1.6,
+      "WP_each": 2.4,
+      "L": 0.13
+    },
+    "nor2": {
+      "WN_each": 0.8,
+      "WP_each": 4.8,
+      "L": 0.13
+    },
+    "TG": {
+      "WN": 1.2,
+      "WP": 3.6,
+      "L": 0.13
+    },
+    "latch_inverter": {
+      "WN": 0.5,
+      "WP": 1.5,
+      "L": 0.13
+    },
+    "latch_reset": {
+      "WN": 2,
+      "L": 0.13
+    }
+  },
+  "source_design_status": "generated_transistor_netlist_not_yet_electrically_validated",
+  "measure_watchdog_REF_clocks": 192,
+  "counter_overflow_guard": "No general hardware overflow detector; within planned VCO/32 range<=113MHz the192REFwatchdog occurs before8bit wrap. Outside that planned range, counteroverflow safety is unverified."
+}

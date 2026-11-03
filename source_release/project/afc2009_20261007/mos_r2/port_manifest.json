@@ -1,0 +1,420 @@
+{
+  "module": "afc2009_mos",
+  "version": "1.2-R2-prepared-unverified",
+  "port_order": [
+    "vdd",
+    "vss",
+    "ref",
+    "fb",
+    "rst",
+    "start",
+    "s0",
+    "s1",
+    "s2",
+    "s3",
+    "s4",
+    "done",
+    "fail",
+    "hold",
+    "fine_enable",
+    "pfd_reset",
+    "active"
+  ],
+  "polarity": {
+    "rst": "asynchronous active high",
+    "start": "active high request while idle, remains accepted only once until reset",
+    "code": "s0 least significant; larger code increases ring VCO frequency",
+    "done": "candidate selected; provisional coarse result, not fine lock",
+    "fail": "no handover",
+    "hold": "active high control-voltage clamp",
+    "fine_enable": "CP enable, two REF clocks after done",
+    "pfd_reset": "high until fine_enable or during rst"
+  },
+  "reference_frequency_Hz": 100000000,
+  "feedback_divisor": 32,
+  "target_frequency_Hz": 3200000000,
+  "initial_code": 16,
+  "candidate_steps": [
+    8,
+    4,
+    2,
+    1,
+    0
+  ],
+  "guard_counts": 2,
+  "same_direction_observations": 2,
+  "window_lag_counts": 224,
+  "settle_REF_clocks": 4,
+  "arm_timeout_REF_clocks": 32,
+  "drain_REF_clocks": 2,
+  "fine_enable_after_done_REF_clocks": 2,
+  "diagnostic_hierarchy": {
+    "phase": "phase",
+    "first_feedback_seen": "seen",
+    "state": [
+      "settle",
+      "arm",
+      "measure",
+      "drain"
+    ],
+    "step": [
+      "step1",
+      "step2",
+      "step4",
+      "step8"
+    ],
+    "counts_lead": [
+      "cl0",
+      "cl1",
+      "cl2",
+      "cl3",
+      "cl4",
+      "cl5",
+      "cl6",
+      "cl7",
+      "cl8"
+    ],
+    "counts_lag": [
+      "cg0",
+      "cg1",
+      "cg2",
+      "cg3",
+      "cg4",
+      "cg5",
+      "cg6",
+      "cg7",
+      "cg8"
+    ],
+    "counts_div": [
+      "cd0",
+      "cd1",
+      "cd2",
+      "cd3",
+      "cd4",
+      "cd5",
+      "cd6",
+      "cd7",
+      "cd8"
+    ],
+    "decision_lead": [
+      "dl0",
+      "dl1",
+      "dl2",
+      "dl3",
+      "dl4",
+      "dl5",
+      "dl6",
+      "dl7",
+      "dl8"
+    ],
+    "decision_lag": [
+      "dg0",
+      "dg1",
+      "dg2",
+      "dg3",
+      "dg4",
+      "dg5",
+      "dg6",
+      "dg7",
+      "dg8"
+    ],
+    "decision_div": [
+      "dd0",
+      "dd1",
+      "dd2",
+      "dd3",
+      "dd4",
+      "dd5",
+      "dd6",
+      "dd7",
+      "dd8"
+    ],
+    "decision": "decision",
+    "latched_direction": {
+      "fast": "was_fast",
+      "slow": "was_slow",
+      "near": "was_near"
+    },
+    "sampled_fast": "fast_raw",
+    "sampled_slow": "slow_raw",
+    "qualified_fast": "fast_qualified",
+    "qualified_slow": "slow_qualified",
+    "counter_run": "count_run",
+    "counter_reset": "count_rst",
+    "reference_counter_reset": "reference_count_rst",
+    "epoch_valid": "epoch_valid",
+    "lead_clock": "lead_clock",
+    "lag_clock": "lag_clock",
+    "controller_clock": "control_clock",
+    "measure_watchdog": "measure_watchdog",
+    "counter_FB_clock": "counter_fb_clock",
+    "counter_FB_clock_enable": "fb_clock_enable",
+    "controller_master_open": "clk_low108",
+    "controller_master_openb": "clk_lowb109",
+    "controller_slave_open": "clk_high110",
+    "controller_slave_openb": "clk_highb111",
+    "epoch_watchdog": "epoch_watchdog",
+    "counter_epoch_age": [
+      "counterage0",
+      "counterage1",
+      "counterage2",
+      "counterage3",
+      "counterage4",
+      "counterage5",
+      "counterage6",
+      "counterage7"
+    ],
+    "native_lead_Gray": [
+      "lead_g0",
+      "lead_g1",
+      "lead_g2",
+      "lead_g3",
+      "lead_g4",
+      "lead_g5",
+      "lead_g6",
+      "lead_g7",
+      "lead_g8"
+    ],
+    "sync2_lead_Gray": [
+      "lead_sync2_0",
+      "lead_sync2_1",
+      "lead_sync2_2",
+      "lead_sync2_3",
+      "lead_sync2_4",
+      "lead_sync2_5",
+      "lead_sync2_6",
+      "lead_sync2_7",
+      "lead_sync2_8"
+    ],
+    "native_lag_Gray": [
+      "lag_g0",
+      "lag_g1",
+      "lag_g2",
+      "lag_g3",
+      "lag_g4",
+      "lag_g5",
+      "lag_g6",
+      "lag_g7",
+      "lag_g8"
+    ],
+    "sync2_lag_Gray": [
+      "lag_sync2_0",
+      "lag_sync2_1",
+      "lag_sync2_2",
+      "lag_sync2_3",
+      "lag_sync2_4",
+      "lag_sync2_5",
+      "lag_sync2_6",
+      "lag_sync2_7",
+      "lag_sync2_8"
+    ],
+    "native_div_Gray": [
+      "div_g0",
+      "div_g1",
+      "div_g2",
+      "div_g3",
+      "div_g4",
+      "div_g5",
+      "div_g6",
+      "div_g7",
+      "div_g8"
+    ],
+    "sync2_div_Gray": [
+      "div_sync2_0",
+      "div_sync2_1",
+      "div_sync2_2",
+      "div_sync2_3",
+      "div_sync2_4",
+      "div_sync2_5",
+      "div_sync2_6",
+      "div_sync2_7",
+      "div_sync2_8"
+    ],
+    "counter_age_reset": "counter_age_reset"
+  },
+  "limitations": [
+    "2009 inspired two-phase first-feedback epoch adaptation; not a literal copy of underspecified Fig.5 circuit",
+    "Matched registered Gray words and two-stage CDC added; no ideal timestamps",
+    "lead counter initial credit one; first divided-VCO edge credits Div counter one",
+    "Finite edge aperture, reset release, metastability, CDC robustness and PVT require electrical verification",
+    "near and fifth tested candidate remain provisional until actual physical PLL capture is verified",
+    "Ideal external REF, bias/current reference, clamp-voltage source and startup ICs remain testbench elements"
+  ],
+  "source_sha256": "45654975e7b53873559fd157955c1d8a922f40550fea81687dfd675fe9de4cc0",
+  "transistor_count": 7839,
+  "DFF_count": 158,
+  "primitive_counts": {
+    "NOR2": 85,
+    "INV": 581,
+    "NAND2": 827,
+    "NAND4": 22,
+    "TG": 634,
+    "LATCH": 317
+  },
+  "flattened_MOS": true,
+  "active_models": [
+    "n12",
+    "p12"
+  ],
+  "model_files_distributed": false,
+  "geometry_um": {
+    "logic_inv": {
+      "WN": 0.8,
+      "WP": 2.4,
+      "L": 0.13
+    },
+    "nand2": {
+      "WN_each": 1.6,
+      "WP_each": 2.4,
+      "L": 0.13
+    },
+    "nor2": {
+      "WN_each": 0.8,
+      "WP_each": 4.8,
+      "L": 0.13
+    },
+    "TG": {
+      "WN": 1.2,
+      "WP": 3.6,
+      "L": 0.13
+    },
+    "latch_inverter": {
+      "WN": 0.5,
+      "WP": 1.5,
+      "L": 0.13
+    },
+    "latch_reset": {
+      "WN": 2,
+      "L": 0.13
+    },
+    "clock_control_output_inv": {
+      "WN": 8,
+      "WP": 24,
+      "L": 0.13
+    },
+    "clock_control_NAND4": {
+      "WN_each": 3.2,
+      "WP_each": 2.4,
+      "L": 0.13
+    }
+  },
+  "source_design_status": "prepared_unverified_offline_candidate_not_selected",
+  "counter_overflow_guard": "No general-purpose overflow detector. Conditional bound: fb <= 113 MHz, REF = 100 MHz and at most 3 REF cycles after age 248 until native freeze gives at most 1 + floor(1.13 * 251) = 284 edges, below 512. Arbitrary higher frequency, CDC, metastability, edge credits and PVT remain electrically unverified.",
+  "revises_R0_source_sha256": "4b0874902106b01e21f2498b28336dcd5f01bfa88c8de0f41f57354bbd761dde",
+  "R1_changes": [
+    "All TG DFFs use mutual-interlocked low/high phases plus6physicalINVclockdelay guard.",
+    "8um n/24um p clock-control output buffers drive shared TG loading.",
+    "Counter resetheldstate persists through2REFDRAIN so frozendecisiondata is not cleared oncaptureedge.",
+    "FB clock enable low-level latched; blocksstart ghostedge andstopsnativeFB-clockedlogic aftertrial.",
+    "Source literalgate/idealDFFfunctionalmodel supplied; stillnot physicaltiming/CDCproof."
+  ],
+  "clock_nonoverlap_groups": [
+    {
+      "clock": "n19",
+      "reset": "rst",
+      "master_open": "clk_low108",
+      "master_openb": "clk_lowb109",
+      "slave_open": "clk_high110",
+      "slave_openb": "clk_highb111"
+    },
+    {
+      "clock": "fb",
+      "reset": "rst",
+      "master_open": "clk_low250",
+      "master_openb": "clk_lowb251",
+      "slave_open": "clk_high252",
+      "slave_openb": "clk_highb253"
+    },
+    {
+      "clock": "n302",
+      "reset": "count_rst",
+      "master_open": "clk_low340",
+      "master_openb": "clk_lowb341",
+      "slave_open": "clk_high342",
+      "slave_openb": "clk_highb343"
+    },
+    {
+      "clock": "n587",
+      "reset": "reference_count_rst",
+      "master_open": "clk_low1229",
+      "master_openb": "clk_lowb1230",
+      "slave_open": "clk_high1231",
+      "slave_openb": "clk_highb1232"
+    },
+    {
+      "clock": "n596",
+      "reset": "reference_count_rst",
+      "master_open": "clk_low2102",
+      "master_openb": "clk_lowb2103",
+      "slave_open": "clk_high2104",
+      "slave_openb": "clk_highb2105"
+    },
+    {
+      "clock": "n19",
+      "reset": "count_rst",
+      "master_open": "clk_low3155",
+      "master_openb": "clk_lowb3156",
+      "slave_open": "clk_high3157",
+      "slave_openb": "clk_highb3158"
+    },
+    {
+      "clock": "n19",
+      "reset": "n6713",
+      "master_open": "clk_low6719",
+      "master_openb": "clk_lowb6720",
+      "slave_open": "clk_high6721",
+      "slave_openb": "clk_highb6722"
+    },
+    {
+      "clock": "n19",
+      "reset": "n8166",
+      "master_open": "clk_low8175",
+      "master_openb": "clk_lowb8176",
+      "slave_open": "clk_high8177",
+      "slave_openb": "clk_highb8178"
+    },
+    {
+      "clock": "n19",
+      "reset": "n8373",
+      "master_open": "clk_low8382",
+      "master_openb": "clk_lowb8383",
+      "slave_open": "clk_high8384",
+      "slave_openb": "clk_highb8385"
+    },
+    {
+      "clock": "n19",
+      "reset": "n8730",
+      "master_open": "clk_low8739",
+      "master_openb": "clk_lowb8740",
+      "slave_open": "clk_high8741",
+      "slave_openb": "clk_highb8742"
+    },
+    {
+      "clock": "n19",
+      "reset": "counter_age_reset",
+      "master_open": "clk_low8871",
+      "master_openb": "clk_lowb8872",
+      "slave_open": "clk_high8873",
+      "slave_openb": "clk_highb8874"
+    }
+  ],
+  "clock_control_formula": {
+    "delayed_clock": "6physicalinverters noninverting CLKd",
+    "master_open": "!CLK & !CLKd & slave_openb & !RST",
+    "slave_open": "CLK & CLKd & master_openb & !RST",
+    "complements": "dedicated8/24um inverters",
+    "limits": "Mutual interlock and physicaldelay guard; actual deadtime and race-through still require transient/PVT measurement."
+  },
+  "revises_R1_source_sha256": "12044e0dc052c06682a3372f17c0b8612d637954af88e0d8662cf1d8c0f8f6b8",
+  "R2_changes": [
+    "All three native Gray counters, CDC pipelines and frozen decision words widened from 8 to 9 bits.",
+    "NEAR deadline uses unsigned C_lag >= 224.",
+    "Global 248 REF counter age starts at held count_rst release; watchdog covers active counting across ARM and MEASURE. DRAIN is frozen and cannot trip this watchdog.",
+    "Independent 32 REF ARM timeout retained.",
+    "Global epoch-age FAIL has priority over DONE, advance and every state entry; watchdog disabled after terminal state.",
+    "No changes to two-phase sign, 2-count guard, two observations, five tested codes, 17 ports, physical interlock with 6 INV, or low-phase FB gate."
+  ],
+  "counter_bits": 9,
+  "counter_epoch_watchdog_REF_clocks": 248,
+  "counter_epoch_watchdog_scope": "count_run & (arm | measure) & !count_rst & !(done | fail) & age >= 248; age begins at count_rst release. Native counters are frozen in DRAIN, so DRAIN age cannot assert FAIL."
+}

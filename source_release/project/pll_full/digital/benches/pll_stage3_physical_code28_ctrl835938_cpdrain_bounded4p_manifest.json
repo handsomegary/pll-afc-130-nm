@@ -1,0 +1,17 @@
+{
+  "name": "pll_stage3_physical_code28_ctrl835938_cpdrain_bounded4p",
+  "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\digital\\benches\\pll_stage3_physical_code28_ctrl835938_cpdrain_bounded4p.scs",
+  "bench_sha256": "f5b1325b02496c6681460c72e8d87dcf5f020e221dfa13e0dbdf310668801dfb",
+  "measured_loaded_case": "tb_loaded_interface_code28_ctrl835938",
+  "measured_loaded_bench_sha256": "f74e1b060482a5663ce3290da5ef58f0a618a1ab9ad16b8c2fb81a35f593a288",
+  "loaded_frequency_Hz": 3210132616.3345838,
+  "fixed_code": 28,
+  "initial_ctrl_V": 0.8359375,
+  "receiver_case": "tb_receiverac_c40_r1000000",
+  "duration_s": 2e-06,
+  "maxstep_s": 4e-12,
+  "strobeperiod_s": 1e-11,
+  "fine_enable_midpoint_s": 3.0005e-07,
+  "scope": "Physical MOS VCO/receiver/divider/PFD/drain-switch CP, static coarse sources, ideal ref/bias/passives, IC startup, nominal acquisition; no AFC/PEX/PVT/noise/jitter signoff",
+  "lpf_note": "R/C retained from candidate 423MHz/V analysis; actual loaded Kvco and loop stability not yet characterized"
+}

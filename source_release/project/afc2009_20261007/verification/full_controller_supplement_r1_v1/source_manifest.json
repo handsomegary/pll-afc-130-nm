@@ -1,0 +1,44 @@
+{
+  "version": "FULL-controller-supplement-R1-v1-prepared-only",
+  "simulator_started": false,
+  "physical_FULL_PASS": null,
+  "source_or_bench_modified": false,
+  "clamp_criterion_modified": false,
+  "sources": {
+    "measure_afc2009.py": "b76677ad532103da9302d83d96038a750691fdd833a93891c92d37a0f59f9e26",
+    "physical_portmap_r1.json": "bf75a28dbd0a3dfad3c56db2e90b5a155faf0072a06a0cf2d38acaa1e94c26c9",
+    "extract_full_controller.py": "40a51c74e2f01e47f9c2c0b6aed9f75dcd44afcd486ed83efb083c835885c30f",
+    "test_controller_supplement.py": "a8d52503ab51cfdd2c2a721b705e95ba079424e3d3f0d626983b4a2d65447df9",
+    "README_zh.txt": "3a6a332dc20eaa3cc055c7451b25908eac6b240c39c14d216b7d60b354eaaa06",
+    "freeze_controller_capsule.py": "5f781753d2352144db98704045bc158e4558ccb3c0570709446e79f02eebf3a6"
+  },
+  "common_math_byte_identical_to_v3": true,
+  "original_v3_manifest_sha256": "e2de6d089da2e9b781cd313dd11e83c70b867fb6a7c26981a6cd6a07f7e8ab05",
+  "bound_R1_MOS_source_sha256": "12044e0dc052c06682a3372f17c0b8612d637954af88e0d8662cf1d8c0f8f6b8",
+  "strict_clamp_tolerance_V": 0.03,
+  "fixture_result_sha256": "a5b8833a3e0ebde33b77c19ca81b73dfa4a1158e7a98bc64097f5f31139e83a1",
+  "fixtures": {
+    "fixtures_passed": 14,
+    "checks": [
+      "Synthetic saved-controller Booleans/one-hot/stop controls supported without native-credit or CDC proof",
+      "Qualifier edge time and preceding saved raw history exported only from observed digital ledgers",
+      "Stable raw1/prev1/qualified0 mismatch is reported, not guessed from frozen sign",
+      "Persisting one-hot state overlap fails only from stable observed state samples",
+      "Short overlap at sampling point is logged as uncertified/transient, without manufacturing stable-state failure",
+      "ARM reentry without new count-reset release remains an actual FSM observable error",
+      "Controller restart after fine is rejected from actual saved clock rising",
+      "Late saved gated-FB clock violates stop observables without claiming every unsaved internal clock",
+      "Saved gated CP pulse during hold is reported",
+      "Buffered REF phase clocks may toggle after fine even with supported native gate-stop controls",
+      "Missing saved comparator history remains unsupported rather than fabricated from snapshot counts",
+      "Failed/partial cache is refused before controller raw extraction",
+      "Supplement cannot mix measurements from different completed executions",
+      "Partial EOF raw is refused even when a synthetic cache claims completed rc0"
+    ],
+    "simulator_started": false,
+    "analogue_actual_results_generated": false,
+    "physical_FULL_PASS": null,
+    "scope": "Synthetic digital-controller and input-binding parser fixtures only; no physical circuit result."
+  },
+  "scope": "Prepared source-bound supplemental extractor; only completed rc0 exact cache/raw/measurement pairs may be read. Actual controller result awaits root execution; no new simulation claim."
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "analysis_files": [
+      "logFile",
+      "tran.tran.tran"
+    ],
+    "artifacts": [
+      "@PROJECT_ROOT@/pll_full/digital/benches/tb_div32_va.scs",
+      "@PROJECT_ROOT@/results/fullpll/units/digital_tb_div32_va_2efe4e0cd3747c9e_a1.log",
+      "@PROJECT_ROOT@/results/fullpll/units/digital_tb_div32_va_2efe4e0cd3747c9e_a1.raw"
+    ],
+    "attempt": 1,
+    "bench": "@PROJECT_ROOT@/pll_full/digital/benches/tb_div32_va.scs",
+    "bench_sha256": "747c9eb8215b81862fe402cf8f0239e8bb458c60fd59848a7e7cc6356d05cd03",
+    "case_id": "digital_tb_div32_va_2efe4e0cd3747c9e",
+    "finished_unix": 1791416286.9629264,
+    "folder": "digital",
+    "name": "tb_div32_va",
+    "source_set_sha256": "2efe4e0cd30d8408d1d28e7292179f18b8606fa0cc904141c7c719a151b47e2c",
+    "spectre_log_summary": {
+      "errors": 0,
+      "tail": "",
+      "warnings": 0
+    },
+    "spectre_rc": 0,
+    "started_unix": 1791416285.2074854,
+    "state": "completed"
+  },
+  {
+    "artifacts": [
+      "@PROJECT_ROOT@/pll_full/digital/benches/tb_afc_va.scs",
+      "@PROJECT_ROOT@/results/fullpll/units/digital_tb_afc_va_2efe4e0cd3254b4b_a1.log",
+      "@PROJECT_ROOT@/results/fullpll/units/digital_tb_afc_va_2efe4e0cd3254b4b_a1.raw"
+    ],
+    "attempt": 1,
+    "bench": "@PROJECT_ROOT@/pll_full/digital/benches/tb_afc_va.scs",
+    "bench_sha256": "254b4bf68e581a02fa451db39724d59f3575007353774308b82f57b24fe97a49",
+    "case_id": "digital_tb_afc_va_2efe4e0cd3254b4b",
+    "error": "RuntimeError('Spectre returned 2',)",
+    "finished_unix": 1791416287.1896486,
+    "folder": "digital",
+    "name": "tb_afc_va",
+    "source_set_sha256": "2efe4e0cd30d8408d1d28e7292179f18b8606fa0cc904141c7c719a151b47e2c",
+    "spectre_log_summary": {
+      "errors": 7,
+      "tail": " Correct the problem and try again.\n    ERROR (VACOMP-1795): \"+ 16*(V(s4,vss)>.<<--? 5*V(vdd,vss));\"\n        \"@PROJECT_ROOT@/pll_full/digital/benches/afc_test_source.va\", line 15: Encountered illegal real number. The first character cannot be `.'. Correct the problem and try again.\n    ERROR (VACOMP-1795): \"V(fb,vss) <+ .<<--? 5*V(vdd,vss)*(1+sin(2*`M_PI*phase));\"\n        \"@PROJECT_ROOT@/pll_full/digital/benches/afc_test_source.va\", line 18: Encountered illegal real number. The first character cannot be `.'. Correct the problem and try again.\n    ERROR (VACOMP-1795): \"$bound_step(.<<--? 02/frequency);\"\n        \"@PROJECT_ROOT@/pll_full/digital/benches/afc_test_source.va\", line 19: Encountered illegal real number. The first character cannot be `.'. Correct the problem and try again.\n\nTime for NDB Parsing: CPU = 191.917 ms, elapsed = 137.148 ms.\nTime accumulated: CPU = 208.351 ms, elapsed = 137.151 ms.\nPeak resident memory used = 55.9 Mbytes.\n\nTime for parsing: CPU = 187 us, elapsed = 94.1753 us.\nTime accumulated: CPU = 208.994 ms, elapsed = 137.471 ms.\nPeak resident memory used = 55.9 Mbytes.\n\n~~~~~~~~~~~~~~~~~~~~~~\nPre-Simulation Summary\n~~~~~~~~~~~~~~~~~~~~~~\n~~~~~~~~~~~~~~~~~~~~~~\n\nAggregate audit (6:38:07 PM, Wed Oct 7, 2026):\nTime used: CPU = 213 ms, elapsed = 213 ms, util. = 100%.\nTime spent in licensing: elapsed = 17.1 ms, percentage of total = 8.02%.\nPeak memory used = 56.6 Mbytes.\nSimulation started at: 6:38:07 PM, Wed Oct 7, 2026, ended at: 6:38:07 PM, Wed Oct 7, 2026, with elapsed time (wall clock): 213 ms.\nspectre completes with 7 errors, 0 warnings, and 0 notices.\nspectre terminated prematurely due to fatal error.\n",
+      "warnings": 0
+    },
+    "spectre_rc": 2,
+    "started_unix": 1791416286.9678006,
+    "state": "failed"
+  },
+  {
+    "analysis_files": [
+      "logFile",
+      "tran.tran.tran"
+    ],
+    "artifacts": [
+      "@PROJECT_ROOT@/pll_full/digital/benches/tb_pfd_mos.scs",
+      "@PROJECT_ROOT@/results/fullpll/units/digital_tb_pfd_mos_2efe4e0cd3fac919_a1.log",
+      "@PROJECT_ROOT@/results/fullpll/units/digital_tb_pfd_mos_2efe4e0cd3fac919_a1.raw"
+    ],
+    "attempt": 1,
+    "bench": "@PROJECT_ROOT@/pll_full/digital/benches/tb_pfd_mos.scs",
+    "bench_sha256": "fac91912ea44efe0008410e0535e1c61170693f49d87cd0b6c8787535a2dd53f",
+    "case_id": "digital_tb_pfd_mos_2efe4e0cd3fac919",
+    "finished_unix": 1791416290.7979398,
+    "folder": "digital",
+    "name": "tb_pfd_mos",
+    "source_set_sha256": "2efe4e0cd30d8408d1d28e7292179f18b8606fa0cc904141c7c719a151b47e2c",
+    "spectre_log_summary": {
+      "errors": 0,
+      "tail": "",
+      "warnings": 0
+    },
+    "spectre_rc": 0,
+    "started_unix": 1791416287.194998,
+    "state": "completed"
+  },
+  {
+    "analysis_files": [
+      "logFile",
+      "tran.tran.tran"
+    ],
+    "artifacts": [
+      "@PROJECT_ROOT@/pll_full/digital/benches/tb_div32_cmos.scs",
+      "@PROJECT_ROOT@/results/fullpll/units/digital_tb_div32_cmos_2efe4e0cd3db6114_a1.log",
+      "@PROJECT_ROOT@/results/fullpll/units/digital_tb_div32_cmos_2efe4e0cd3db6114_a1.raw"
+    ],
+    "attempt": 1,
+    "bench": "@PROJECT_ROOT@/pll_full/digital/benches/tb_div32_cmos.scs",
+    "bench_sha256": "db611471e34b028a40ec30ce55f687a8eb6fade4e9c20d05a41eb6828758e199",
+    "case_id": "digital_tb_div32_cmos_2efe4e0cd3db6114",
+    "finished_unix": 1791416446.3164241,
+    "folder": "digital",
+    "name": "tb_div32_cmos",
+    "source_set_sha256": "2efe4e0cd30d8408d1d28e7292179f18b8606fa0cc904141c7c719a151b47e2c",
+    "spectre_log_summary": {
+      "errors": 0,
+      "tail": "",
+      "warnings": 2
+    },
+    "spectre_rc": 0,
+    "started_unix": 1791416290.8238196,
+    "state": "completed"
+  }
+]

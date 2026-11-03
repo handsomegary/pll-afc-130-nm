@@ -1,0 +1,71 @@
+{
+  "status": "prepared_not_simulated",
+  "version": "counter9-completion-policy-v2",
+  "expected_case_name": "afc_counter9_gray_cdc_r2_prepared_v2",
+  "counter9_manifest_sha256": "69e0a25b5a90ccb2b84c16db303548c8fdb2052918568c1ea5593871b397c8be",
+  "frozen_reader_v1_sha256": "1fa72a1552676fe839d51da5654e1f6c75b9a957fa1114daff032b09303e548e",
+  "expected_subset_source_sha256": "35521452cdc051cc6dcdb2ab324949b9861735b0fad554b46c0acedf2d1c876c",
+  "expected_bench_sha256": "ed75a6920ea355e3ad31c9005ff073ed1c7d491857b19d7119cfc6e5b7f90910",
+  "fixed_R2_AFC_source_sha256": "45654975e7b53873559fd157955c1d8a922f40550fea81687dfd675fe9de4cc0",
+  "R2_builder_sha256": "f0d34ba7dcedfe0ea01ac41daef9c746787962e795dda7bf2ed1cfa8c77e3cb1",
+  "expected_bench": "@PROJECT_ROOT@/afc2009_20261007/mos_r2_counter9/counter9_gray_cdc_tb.scs",
+  "expected_own_dependencies": {
+    "@PROJECT_ROOT@/afc2009_20261007/mos_r2_counter9/counter9_gray_cdc_tb.scs": {
+      "sha256": "ed75a6920ea355e3ad31c9005ff073ed1c7d491857b19d7119cfc6e5b7f90910",
+      "bytes": 2754
+    },
+    "@PROJECT_ROOT@/afc2009_20261007/mos_r2_counter9/counter9_gray_cdc_mos.scs": {
+      "sha256": "35521452cdc051cc6dcdb2ab324949b9861735b0fad554b46c0acedf2d1c876c",
+      "bytes": 127511
+    }
+  },
+  "allowed_model_dependencies": {
+    "@TECH_ROOT@/models/spectre/ms013_io33_v2p6_7p_bjt_spe.mdl": {
+      "bytes": 16363,
+      "sha256": "bdbc31c73b86f6a32aefa5f82d6bc9b39e5182434287c6670360cdca91f4eb88"
+    },
+    "@TECH_ROOT@/models/spectre/ms013_io33_v2p6_7p_dio_spe.mdl": {
+      "bytes": 15116,
+      "sha256": "5ba0097d9e019b58eb0379fd19d7200a5f9e24a2b8627a903eb9d9210be52c97"
+    },
+    "@TECH_ROOT@/models/spectre/ms013_io33_v2p6_7p_mim_spe.mdl": {
+      "bytes": 2973,
+      "sha256": "5b95cd9cb1ce5bcd1df950c03a9cea80a853efb96741c1158c08cd9e30afc921"
+    },
+    "@TECH_ROOT@/models/spectre/ms013_io33_v2p6_7p_mis_spe.mdl": {
+      "bytes": 28512,
+      "sha256": "6a4dc696e40c2075c01ebe60bd4032c8158126ca5359ca3115b3db4c717c5b5c"
+    },
+    "@TECH_ROOT@/models/spectre/ms013_io33_v2p6_7p_res_spe.mdl": {
+      "bytes": 14613,
+      "sha256": "8eeb33a9c86856f41abaaaacf595667f315e22221cb96ae82e6931a3904766ac"
+    },
+    "@TECH_ROOT@/models/spectre/ms013_io33_v2p6_7p_spe.lib": {
+      "bytes": 121538,
+      "sha256": "fb70ef1fc3e536d9bbd993b954218c913b2ab1468d101a66d4a3033fd4f8cf7d"
+    },
+    "@TECH_ROOT@/models/spectre/ms013_io33_v2p6_7p_spe.mdl": {
+      "bytes": 62443,
+      "sha256": "90128ad8c3f453f47f8098c47f43b8c124c74cb3b189649c83e89869938302b2"
+    }
+  },
+  "allowed_model_reference_execution": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\afc2009_20261007\\evidence\\r1\\afc_unit_near100_phase_high_r1_diagnostic600n_9c3f3bce9e32_aps.json",
+  "allowed_model_reference_execution_sha256": "1196e43957e4ca008a93309b81ffb053a6dacf50b1df6c5a95dc309c0e764d9f",
+  "allowed_runner_source_sha256": [
+    "88e2582229d7e36bfbbc33fb19c17148859b632a2a18ff8d68bc9c9e2e045924",
+    "d25a28139d2f94dc57a2d42eeaaf5cda3d5cbedf4d1ec85709fe9548f69ada0d"
+  ],
+  "allowed_runner_files": {
+    "run_cases_v3.py": "d25a28139d2f94dc57a2d42eeaaf5cda3d5cbedf4d1ec85709fe9548f69ada0d",
+    "run_cases_v4.py": "88e2582229d7e36bfbbc33fb19c17148859b632a2a18ff8d68bc9c9e2e045924"
+  },
+  "expected_simulator_binary": "@SPECTRE_ROOT@/bin/spectre",
+  "required_state": "completed",
+  "required_spectre_rc": 0,
+  "required_source_models_unchanged_at_completion": true,
+  "required_stop_s": 5.7e-06,
+  "required_strobeperiod_s": 1e-10,
+  "required_restart_CLK_edges": 20,
+  "required_restart_REF_samples": 20,
+  "scope": "Prepared execution allowlist, not a new simulation result. Only source/model path,size,hash metadata; PDK contents not distributed."
+}

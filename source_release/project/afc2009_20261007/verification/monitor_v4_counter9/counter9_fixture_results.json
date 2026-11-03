@@ -1,0 +1,27 @@
+{
+  "fixtures_passed": 18,
+  "checks": [
+    "R2 map and dynamically derived unit sync words have 9 bits / NEAR224 / global age248",
+    "Streaming 9-bit scalar reader preserves exact 255 to 256 boundary rather than truncating MSB",
+    "Frozen slow snapshot 257 minus 255 equals guard2 across old 8-bit boundary",
+    "Frozen fast snapshot 257 minus 255 equals guard2 across old 8-bit boundary",
+    "256 minus 255 still only guard1 and cannot prove fast direction",
+    "Paired contradictory fast/slow frozen facts still rejected without changing common sign mathematics",
+    "Declared NEAR224 lower bound accepts exact 224 lag count in synthetic held snapshot",
+    "223 count does not pass a declared NEAR224 window even though it exceeds R1 128",
+    "Declared width8 with saved nine frozen bits fails before extraction",
+    "r0/r1/r2 select distinct explicit maps with exact source SHA binding",
+    "R2 source with R1 revision cannot silently use R1 eight-bit map",
+    "Unsupported explicit revision is rejected rather than falling back to R0 or R1",
+    "Legacy missing-revision cache resolves only through unique exact source SHA; R2 still maps to R2",
+    "Changed owned AFC source after execution is rejected before raw extraction",
+    "Wrapper binds actual synthetic cache/bench/source hashes while leaving physical PASS false",
+    "Wrapper refuses to overwrite existing measurement output before extraction",
+    "Cache mutation during extraction cannot receive a misleading final execution SHA binding",
+    "Bench mutation during extraction cannot receive a false bench_matches binding"
+  ],
+  "simulator_started": false,
+  "R2_status": "prepared_unverified_offline_candidate_not_selected",
+  "physical_R2_PASS": null,
+  "scope": "Synthetic parser/counter9/map/source-binding fixtures only. No physical R2 AFC, engineering PLL lock, noise, CDC, overflow or PVT result."
+}

@@ -1,0 +1,47 @@
+{
+  "status": "all_authoring_and_synthetic_wrapper_checks_pass",
+  "physical_simulator_launched": false,
+  "physical_electrical_pass": null,
+  "bench_sha256": "508ff6a196f23da3c2f5a9f7f6cec2127b42bce8ac52cf42e44d42e8ffb13f0f",
+  "baseline_sha256": "cc44e0bb56a8de35ff75d1780b99bc790311ec097f33556fa9046eb4bb0e8f44",
+  "frozen_reader_sha256": "b2898c42d28918f00b095e763427f4bacae7cb08e2b6c4ac4d551b328c214d10",
+  "literal_source_reverse_check": true,
+  "no_manufactured_afc_signals": true,
+  "synthetic_fixtures": [
+    {
+      "fixture": "ideal_locked",
+      "expected_lock": true,
+      "expected_valid_measurement": true,
+      "pass": true
+    },
+    {
+      "fixture": "off_frequency",
+      "expected_lock": false,
+      "expected_valid_measurement": true,
+      "pass": true
+    },
+    {
+      "fixture": "missing_enable",
+      "expected_lock": false,
+      "expected_valid_measurement": false,
+      "pass": true
+    },
+    {
+      "fixture": "missing_reset_release",
+      "expected_lock": true,
+      "expected_valid_measurement": false,
+      "pass": true
+    },
+    {
+      "fixture": "changed_fixed_code",
+      "expected_lock": true,
+      "expected_valid_measurement": false,
+      "pass": true
+    },
+    {
+      "fixture": "bench_SHA_mismatch_rejected",
+      "pass": true
+    }
+  ],
+  "scope": "Only source-preservation and read-only-wrapper behavior. These synthetic waves are not physical AFC-off acquisition evidence."
+}

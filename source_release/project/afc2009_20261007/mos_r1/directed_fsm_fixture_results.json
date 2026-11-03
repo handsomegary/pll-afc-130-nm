@@ -1,0 +1,80 @@
+{
+  "status": "all_5_passed",
+  "source_sha256": "12044e0dc052c06682a3372f17c0b8612d637954af88e0d8662cf1d8c0f8f6b8",
+  "source_MOS": 7135,
+  "source_DFF": 146,
+  "fixtures": [
+    {
+      "kind": "direction_pattern",
+      "pattern": "SSSSS",
+      "near_round": 0,
+      "start_toggle": false,
+      "passed": true,
+      "history": [
+        16
+      ],
+      "code": 16,
+      "endpoint_fail": false,
+      "done_cycle": 144,
+      "fine_cycle": 146,
+      "name": "near"
+    },
+    {
+      "kind": "direction_pattern",
+      "pattern": "FFFFF",
+      "near_round": null,
+      "start_toggle": false,
+      "passed": true,
+      "history": [
+        16,
+        8,
+        4,
+        2,
+        1
+      ],
+      "code": 1,
+      "endpoint_fail": true,
+      "done_cycle": null,
+      "fine_cycle": null,
+      "name": "fast_endpoint"
+    },
+    {
+      "kind": "direction_pattern",
+      "pattern": "SSSSS",
+      "near_round": null,
+      "start_toggle": false,
+      "passed": true,
+      "history": [
+        16,
+        24,
+        28,
+        30,
+        31
+      ],
+      "code": 31,
+      "endpoint_fail": true,
+      "done_cycle": null,
+      "fine_cycle": null,
+      "name": "slow_endpoint"
+    },
+    {
+      "kind": "no_FB",
+      "passed": true,
+      "history": [
+        16
+      ],
+      "fail_cycle": 42,
+      "name": "no_FB"
+    },
+    {
+      "kind": "stuck_lag_watchdog",
+      "passed": true,
+      "history": [
+        16
+      ],
+      "fail_cycle": 207,
+      "name": "stuck_lag_watchdog"
+    }
+  ],
+  "limits": "Generated literal gates + ideal edge FF; integer count frontend injected. No physical timing/CDC/counter/PLL proof."
+}

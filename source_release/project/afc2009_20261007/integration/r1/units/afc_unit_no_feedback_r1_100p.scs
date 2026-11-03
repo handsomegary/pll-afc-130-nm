@@ -1,0 +1,28 @@
+// Versionedunit100psmaxstep/strobe; adaptiveedges.
+// Physical MOS AFC unit; ideal test clocks, not a RF VCO/PLL.
+simulator lang=spectre
+global 0
+include "@TECH_ROOT@/models/spectre/ms013_io33_v2p6_7p_spe.lib" section=tt
+include "@PROJECT_ROOT@/afc2009_20261007/mos_r1/afc2009_mos.scs"
+simulatorOptions options temp=25 reltol=1e-4 vabstol=1e-6 iabstol=1e-12
+VDD (vdd 0) vsource dc=1.2
+VREF (ref 0) vsource type=pulse val0=0 val1=1.2 delay=10n rise=20p fall=20p width=4.98n period=10n
+VFB (fb 0) vsource dc=0
+VRST (rst 0) vsource type=pwl wave=[0 1.2 100n 1.2 100.02n 0]
+VSTART (afc_start 0) vsource type=pwl wave=[0 0 120n 0 120.02n 1.2]
+XAFC (vdd 0 ref fb rst afc_start s0 s1 s2 s3 s4 afc_done afc_fail hold_all fine_enable pfd_reset afc_active) afc2009_mos
+CLOAD_s0 (s0 0) capacitor c=2f
+CLOAD_s1 (s1 0) capacitor c=2f
+CLOAD_s2 (s2 0) capacitor c=2f
+CLOAD_s3 (s3 0) capacitor c=2f
+CLOAD_s4 (s4 0) capacitor c=2f
+CLOAD_afc_done (afc_done 0) capacitor c=2f
+CLOAD_afc_fail (afc_fail 0) capacitor c=2f
+CLOAD_hold_all (hold_all 0) capacitor c=2f
+CLOAD_fine_enable (fine_enable 0) capacitor c=2f
+CLOAD_pfd_reset (pfd_reset 0) capacitor c=2f
+CLOAD_afc_active (afc_active 0) capacitor c=2f
+saveOptions options save=selected
+save ref fb rst afc_start s0 s1 s2 s3 s4 afc_done afc_fail hold_all fine_enable pfd_reset afc_active VDD:p
+save XAFC.phase XAFC.seen XAFC.settle XAFC.arm XAFC.measure XAFC.drain XAFC.step1 XAFC.step2 XAFC.step4 XAFC.step8 XAFC.cl0 XAFC.cl1 XAFC.cl2 XAFC.cl3 XAFC.cl4 XAFC.cl5 XAFC.cl6 XAFC.cl7 XAFC.cg0 XAFC.cg1 XAFC.cg2 XAFC.cg3 XAFC.cg4 XAFC.cg5 XAFC.cg6 XAFC.cg7 XAFC.cd0 XAFC.cd1 XAFC.cd2 XAFC.cd3 XAFC.cd4 XAFC.cd5 XAFC.cd6 XAFC.cd7 XAFC.dl0 XAFC.dl1 XAFC.dl2 XAFC.dl3 XAFC.dl4 XAFC.dl5 XAFC.dl6 XAFC.dl7 XAFC.dg0 XAFC.dg1 XAFC.dg2 XAFC.dg3 XAFC.dg4 XAFC.dg5 XAFC.dg6 XAFC.dg7 XAFC.dd0 XAFC.dd1 XAFC.dd2 XAFC.dd3 XAFC.dd4 XAFC.dd5 XAFC.dd6 XAFC.dd7 XAFC.decision XAFC.was_fast XAFC.was_slow XAFC.was_near XAFC.fast_raw XAFC.slow_raw XAFC.fast_qualified XAFC.slow_qualified XAFC.count_run XAFC.count_rst XAFC.reference_count_rst XAFC.epoch_valid XAFC.lead_clock XAFC.lag_clock XAFC.control_clock XAFC.measure_watchdog XAFC.counter_fb_clock XAFC.fb_clock_enable XAFC.clk_low108 XAFC.clk_lowb109 XAFC.clk_high110 XAFC.clk_highb111
+tran tran stop=6.5e-07 maxstep=100p errpreset=moderate skipdc=no strobeperiod=100p strobeoutput=strobeonly

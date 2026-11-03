@@ -1,0 +1,35 @@
+{
+  "fixtures_passed": 7,
+  "cases": [
+    {
+      "name": "near100_phase_high",
+      "unit_functional_pass": true
+    },
+    {
+      "name": "near100_phase_low",
+      "unit_functional_pass": true
+    },
+    {
+      "name": "fast140",
+      "unit_functional_pass": true
+    },
+    {
+      "name": "slow70",
+      "unit_functional_pass": true
+    },
+    {
+      "name": "no_feedback",
+      "unit_functional_pass": true
+    },
+    {
+      "name": "post-fine-code-mutated",
+      "rejected": true
+    },
+    {
+      "name": "endpoint-failure-releases-fine",
+      "rejected": true
+    }
+  ],
+  "simulator_started": false,
+  "scope": "Synthetic saved-vector monitor tests only. No physical MOS electrical result."
+}

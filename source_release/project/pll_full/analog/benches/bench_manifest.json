@@ -1,0 +1,209 @@
+[
+  {
+    "case_id": "cp_dc_v200000_up",
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\analog\\benches\\cp_dc_v200000_up.scs",
+    "ctrl_V": 0.2,
+    "state": "up",
+    "source_sha256": "0769291f9a36e055fdd15f316a75a02ab8da79fbab84a1524b607a873854bae7",
+    "kind": "cp_dc",
+    "expected_ideal_current_A": 2e-05,
+    "validation": "Measure actual sourcing/sinking, off leakage, mismatch, reference power and compliance."
+  },
+  {
+    "case_id": "cp_dc_v200000_dn",
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\analog\\benches\\cp_dc_v200000_dn.scs",
+    "ctrl_V": 0.2,
+    "state": "dn",
+    "source_sha256": "9fb23c44353f5360403b2baa76a39c27ef1f8fdba94a74e823c94f3b4edacaca",
+    "kind": "cp_dc",
+    "expected_ideal_current_A": -2e-05,
+    "validation": "Measure actual sourcing/sinking, off leakage, mismatch, reference power and compliance."
+  },
+  {
+    "case_id": "cp_dc_v200000_both",
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\analog\\benches\\cp_dc_v200000_both.scs",
+    "ctrl_V": 0.2,
+    "state": "both",
+    "source_sha256": "5b862d9bb3677c29988282da6daf7b0abe34520829135e4c47373f022f4d8b3a",
+    "kind": "cp_dc",
+    "expected_ideal_current_A": 0.0,
+    "validation": "Measure actual sourcing/sinking, off leakage, mismatch, reference power and compliance."
+  },
+  {
+    "case_id": "cp_dc_v200000_off",
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\analog\\benches\\cp_dc_v200000_off.scs",
+    "ctrl_V": 0.2,
+    "state": "off",
+    "source_sha256": "6160d9746673bc2309aa649da7fc0b3c495f3797950ca2d7f71648728dad97ba",
+    "kind": "cp_dc",
+    "expected_ideal_current_A": 0.0,
+    "validation": "Measure actual sourcing/sinking, off leakage, mismatch, reference power and compliance."
+  },
+  {
+    "case_id": "cp_dc_v400000_up",
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\analog\\benches\\cp_dc_v400000_up.scs",
+    "ctrl_V": 0.4,
+    "state": "up",
+    "source_sha256": "812c204a633b35db874d2c4a4a51581fcf3e9506784cd13a8292f0580f9f96d9",
+    "kind": "cp_dc",
+    "expected_ideal_current_A": 2e-05,
+    "validation": "Measure actual sourcing/sinking, off leakage, mismatch, reference power and compliance."
+  },
+  {
+    "case_id": "cp_dc_v400000_dn",
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\analog\\benches\\cp_dc_v400000_dn.scs",
+    "ctrl_V": 0.4,
+    "state": "dn",
+    "source_sha256": "c0c5b060b62fe405624015565536137bf3b87390f6fb4befe5717d8179d3b1b3",
+    "kind": "cp_dc",
+    "expected_ideal_current_A": -2e-05,
+    "validation": "Measure actual sourcing/sinking, off leakage, mismatch, reference power and compliance."
+  },
+  {
+    "case_id": "cp_dc_v400000_both",
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\analog\\benches\\cp_dc_v400000_both.scs",
+    "ctrl_V": 0.4,
+    "state": "both",
+    "source_sha256": "6f773ab9ab18f698aac44039a01371a4a6068c68ac5daec8d293ece45708f43b",
+    "kind": "cp_dc",
+    "expected_ideal_current_A": 0.0,
+    "validation": "Measure actual sourcing/sinking, off leakage, mismatch, reference power and compliance."
+  },
+  {
+    "case_id": "cp_dc_v400000_off",
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\analog\\benches\\cp_dc_v400000_off.scs",
+    "ctrl_V": 0.4,
+    "state": "off",
+    "source_sha256": "8eddf6db8e2e81fe577b3cb6a43d893e6bab8c940558e75318702c688c613ea3",
+    "kind": "cp_dc",
+    "expected_ideal_current_A": 0.0,
+    "validation": "Measure actual sourcing/sinking, off leakage, mismatch, reference power and compliance."
+  },
+  {
+    "case_id": "cp_dc_v600000_up",
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\analog\\benches\\cp_dc_v600000_up.scs",
+    "ctrl_V": 0.6,
+    "state": "up",
+    "source_sha256": "c32c462acccd9745ceb9b184e6a14a7600de1cd04a10802b65f9d22863284ba7",
+    "kind": "cp_dc",
+    "expected_ideal_current_A": 2e-05,
+    "validation": "Measure actual sourcing/sinking, off leakage, mismatch, reference power and compliance."
+  },
+  {
+    "case_id": "cp_dc_v600000_dn",
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\analog\\benches\\cp_dc_v600000_dn.scs",
+    "ctrl_V": 0.6,
+    "state": "dn",
+    "source_sha256": "6956a433a28cb128b58acd27140d868678fedac57b8201a5dc7a62043e9a20b5",
+    "kind": "cp_dc",
+    "expected_ideal_current_A": -2e-05,
+    "validation": "Measure actual sourcing/sinking, off leakage, mismatch, reference power and compliance."
+  },
+  {
+    "case_id": "cp_dc_v600000_both",
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\analog\\benches\\cp_dc_v600000_both.scs",
+    "ctrl_V": 0.6,
+    "state": "both",
+    "source_sha256": "c4d8297cacf455a1621123f39203e6bbbd02586ee256510e850763684aab4131",
+    "kind": "cp_dc",
+    "expected_ideal_current_A": 0.0,
+    "validation": "Measure actual sourcing/sinking, off leakage, mismatch, reference power and compliance."
+  },
+  {
+    "case_id": "cp_dc_v600000_off",
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\analog\\benches\\cp_dc_v600000_off.scs",
+    "ctrl_V": 0.6,
+    "state": "off",
+    "source_sha256": "d9f59139b47bcc7fabcb11d904f19c435da4e95e0ffe00463735ba3414961fe8",
+    "kind": "cp_dc",
+    "expected_ideal_current_A": 0.0,
+    "validation": "Measure actual sourcing/sinking, off leakage, mismatch, reference power and compliance."
+  },
+  {
+    "case_id": "cp_dc_v835938_up",
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\analog\\benches\\cp_dc_v835938_up.scs",
+    "ctrl_V": 0.8359375,
+    "state": "up",
+    "source_sha256": "6620fb842e850b0bbb55ef6c4cbb792474b2666f517c52bc49b1420c1cef9370",
+    "kind": "cp_dc",
+    "expected_ideal_current_A": 2e-05,
+    "validation": "Measure actual sourcing/sinking, off leakage, mismatch, reference power and compliance."
+  },
+  {
+    "case_id": "cp_dc_v835938_dn",
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\analog\\benches\\cp_dc_v835938_dn.scs",
+    "ctrl_V": 0.8359375,
+    "state": "dn",
+    "source_sha256": "7810a6198b6b3e9f34067fa47cffb2d915985d01d7d94e06455907531a6050b0",
+    "kind": "cp_dc",
+    "expected_ideal_current_A": -2e-05,
+    "validation": "Measure actual sourcing/sinking, off leakage, mismatch, reference power and compliance."
+  },
+  {
+    "case_id": "cp_dc_v835938_both",
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\analog\\benches\\cp_dc_v835938_both.scs",
+    "ctrl_V": 0.8359375,
+    "state": "both",
+    "source_sha256": "a9a8c728b0f7670d8758684e8c38f5f8db65f5abc75246d6705b0f057240c277",
+    "kind": "cp_dc",
+    "expected_ideal_current_A": 0.0,
+    "validation": "Measure actual sourcing/sinking, off leakage, mismatch, reference power and compliance."
+  },
+  {
+    "case_id": "cp_dc_v835938_off",
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\analog\\benches\\cp_dc_v835938_off.scs",
+    "ctrl_V": 0.8359375,
+    "state": "off",
+    "source_sha256": "47c7c691164415e217e56a0b786aac11130d262f76e1af02e08190621aced662",
+    "kind": "cp_dc",
+    "expected_ideal_current_A": 0.0,
+    "validation": "Measure actual sourcing/sinking, off leakage, mismatch, reference power and compliance."
+  },
+  {
+    "case_id": "cp_dc_v1000000_up",
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\analog\\benches\\cp_dc_v1000000_up.scs",
+    "ctrl_V": 1.0,
+    "state": "up",
+    "source_sha256": "1c466d9d811cd8a4f8cb8bc90128aa85393c330afd6dffbecc50fb60c23a7cb7",
+    "kind": "cp_dc",
+    "expected_ideal_current_A": 2e-05,
+    "validation": "Measure actual sourcing/sinking, off leakage, mismatch, reference power and compliance."
+  },
+  {
+    "case_id": "cp_dc_v1000000_dn",
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\analog\\benches\\cp_dc_v1000000_dn.scs",
+    "ctrl_V": 1.0,
+    "state": "dn",
+    "source_sha256": "6643059bf37c721917ff0160568c567332fd9cdcf5a6e61ba4ee6aaa4a655893",
+    "kind": "cp_dc",
+    "expected_ideal_current_A": -2e-05,
+    "validation": "Measure actual sourcing/sinking, off leakage, mismatch, reference power and compliance."
+  },
+  {
+    "case_id": "cp_dc_v1000000_both",
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\analog\\benches\\cp_dc_v1000000_both.scs",
+    "ctrl_V": 1.0,
+    "state": "both",
+    "source_sha256": "5dec9e6d20f4784da3114da7dda38e1cf38633531ac4a57aa4d43721db51c777",
+    "kind": "cp_dc",
+    "expected_ideal_current_A": 0.0,
+    "validation": "Measure actual sourcing/sinking, off leakage, mismatch, reference power and compliance."
+  },
+  {
+    "case_id": "cp_dc_v1000000_off",
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\analog\\benches\\cp_dc_v1000000_off.scs",
+    "ctrl_V": 1.0,
+    "state": "off",
+    "source_sha256": "eaef03657f4a215820d8dfbec02ab3126b80ab43624f7c70d32399c59fec762a",
+    "kind": "cp_dc",
+    "expected_ideal_current_A": 0.0,
+    "validation": "Measure actual sourcing/sinking, off leakage, mismatch, reference power and compliance."
+  },
+  {
+    "case_id": "cp_pulse",
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\analog\\benches\\cp_pulse.scs",
+    "kind": "cp_transient",
+    "source_sha256": "4c570b056bd326260068ec4fc2b8a8e1a857d3df469e97ac3a1bd82ea64dfb66",
+    "validation": "Measure charge/time integral, feedthrough, positive UP and negative DN response; not noise jitter."
+  }
+]

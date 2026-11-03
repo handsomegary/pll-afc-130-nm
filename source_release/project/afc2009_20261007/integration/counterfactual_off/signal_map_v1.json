@@ -1,0 +1,33 @@
+{
+  "vdd_V": 1.2,
+  "target_Hz": 3200000000.0,
+  "reference_Hz": 100000000.0,
+  "analogs": {
+    "out0": "out0",
+    "out180": "out180",
+    "ref": "ref",
+    "fb": "fb",
+    "ctrl": "ctrl",
+    "filter_mid": "filter_mid",
+    "vdd": "vdd",
+    "total_current": "VDD:p",
+    "digital_current": "VDDIG:p",
+    "cp_current": "VDDCP:p"
+  },
+  "digitals": {
+    "fine_enable": "enable",
+    "pfd_reset": "rst",
+    "up": "up",
+    "dn": "dn",
+    "divider_reset": "div_rst"
+  },
+  "words": {
+    "code": [
+      "s0",
+      "s1",
+      "s2",
+      "s3",
+      "s4"
+    ]
+  }
+}

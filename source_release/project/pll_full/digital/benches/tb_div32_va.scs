@@ -1,0 +1,13 @@
+simulator lang=spectre
+global 0
+ahdl_include "../pll130_digital_va.va"
+parameters VD=1.2 FIN=3.2G
+VDD (vdd 0) vsource dc=VD
+VEN (enable 0) vsource dc=VD
+VP (inp 0) vsource type=sine dc=.93 ampl=.0625 freq=FIN
+VN (inn 0) vsource type=sine dc=.93 ampl=-.0625 freq=FIN
+XD (vdd 0 inp inn enable fb) pll130_div32_va
+saveOptions options save=selected
+save inp inn fb enable
+tran tran stop=100n maxstep=2p errpreset=conservative
+// Functional contract only: 3.2GHz/32=100MHz; no input load/no divider power.

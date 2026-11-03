@@ -1,0 +1,69 @@
+{
+  "version": "100MHz-phase-selected-guard2-v1",
+  "source": "Jeong, Choi, Yoo, RFIC 2009, Fig.4 and Fig.5",
+  "implementation_kind": "engineering adaptation; not a literal transistor reproduction",
+  "frequency_decision_uses": "native edge counts only, no timestamps",
+  "reference_Hz": 100000000,
+  "feedback_division": 32,
+  "target_Hz": 3200000000,
+  "calibration_feedback": "physical PLL fb32, no additional divide by four",
+  "clamp_V": 0.6,
+  "calibration_state": {
+    "code_initial": 16,
+    "code_increases_frequency": true,
+    "tested_candidate_steps": [8, 4, 2, 1],
+    "maximum_tested_candidates": 5,
+    "final_candidate": "keep the fifth tested code; do not apply an untested sixth code",
+    "extreme_failure": "code1 still fast or code31 still slow => endpoint/range unverified, no handover"
+  },
+  "bracket": {
+    "first_feedback_edge_ref_high": "lead=REF, lag=!REF",
+    "first_feedback_edge_ref_low": "lead=!REF, lag=REF",
+    "initial_div_count": 1,
+    "initial_lead_count": 1,
+    "initial_lag_count": 0,
+    "leading_credit": "represents immediately preceding half-cycle reference edge",
+    "equal_frequency_invariant": "count_lag <= count_div <= count_lead at every ideal event, with simultaneous edges updated atomically",
+    "paper_slow": "count_lag > count_div",
+    "paper_fast": "count_div > count_lead",
+    "port_name_convention": "fast/slow names describe VCO versus target; Fig4 paper Fast label describes RefClk versus DivClk and thus has opposite verbal polarity",
+    "boundary_ties": "ideal model batches ties; physical guard plus epoch/reset sequencing requires MOS validation"
+  },
+  "physical_count_frontend": {
+    "bits": 8,
+    "encoding": "native registered Gray words",
+    "cdc": "all three words pass matched two-register REF-clock pipelines, then binary decode",
+    "slow": "count_lag-count_div >= 2",
+    "fast": "count_div-count_lead >= 2",
+    "qualification": "same direction at two consecutive REF observations",
+    "both_directions": "fail",
+    "general_overflow_detect_in_physical_MOS": false,
+    "analog_sync_invalid_detect_in_physical_MOS": false,
+    "count_width_scope": "tested VCO/32 <=113MHz and <=192REF measurement cycles keep 8-bit count below wrap; arbitrary input clock faults are not covered",
+    "phase_select_reset": "hold reference counters in reset until phase selector and seen buffers settle; startup ghost edges must not count",
+    "counter_freeze_after_done": true,
+    "physical_controller_clock_gating": "REF & !(fine_enable|fail), intended self-gating after handover; runt-pulse/tail stability needs MOS verification; phase-generator input gates can still toggle",
+    "whole_AFC_zero_switching_after_done": false,
+    "MOS_window_priority_difference_from_RTL_spec": "MOS cg7 deadline can select provisional near before a first raw sign gets its second qualification; RTL spec waits for raw sign to qualify or disappear"
+  },
+  "sequencing": {
+    "settle_REF_cycles": 4,
+    "arm_timeout_REF_cycles": 32,
+    "measure_timeout_lag_count": 128,
+    "independent_measure_watchdog_REF_cycles": 192,
+    "drain_REF_cycles": 2,
+    "done_to_fine_enable_REF_cycles": 2,
+    "hold": "!fine_enable",
+    "pfd_reset": "reset | !fine_enable",
+    "CP_enable": "fine_enable",
+    "physical_MEASURE_watchdog": "native8bit measure timer mt7 & mt6, reaches192REFcycles",
+    "RTL_counter_fault_input": "richer abstract external fault contract; physical MOS lacks general overflow/sync-invalid detector"
+  },
+  "near_timeout": {
+    "meaning": "provisional tested candidate, not a measured exact frequency or proven all-PVT capture guarantee",
+    "required_validation": "actual physical fine-loop capture and control-voltage rail margin after handover",
+    "output": "candidate_provisional=1, done=1, fine_enable after two REF cycles",
+    "must_not_claim": ["2009 measured worst-case 1.6us reproduced", "metastability eliminated", "all-PVT tuning coverage", "AFC reduces random jitter"]
+  },
+  "observation_ports": ["state", "code[4:0]", "round_index", "step", "trial_arm", "epoch_seen", "phase", "counts_valid", "count_lead[7:0]", "count_lag[7:0]", "count_div[7:0]", "slow", "fast", "decision_valid", "decision", "update", "candidate_provisional", "done", "fail", "hold", "fine_enable", "pfd_reset"]
+}

@@ -1,0 +1,21 @@
+`include "constants.vams"
+`include "disciplines.vams"
+// UNIT-TEST FIXTURE ONLY, not the measured VCO's frequency map.
+// Its known monotonic map targets code26: (2.5G+26*27M)/32=100.0625MHz.
+module pll130_afc_test_source(vdd,vss,s0,s1,s2,s3,s4,fb);
+inout vdd,vss,s0,s1,s2,s3,s4,fb;
+electrical vdd,vss,s0,s1,s2,s3,s4,fb;
+integer code;
+real frequency, phase;
+analog begin
+  code = (V(s0,vss)>0.5*V(vdd,vss))
+       + 2*(V(s1,vss)>0.5*V(vdd,vss))
+       + 4*(V(s2,vss)>0.5*V(vdd,vss))
+       + 8*(V(s3,vss)>0.5*V(vdd,vss))
+       + 16*(V(s4,vss)>0.5*V(vdd,vss));
+  frequency = (2.5G+code*27M)/32.0;
+  phase = idtmod(frequency,0,1);
+  V(fb,vss) <+ 0.5*V(vdd,vss)*(1+sin(2*`M_PI*phase));
+  $bound_step(0.02/frequency);
+end
+endmodule

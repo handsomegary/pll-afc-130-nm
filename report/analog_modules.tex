@@ -1,0 +1,310 @@
+% Selected R1 implementation. Parent preamble: graphicx, circuitikz[american].
+% All figures are vector schematics. Like-named labeled terminals are joined.
+\section{Transistor Schematics of the Selected Loop}
+\label{sec:schematicatlas}
+The following schematics follow the instantiated R1 strong-clamp hierarchy.
+The source identifiers in Table~\ref{tab:apmap} can be searched verbatim in
+the accompanying netlists. A repeated net label denotes electrical
+continuity within its stated module. An NMOS bulk connects to its local
+negative rail and a PMOS bulk to its local positive rail. The captions identify RF devices. Each of these symbols represents a four-terminal RF device wrapper at the design boundary.
+Its finger count belongs to one instance. All component values refer to the
+selected pre-layout bench.
+
+\begin{table*}[!t]
+\centering\caption{Schematic-to-netlist map for the selected loop.}
+\label{tab:apmap}
+\small
+\resizebox{.99\textwidth}{!}{\begin{tabular}{lll}
+\hline
+Selected instance & Netlist module or devices & Function \\
+\hline
+\texttt{XREF}, \texttt{XOSC} & \texttt{current\_ref, two\_stage\_ring\_vco, two\_stage\_ring} & Bias and two quadrature cells \\
+\texttt{XRX} & \texttt{pll130\_receiver\_ac} & Differential input to logic clock \\
+\texttt{XD} & \texttt{pll130\_div32\_cmos, pll130\_div2, pll130\_dff, pll130\_latch} & Five toggle stages \\
+\texttt{XPFD} & \texttt{pll130\_pfd, pll130\_pfd\_tspc} & Reference and feedback phase comparison \\
+\texttt{XCPUPEN}, \texttt{XCPDNEN}, \texttt{XCP} & \texttt{pll130\_and2, pll130\_cp\_drain, pll130\_cpd\_inv} & Pulse gating and charge transfer \\
+Top-level passives and switches & \texttt{CSHUNT, RSERIES, CSERIES, CHOLD, MHOLD*, PHOLD*} & Integration and precharge \\
+\hline
+\end{tabular}}
+\end{table*}
+
+
+\tikzset{apbox/.style={draw,align=center,minimum height=6mm,inner xsep=4pt,font=\footnotesize},
+apnote/.style={align=left,font=\footnotesize},
+aphead/.style={font=\bfseries\small,anchor=west}}
+\newcommand{\APgleft}[2]{\draw (#1.G) -- ++(-.24,0) node[left]{#2};}
+\newcommand{\APgright}[2]{\draw (#1.G) -- ++(.24,0) node[right]{#2};}
+\newcommand{\APtop}[2]{\draw (#1) -- ++(0,.27) node[above]{#2};}
+\newcommand{\APbot}[2]{\draw (#1) -- ++(0,-.27) node[below]{#2};}
+
+\subsection{Oscillator and band selection}
+The oscillator closes two differential stages with one polarity swap.
+Stage~0 takes $(o_0,o_{180})$ and drives $(o_{90},o_{270})$.
+Stage~1 takes $(o_{270},o_{90})$ and drives $(o_0,o_{180})$.
+In each stage the input pair and the regenerative pair have separate tail
+nodes (Fig.~\ref{fig:apcore}). The control branches act on the input-pair tail
+only (Fig.~\ref{fig:apbank}). The selected sizing is given by the actual
+instance parameters. In particular the RF input devices have twelve fingers
+of width $3\,\mu$m each.
+
+\begin{figure*}[!t]
+\centering\resizebox{.92\textwidth}{!}{%
+\begin{circuitikz}[font=\footnotesize]
+\node[aphead] at (-1.4,5.35) {(a) Main differential pair};
+\node[nmos] (am1) at (0,2.75) {};
+\node[nmos,xscale=-1] (am2) at (2.5,2.75) {};
+\draw (0,4.85) node[above]{$V_{DD}$} to[R,l=$620\,\Omega$] (0,3.55) node[circ]{} -- (am1.D);
+\draw (2.5,4.85) node[above]{$V_{DD}$} to[R,l=$620\,\Omega$] (2.5,3.55) node[circ]{} -- (am2.D);
+\draw (0,3.55) -- ++(-.45,0) node[left]{$o_n$};
+\draw (2.5,3.55) -- ++(.45,0) node[right]{$o_p$};
+\APgleft{am1}{$i_p$}\APgright{am2}{$i_n$}
+\draw (am1.S) -- (0,1.95) -- (2.5,1.95) -- (am2.S);
+\node[nmos] (amt) at (1.25,.95) {};\APgleft{amt}{$b_n$}
+\draw (amt.D) -- (1.25,1.95) node[circ]{} node[above]{$c_{s1}$};
+\draw (amt.S) node[ground]{};
+\draw (2.5,1.95) -- ++(.65,0) node[right]{to fine/bank};
+\begin{scope}[xshift=6.6cm]
+\node[aphead] at (-1.4,5.35) {(b) Regenerative pair};
+\node[nmos] (ar1) at (0,2.75) {};
+\node[nmos,xscale=-1] (ar2) at (2.25,2.75) {};
+\APtop{ar1.D}{$o_n$}\APtop{ar2.D}{$o_p$}
+\APgleft{ar1}{$o_p$}\APgright{ar2}{$o_n$}
+\draw (ar1.S) -- (0,1.95) -- (2.25,1.95) -- (ar2.S);
+\node[nmos] (art) at (1.125,.95) {};\APgleft{art}{$b_n$}
+\draw (art.D) -- (1.125,1.95) node[circ]{} node[above]{$c_{s2}$};
+\draw (art.S) node[ground]{};
+\end{scope}
+\begin{scope}[xshift=12cm]
+\node[aphead] at (-1.15,5.35) {(c) Bias reference};
+\node[nmos] (anref) at (0,1.25) {};
+\node[nmos] (anmir) at (2.5,1.25) {};
+\node[pmos] (apref) at (2.5,3.3) {};
+\draw (0,4.85) node[above]{$V_{DD}$} to[I,l=$I_{\rm REF}$] (0,2.35) node[circ]{} -- (anref.D);
+\draw (anref.G) -- ++(-.18,0) |- (0,2.35) node[above right]{$b_n$};
+\draw (anref.S) node[ground]{};\draw (anmir.S) node[ground]{};
+\APgleft{anmir}{$b_n$}
+\draw (apref.S) -- ++(0,.36) node[above]{$V_{DD}$};
+\draw (apref.D) -- (2.5,2.3) node[circ]{} -- (anmir.D);
+\draw (apref.G) -- ++(-.2,0) |- (2.5,2.3) node[right]{$b_p$};
+\draw (4.15,2.3) node[above]{$b_n$} to[C,l=$1\,$pF] (4.15,.8) node[ground]{};
+\end{scope}
+\end{circuitikz}}
+\caption{One ring cell and the common bias source. The six devices in (a,b) use RF wrappers. Input, regenerative, main-tail and regenerative-tail finger counts are 12, 8, 12 and 16, respectively. Each finger has $W=3\,\mu$m. Pair devices have $L=0.13\,\mu$m and tail devices $L=0.39\,\mu$m. The bias source supplies $13.5594\,\mu$A. The two bias NMOS devices have $W/L=8/3.12$ and the PMOS has $W/L=4.06783/0.39$, in $\mu$m.}
+\label{fig:apcore}
+\end{figure*}
+
+\begin{figure*}[!t]
+\centering\resizebox{.91\textwidth}{!}{%
+\begin{circuitikz}[font=\footnotesize]
+\node[aphead] at (-1.2,4.35) {(a) Fine tuning};
+\node[nmos] (af) at (0,1.7) {};
+\APgleft{af}{CTRL}\APtop{af.D}{$c_{s1}$}\draw (af.S) node[ground]{};
+\begin{scope}[xshift=3.45cm]
+\node[aphead] at (-1,4.35) {(b) Binary and correction branches};
+\node[nmos] (ab1) at (0,2.45) {};\node[nmos,xscale=-1] (ab2) at (2.2,2.45) {};
+\APtop{ab1.D}{$g_j$}\APtop{ab2.D}{$g_j$}
+\APgleft{ab1}{$e_j$}\draw (ab2.G) -- ++(.18,0) node[above]{$\bar e_j$};
+\APbot{ab1.S}{$b_n$}\draw (ab2.S) node[ground]{};
+\node[nmos,xscale=-1] (ab3) at (4.4,2.45) {};\APgright{ab3}{$g_j$}\APtop{ab3.D}{$c_{s1}$}\draw (ab3.S) node[ground]{};
+\node[apnote,anchor=west] at (-.85,.45) {$j=0\ldots4$: $e_j=s_j$, $m=1,2,4,8,16$\\$j=5,6$: $e_j=s_{24+},s_{16+}$};
+\end{scope}
+\begin{scope}[xshift=11.2cm]
+\node[aphead] at (-1.3,4.35) {(c) Supplemental fine branches};
+\node[nmos] (as1) at (0,2.45) {};\node[pmos,xscale=-1,yscale=-1] (as2) at (1.8,2.45) {};
+\APgleft{as1}{$e_k$}
+\draw (as1.D) -- (0,3.3) -- (1.8,3.3) -- (as2.D);\draw (.9,3.3) node[circ]{} -- ++(0,.2) node[above]{$g_k$};
+\draw (as1.S) -- (0,1.6) -- (1.8,1.6) -- (as2.S);\draw (.9,1.6) node[circ]{} -- ++(0,-.15) node[below]{CTRL};
+\node[nmos] (as3) at (3.9,2.45) {};\draw (as2.G) -- node[above]{$\bar e_k$} (as3.G);\APtop{as3.D}{$g_k$}\draw (as3.S) node[ground]{};
+\node[nmos] (as4) at (6.1,2.45) {};\draw (as4.G) -- ++(-.2,0) node[below]{$g_k$};\APtop{as4.D}{$c_{s1}$}\draw (as4.S) node[ground]{};
+\node[apnote,anchor=west] at (-1,.45) {$e_k=s_{8+},s_{16+},s_{24+}$; supplemental $m=1,2,3$};
+\end{scope}
+\end{circuitikz}}
+\caption{All three tuning paths in one cell. The fine device has $W/L=0.8/5.2\,\mu$m. Binary sinks have unit $W/L=1.1/0.39$. The two correction widths are 0.47143 and 0.23571\,$\mu$m for $24+$ and $16+$, respectively. For (c), the selected device gate receives CTRL through a transmission gate and the disabled gate is grounded. Supplemental devices have $W/L=0.2/5.2$. The decoder forms $s_{8+}=s_3\lor s_4$, $s_{16+}=s_4$ through two inverters and $s_{24+}=s_3\land s_4$. The \texttt{s\_to\_d} buffers in Fig.~\ref{fig:apdecode} derive both polarities. The labels $g_j$ and $g_k$ refer to separate branch families.}
+\label{fig:apbank}
+\end{figure*}
+
+\begin{figure*}[!t]
+\centering\resizebox{.67\textwidth}{!}{%
+\begin{circuitikz}[font=\footnotesize]
+\node[aphead] at (-.65,3.1) {(a) Complementary drive\ \texttt{s\_to\_d}};
+\node[american not port] (sd1) at (2,2) {};
+\node[american not port] (sd2) at (4.65,2) {};
+\node[apbox] (dtg) at (2,.35) {TG (always on)};
+\node[american not port] (sd3) at (4.65,.35) {};
+\draw (-.5,2) node[left]{$s$} -- (.3,2) node[circ]{} -- (sd1.in);
+\draw (.3,2) |- (dtg.west);\draw (sd1.out) -- (sd2.in);
+\draw (dtg.east) -- (sd3.in);
+\draw (sd2.out) -- ++(.3,0) node[right]{$s_p$};
+\draw (sd3.out) -- ++(.3,0) node[right]{$s_n$};
+\begin{scope}[xshift=8.0cm]
+\node[aphead] at (-.6,3.1) {(b) Decode and drive};
+\node[american or port] (bor) at (1.5,2) {};
+\node[american and port] (band) at (1.5,-.25) {};
+\draw (bor.in 1) -- ++(-.25,0) node[left]{$s_3$};\draw (bor.in 2) -- ++(-.25,0) node[left]{$s_4$};
+\draw (band.in 1) -- ++(-.25,0) node[left]{$s_3$};\draw (band.in 2) -- ++(-.25,0) node[left]{$s_4$};
+\draw (bor.out) -- ++(.55,0) node[right]{$s_{8+}$};
+\draw (band.out) -- ++(.55,0) node[right]{$s_{24+}$};
+\node[apbox] (b16) at (1.55,.875) {\texttt{bf\_2inv}};
+\draw (b16.west) -- ++(-.3,0) node[left]{$s_4$};
+\draw (b16.east) -- ++(.6,0) node[right]{$s_{16+}$};
+\end{scope}
+\end{circuitikz}}
+\caption{VCO bank logic. Each cell contains eight complementary drivers, one per binary bit and one per decoded threshold. The always-on TG connects the input to a single inverter with its NMOS gate at VDD and PMOS gate at VSS. The other branch uses two inverters. The \texttt{bf\_2inv} buffer is also a pair of inverters in series. OR2 uses NOR2 followed by an inverter, and AND2 uses NAND2 followed by an inverter. All VCO logic inverter devices have $W_n/W_p=0.5/1.8\,\mu$m and $L=0.13\,\mu$m.}
+\label{fig:apdecode}
+\end{figure*}
+\subsection{Clock conversion and frequency division}
+The receiver couples the positive differential-pair output to a CMOS clock
+restorer (Fig.~\ref{fig:aprx}). Feedback biases the first inverter near its
+switching threshold. Five toggle stages then divide the recovered clock by
+32 (Fig.~\ref{fig:apdiv}).
+
+\begin{figure*}[!t]
+\centering\resizebox{.80\textwidth}{!}{%
+\begin{circuitikz}[font=\footnotesize]
+\node[nmos] (ai1) at (0,2.0) {};\node[nmos,xscale=-1] (ai2) at (3.1,2.0) {};
+\draw (0,4.5) node[above]{$V_{DD,\rm dig}$} to[R,l=$3\,$k$\Omega$] (0,3.05) node[circ]{} -- (ai1.D);
+\draw (3.1,4.5) node[above]{$V_{DD,\rm dig}$} to[R,l=$3\,$k$\Omega$] (3.1,3.05) node[circ]{} -- (ai2.D);
+\draw (0,3.05) -- ++(-.45,0) node[left]{rxn};
+\APgleft{ai1}{$o_0$}\APgright{ai2}{$o_{180}$}
+\draw (ai1.S) -- (0,1.15) -- (3.1,1.15) -- (ai2.S);
+\node[nmos] (ait) at (1.55,.05) {};\APgleft{ait}{$b_n$}
+\draw (ait.D) -- (1.55,1.15) node[circ]{};\draw (ait.S) node[ground]{};
+\node[american not port] (axi) at (8.0,3.05) {};
+\node[american not port] (axi2) at (10.5,3.05) {};
+\draw (3.1,3.05) -- (4.3,3.05) node[above]{rxp} to[C,l=$40\,$fF] (6.2,3.05) node[circ]{} -- (axi.in);
+\draw (axi.out) -- (9.1,3.05) node[circ]{} -- (axi2.in);
+\draw (9.1,3.05) -- (9.1,4.35) to[R,l=$1\,$M$\Omega$] (6.2,4.35) -- (6.2,3.05);
+\draw (axi2.out) -- ++(.45,0) node[right]{clk};
+\node[apnote,anchor=north] at (8.7,1.95) {Stage 1 $W_n/W_p=0.8/3.2\,\mu$m\\Stage 2 $W_n/W_p=1.6/4.8\,\mu$m};
+\end{circuitikz}}
+\caption{Selected AC-coupled receiver. Each differential input uses four RF fingers of $1.5\,\mu$m at $L=0.13\,\mu$m. The tail uses 12 fingers of $2.5\,\mu$m at $L=0.39\,\mu$m. The bench sets the coupling capacitance to 40 fF.}
+\label{fig:aprx}
+\end{figure*}
+
+\begin{figure*}[!t]
+\centering\resizebox{.94\textwidth}{!}{%
+\begin{circuitikz}[font=\footnotesize]
+\node[aphead] at (-.5,4.8) {(a) Transmission-gate latch};
+\node[apbox] (dIn) at (1.8,3.6) {TG$_{\rm open}$};
+\node[american not port] (dX) at (5.5,3.6) {};
+\node[american not port] (dY) at (8.35,3.6) {};
+\draw (-.1,3.6) node[left]{D} -- (dIn.west);
+\draw (dIn.east) -- (3.5,3.6) node[circ]{} node[above]{storage} -- (dX.in);
+\draw (dX.out) -- (6.65,3.6) node[circ]{} -- (dY.in);
+\draw (6.65,3.6) -- ++(0,.5) node[above]{$\bar Q$};
+\draw (dY.out) -- (9.65,3.6) node[circ]{} -- ++(.3,0) node[right]{$Q$};
+\node[apbox] (dFb) at (6.4,1.55) {TG$_{\rm hold}$};
+\draw (9.65,3.6) |- (dFb.east);\draw (dFb.west) -| (3.5,3.6);
+\node[nmos] (dR) at (2.25,.7) {};\APgleft{dR}{rst}\draw (dR.S) node[ground]{};
+\draw (dR.D) |- (3.5,2.25) node[circ]{};
+\begin{scope}[xshift=12cm]
+\node[aphead] at (-.8,4.8) {(b) Each TG};
+\node[nmos] (dTn) at (0,2.7) {};\node[pmos,xscale=-1,yscale=-1] (dTp) at (1.65,2.7) {};
+\APgleft{dTn}{$E$}\APgright{dTp}{$\bar E$}
+\draw (dTn.D) -- (0,3.6) -- (1.65,3.6) -- (dTp.D);\draw (.825,3.6) node[circ]{} -- ++(0,.15) node[above]{A};
+\draw (dTn.S) -- (0,1.8) -- (1.65,1.8) -- (dTp.S);\draw (.825,1.8) node[circ]{} -- ++(0,-.15) node[below]{B};
+\end{scope}
+\node[aphead] at (-.5,-1.25) {(c) Positive-edge toggle stage};
+\node[apbox] (dM) at (3.55,-2.3) {Master latch\\open $=L$, hold $=H$};
+\node[apbox] (dS) at (8.4,-2.3) {Slave latch\\open $=H$, hold $=L$};
+\draw[->] (0,-2.3) node[left]{$\bar Q$} -- (dM.west);
+\draw[->] (dM.east) -- node[above]{$Q_M$} (dS.west);
+\draw[->] (dS.east) -- ++(.75,0) node[right]{$Q,\bar Q$};
+\node[apnote,anchor=west] at (12.2,-2.3) {$L=\overline{\rm clk}\land\overline{\rm rst}$\\$H={\rm clk}\land\overline{\rm rst}$};
+\end{circuitikz}}
+\caption{Physical divider hierarchy. Five copies of (c) cascade through their $Q$ outputs, giving $q_1,q_2,q_3,q_4,\mathrm{fb}$. A $5$-fF capacitor loads fb. Each latch has two TGs, two inverters and one reset NMOS. TGs have $W_n/W_p=1.2/3.6\,\mu$m, latch inverters $0.5/1.5\,\mu$m and the reset NMOS $W=2\,\mu$m. Inverters outside the latch generate complementary TG controls.}
+\label{fig:apdiv}
+\end{figure*}
+
+\subsection{Phase detector, charge pump, and precharge}
+The two six-device PFD slices receive REF and divider feedback
+(Fig.~\ref{fig:appfd}). After the controller enables fine tuning, two AND
+gates pass UP and DN to the charge pump. The pump switches the drains of
+continuously biased mirror devices (Fig.~\ref{fig:apcp}). During calibration
+a transmission gate at each filter node connects that node to the half-supply
+reservoir (Fig.~\ref{fig:apclamp}).
+
+\begin{figure*}[!t]
+\centering\resizebox{.84\textwidth}{!}{%
+\begin{circuitikz}[font=\footnotesize]
+\node[aphead] at (-1.4,6.65) {(a) One PFD slice};
+\node[pmos] (pA) at (0,4.95) {};\node[pmos] (pB) at (0,3.45) {};\node[nmos] (pC) at (0,1.55) {};
+\APtop{pA.S}{$V_{DD}$}\APgleft{pA}{reset}\APgleft{pB}{edge}\APgleft{pC}{reset}
+\draw (pA.D) -- (pB.S);\draw (pB.D) -- (0,2.45) node[circ]{} -- (pC.D);\draw (0,2.45) -- ++(.6,0) node[right]{$n_2$};\draw (pC.S) node[ground]{};
+\node[pmos] (pD) at (3.55,4.95) {};\node[nmos] (pE) at (3.55,3.1) {};\node[nmos] (pF) at (3.55,1.55) {};
+\APtop{pD.S}{$V_{DD}$}\APgleft{pD}{$n_2$}\APgleft{pE}{edge}\APgleft{pF}{$n_2$}
+\draw (pD.D) -- (3.55,4.0) node[circ]{} -- (pE.D);\draw (3.55,4.0) -- ++(.45,0) node[right]{$y$};\draw (pE.S) -- (pF.D);\draw (pF.S) node[ground]{};
+\begin{scope}[xshift=7.25cm]
+\node[aphead] at (-.9,6.65) {(b) Pair and reset logic};
+\node[apbox] (pu) at (1.35,4.95) {PFD slice};
+\node[apbox] (pd) at (1.35,3.4) {PFD slice};
+\draw[->] (-.25,4.95) node[left]{REF} -- (pu.west);
+\draw[->] (-.25,3.4) node[left]{FB} -- (pd.west);
+\node[american not port] (xu) at (4.8,4.95) {};
+\node[american not port] (xd) at (4.8,3.4) {};
+\draw (pu.east) -- node[above]{$u_n$} (xu.in);\draw (xu.out) -- ++(.35,0) node[right]{UP};
+\draw (pd.east) -- node[above]{$d_n$} (xd.in);\draw (xd.out) -- ++(.35,0) node[right]{DN};
+\node[apnote,anchor=west] at (-.75,1.6) {$r_0=\mathrm{NOR}(u_n,d_n)$\\$r_2=\mathrm{INV}(\mathrm{INV}(r_0))$\\$\mathrm{reset}=\mathrm{pfd\_reset}\lor r_2$};
+\end{scope}
+\end{circuitikz}}
+\caption{Six-MOS single-phase dynamic slice (left) and PFD assembly (right). The two PMOS devices in the input column are stacked. The reset NMOS discharges $n_2$. In the output column $n_2$ drives the PMOS and bottom NMOS, while the edge input drives the middle NMOS. The two explicit inverters preserve the delays of the reset path.}
+\label{fig:appfd}
+\end{figure*}
+
+\begin{figure*}[!t]
+\centering\resizebox{.81\textwidth}{!}{%
+\begin{circuitikz}[font=\footnotesize]
+\node[aphead] at (-1.2,6.65) {(a) Pump bias};
+\node[nmos] (cN) at (0,1.25) {};\node[nmos] (cN2) at (3.1,1.25) {};
+\node[pmos] (cP) at (3.1,4.3) {};
+\draw (0,5.05) node[above]{$V_{DD,\rm CP}$} to[I,l=$20\,\mu$A] (0,2.42) node[circ]{} -- (cN.D);
+\draw (cN.G) -- ++(-.25,0) |- (0,2.42) node[right]{$b_{nC}$};
+\draw (cN.S) node[ground]{};\draw (cN2.S) node[ground]{};
+\APgleft{cN2}{$b_{nC}$}
+\APtop{cP.S}{$V_{DD,\rm CP}$}
+\draw (cP.D) -- (3.1,2.92) node[circ]{} -- (cN2.D);
+\draw (cP.G) -- ++(-.20,0) |- (3.1,2.92) node[right]{$b_{pC}$};
+\begin{scope}[xshift=8cm]
+\node[aphead] at (-1.8,6.65) {(b) Output branch};
+\node[pmos] (cM1) at (0,4.75) {};
+\node[pmos] (cM2) at (0,3.35) {};
+\node[nmos] (cM3) at (0,1.65) {};
+\node[nmos] (cM4) at (0,.25) {};
+\APtop{cM1.S}{$V_{DD,\rm CP}$}
+\draw (cM1.D)--(cM2.S);\draw (cM2.D)--(0,2.5) node[circ]{}--(cM3.D);
+\draw (0,2.5)--++(.85,0) node[right]{CTRL};\draw (cM3.S)--(cM4.D);\draw (cM4.S) node[ground]{};
+\APgleft{cM1}{$b_{pC}$}\APgleft{cM2}{$\overline{u_g}$}\APgleft{cM3}{$d_g$}\APgleft{cM4}{$b_{nC}$}
+\node[apnote,anchor=west] at (1.3,4.5) {$u_g=\mathrm{UP}\land\mathrm{FineEnable}$\\$d_g=\mathrm{DN}\land\mathrm{FineEnable}$};
+\end{scope}
+\end{circuitikz}}
+\caption{Drain-switched charge pump. Bias mirrors have $W_n/L=4/1.04$ and $W_p/L=12/1.04$ in $\mu$m. Output switches have $W_n/L=2/0.13$ and $W_p/L=6/0.13$. A CMOS inverter generates $\overline{u_g}$. The separate oscillator bias of Fig.~\ref{fig:apcore} has its own bias nodes and reference current.}
+\label{fig:apcp}
+\end{figure*}
+
+\begin{figure*}[!t]
+\centering\resizebox{.90\textwidth}{!}{%
+\begin{circuitikz}[font=\footnotesize]
+\node[aphead] at (-1.2,5.7) {(a) Half-supply reservoir};
+\draw (0,4.75) node[above]{$V_{DD,\rm AFC}$} to[R,l=$20\,$k$\Omega$] (0,2.6) node[circ]{} to[R,l=$20\,$k$\Omega$] (0,.65) node[ground]{};
+\draw (0,2.6) -- (2,2.6) node[circ]{} node[above]{vhold} to[C,l=$10\,$pF] (2,.65) node[ground]{};
+\begin{scope}[xshift=5.4cm]
+\node[aphead] at (-.6,5.7) {(b) Filter and clamps};
+\draw (0,3) node[circ]{} node[above left]{CTRL} to[R,l=$49.5015\,$k$\Omega$] (3.7,3) node[circ]{} node[above right]{filter\_mid};
+\draw (0,3) to[C,l_=$0.338437\,$pF] (0,.95) node[ground]{};
+\draw (3.7,3) to[C,l=$6.43031\,$pF] (3.7,.95) node[ground]{};
+\node[apbox] (ch1) at (.0,4.05) {TG$_H$};\node[apbox] (ch2) at (3.7,4.05) {TG$_H$};
+\draw (0,3) -- (ch1.south);\draw (3.7,3) -- (ch2.south);
+\draw (ch1.north) -- (0,5.0) -- (3.7,5.0) -- (ch2.north);
+\draw (1.85,5.0) node[circ]{} node[above]{vhold};
+\end{scope}
+\begin{scope}[xshift=12.9cm]
+\node[aphead] at (-1.4,5.7) {(c) Each clamp TG};
+\node[nmos] (hN) at (0,2.9) {};\node[pmos,xscale=-1,yscale=-1] (hP) at (1.75,2.9) {};
+\APgleft{hN}{$H$}\APgright{hP}{$\bar H$}
+\draw (hN.D) -- (0,3.9) -- (1.75,3.9) -- (hP.D);\draw (.875,3.9) node[circ]{} node[above]{filter node};
+\draw (hN.S) -- (0,1.9) -- (1.75,1.9) -- (hP.S);\draw (.875,1.9) node[circ]{} node[below]{vhold};
+\end{scope}
+\end{circuitikz}}
+\caption{Both filter nodes precharge from the same passive reference during coarse calibration. The complementary control pair is $H=\mathrm{hold\_all}$ and $\bar H=\mathrm{INV}(H)$. Each physical transmission gate uses a $16/0.13\,\mu$m NMOS and a $32/0.13\,\mu$m PMOS. These ratios identify the strong-clamp revision.}
+\label{fig:apclamp}
+\end{figure*}

@@ -21,6 +21,14 @@ INCLUDES = re.compile(r'^\s*(?:include|ahdl_include)\s+"([^\"]+)"', re.MULTILINE
 MOS = re.compile(r'^M\w+\s+\([^\n]+\)\s+(?:n12|p12)\s+w=[0-9.]+u\s+l=[0-9.]+u\s*$', re.MULTILINE)
 PRIVATE_PATH = re.compile(r'(?:[A-Za-z]:[/\\](?:Users|Documents and Settings)[/\\]|/(?:home|Users)/[^\s"<>]+)')
 PRIVATE_TARGET = 'config/process_models.local.scs'
+REPORT_PDFS = {'report/pll130-afc.pdf', 'report/atlas/gallery.pdf'}
+AUTHORED_EDA_FILES = {
+    'source_release/project/cds.lib',
+    'source_release/project/pll_full/analog/pll130_analog.va',
+    'source_release/project/pll_full/digital/benches/afc_test_source.va',
+    'source_release/project/pll_full/digital/pll130_afc_handoff.va',
+    'source_release/project/pll_full/digital/pll130_digital_va.va',
+}
 BLOCKED_SUFFIXES = {'.lib', '.va', '.vams', '.pem', '.key', '.p12', '.pfx', '.raw',
                     '.zip', '.7z', '.rar', '.gz', '.pdf', '.so', '.dll', '.exe', '.db'}
 
@@ -196,13 +204,18 @@ def main():
             raise ValueError('Excluded naming token found in a publication filename.')
         if name == PRIVATE_TARGET or name.startswith('runs/'):
             raise ValueError('Private model/runtime file included in the publication inventory: ' + name)
-        if path.suffix.lower() in BLOCKED_SUFFIXES or path.name.startswith(('id_rsa', 'id_ed25519')):
+        allowed_artifact = name in AUTHORED_EDA_FILES or name in REPORT_PDFS
+        if (path.suffix.lower() in BLOCKED_SUFFIXES and not allowed_artifact) or path.name.startswith(('id_rsa', 'id_ed25519')):
             raise ValueError('Model, binary, archive, raw, or credential file included: ' + name)
         if path.is_symlink() or not path.is_file():
             raise ValueError('The publication inventory must contain ordinary files: ' + name)
         if path.stat().st_size > 30 * 1024 * 1024:
             raise ValueError('Unexpected large publication file: ' + name)
         data = path.read_bytes()
+        if name in REPORT_PDFS:
+            if not data.startswith(b'%PDF-') or not data.rstrip().endswith(b'%%EOF'):
+                raise ValueError('Expected a compiled report PDF.')
+            continue  # Binary output is bound to its digest below.
         if not data.isascii() or b'\0' in data:
             raise ValueError('Publication text must be ASCII English: ' + name)
         text = data.decode('ascii')

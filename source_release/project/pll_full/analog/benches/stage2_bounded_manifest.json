@@ -1,0 +1,50 @@
+[
+  {
+    "case_id": "pll_stage2_fixed26_ctrl835938_cpdrain_bounded4p",
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\analog\\benches\\pll_stage2_fixed26_ctrl835938_cpdrain_bounded4p.scs",
+    "source_sha256": "77dfb4ae3345d5e5fdbc5a17e93f327d944973dec89a3839f37af77a5d880cd6",
+    "duration_s": 2e-06,
+    "maxstep_s": 4e-12,
+    "loop_enable_s": 3e-07,
+    "precision": "moderate, reltol1e-4, vabstol1e-6, iabstol1e-12",
+    "cp_selected_final": false,
+    "physical_blocks": [
+      "area8 mixed-RF VCO",
+      "MOS TSPC PFD",
+      "drain-switched MOS CP"
+    ],
+    "behavioral_blocks": [
+      "divide-by-32"
+    ],
+    "ideal_elements": [
+      "reference current",
+      "LPF passives",
+      "100MHz reference clock"
+    ],
+    "scope": "Staged physical analog/PFD acquisition; divider remains ideal and no physical noise/jitter claimed."
+  },
+  {
+    "case_id": "pll_stage2_fixed26_ctrl835938_cpdrain_bounded2p",
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\analog\\benches\\pll_stage2_fixed26_ctrl835938_cpdrain_bounded2p.scs",
+    "source_sha256": "a44f9f23377768eebddb96d7231ef6b3f05ff0b49b2aff349ffcb05af661ea30",
+    "duration_s": 2e-06,
+    "maxstep_s": 2e-12,
+    "loop_enable_s": 3e-07,
+    "precision": "moderate, reltol1e-4, vabstol1e-6, iabstol1e-12",
+    "cp_selected_final": false,
+    "physical_blocks": [
+      "area8 mixed-RF VCO",
+      "MOS TSPC PFD",
+      "drain-switched MOS CP"
+    ],
+    "behavioral_blocks": [
+      "divide-by-32"
+    ],
+    "ideal_elements": [
+      "reference current",
+      "LPF passives",
+      "100MHz reference clock"
+    ],
+    "scope": "Staged physical analog/PFD acquisition; divider remains ideal and no physical noise/jitter claimed."
+  }
+]

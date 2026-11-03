@@ -1,0 +1,293 @@
+{
+  "status": "software_guard_fixture_checks_passed",
+  "fixtures": [
+    {
+      "name": "complete_summary_guard_only",
+      "kind": "software_coverage_summary_fixture",
+      "guard_expectation_satisfied": true,
+      "rejected": false,
+      "error_types": [],
+      "is_electrical_PASS_evidence": false
+    },
+    {
+      "name": "truncated_after_second_assert_5p408us",
+      "kind": "software_coverage_summary_fixture",
+      "guard_expectation_satisfied": true,
+      "rejected": true,
+      "error_types": [
+        "declared_stop_not_covered",
+        "second_reset_release_not_covered",
+        "epoch2_restart_less_than_20_CLK_edges",
+        "epoch2_restart_less_than_20_verified_REF_samples",
+        "epoch2_sampled_CLK_ordinal_less_than_20"
+      ],
+      "is_electrical_PASS_evidence": false
+    },
+    {
+      "name": "tenfold_sparse_1ns",
+      "kind": "software_coverage_summary_fixture",
+      "guard_expectation_satisfied": true,
+      "rejected": true,
+      "error_types": [
+        "declared_strobe_spacing_exceeded"
+      ],
+      "is_electrical_PASS_evidence": false
+    },
+    {
+      "name": "no_second_release_at_declared_stop",
+      "kind": "software_coverage_summary_fixture",
+      "guard_expectation_satisfied": true,
+      "rejected": true,
+      "error_types": [
+        "second_reset_release_not_covered",
+        "epoch2_restart_less_than_20_CLK_edges",
+        "epoch2_restart_less_than_20_verified_REF_samples",
+        "epoch2_sampled_CLK_ordinal_less_than_20"
+      ],
+      "is_electrical_PASS_evidence": false
+    },
+    {
+      "name": "restart_CLK19",
+      "kind": "software_coverage_summary_fixture",
+      "guard_expectation_satisfied": true,
+      "rejected": true,
+      "error_types": [
+        "epoch2_restart_less_than_20_CLK_edges"
+      ],
+      "is_electrical_PASS_evidence": false
+    },
+    {
+      "name": "restart_REF19",
+      "kind": "software_coverage_summary_fixture",
+      "guard_expectation_satisfied": true,
+      "rejected": true,
+      "error_types": [
+        "epoch2_restart_less_than_20_verified_REF_samples"
+      ],
+      "is_electrical_PASS_evidence": false
+    },
+    {
+      "name": "sampled_CLKordinal19",
+      "kind": "software_coverage_summary_fixture",
+      "guard_expectation_satisfied": true,
+      "rejected": true,
+      "error_types": [
+        "epoch2_sampled_CLK_ordinal_less_than_20"
+      ],
+      "is_electrical_PASS_evidence": false
+    },
+    {
+      "name": "END_missing",
+      "kind": "software_coverage_summary_fixture",
+      "guard_expectation_satisfied": true,
+      "rejected": true,
+      "error_types": [
+        "raw_END_marker_missing"
+      ],
+      "is_electrical_PASS_evidence": false
+    },
+    {
+      "name": "reset2_preset_not_sampled",
+      "kind": "software_coverage_summary_fixture",
+      "guard_expectation_satisfied": true,
+      "rejected": true,
+      "error_types": [
+        "second_reset_preset_not_sampled"
+      ],
+      "is_electrical_PASS_evidence": false
+    },
+    {
+      "name": "exact_spacing_tolerance",
+      "kind": "software_coverage_summary_fixture",
+      "guard_expectation_satisfied": true,
+      "rejected": false,
+      "error_types": [],
+      "is_electrical_PASS_evidence": false
+    },
+    {
+      "name": "spacing_just_over_tolerance",
+      "kind": "software_coverage_summary_fixture",
+      "guard_expectation_satisfied": true,
+      "rejected": true,
+      "error_types": [
+        "declared_strobe_spacing_exceeded"
+      ],
+      "is_electrical_PASS_evidence": false
+    },
+    {
+      "name": "stop_short_by2fs",
+      "kind": "software_coverage_summary_fixture",
+      "guard_expectation_satisfied": true,
+      "rejected": true,
+      "error_types": [
+        "declared_stop_not_covered"
+      ],
+      "is_electrical_PASS_evidence": false
+    },
+    {
+      "name": "complete_binding_metadata_guard_only",
+      "kind": "software_execution_metadata_fixture",
+      "guard_expectation_satisfied": true,
+      "rejected": false,
+      "error_types": [],
+      "is_electrical_PASS_evidence": false
+    },
+    {
+      "name": "state_rejection",
+      "kind": "software_execution_metadata_fixture",
+      "guard_expectation_satisfied": true,
+      "rejected": true,
+      "error_types": [
+        "execution_not_completed"
+      ],
+      "is_electrical_PASS_evidence": false
+    },
+    {
+      "name": "spectre_rc_rejection",
+      "kind": "software_execution_metadata_fixture",
+      "guard_expectation_satisfied": true,
+      "rejected": true,
+      "error_types": [
+        "spectre_rc_not_zero"
+      ],
+      "is_electrical_PASS_evidence": false
+    },
+    {
+      "name": "source_models_unchanged_at_completion_rejection",
+      "kind": "software_execution_metadata_fixture",
+      "guard_expectation_satisfied": true,
+      "rejected": true,
+      "error_types": [
+        "source_models_changed_or_unknown_at_completion"
+      ],
+      "is_electrical_PASS_evidence": false
+    },
+    {
+      "name": "source_model_signature_sha256_rejection",
+      "kind": "software_execution_metadata_fixture",
+      "guard_expectation_satisfied": true,
+      "rejected": true,
+      "error_types": [
+        "source_model_signature_mismatch"
+      ],
+      "is_electrical_PASS_evidence": false
+    },
+    {
+      "name": "runner_source_sha256_rejection",
+      "kind": "software_execution_metadata_fixture",
+      "guard_expectation_satisfied": true,
+      "rejected": true,
+      "error_types": [
+        "runner_source_sha256_not_allowed"
+      ],
+      "is_electrical_PASS_evidence": false
+    },
+    {
+      "name": "finished_unix_rejection",
+      "kind": "software_execution_metadata_fixture",
+      "guard_expectation_satisfied": true,
+      "rejected": true,
+      "error_types": [
+        "completed_execution_timestamps_invalid"
+      ],
+      "is_electrical_PASS_evidence": false
+    },
+    {
+      "name": "wrong_allowed_model_SHA",
+      "kind": "software_execution_metadata_fixture",
+      "guard_expectation_satisfied": true,
+      "rejected": true,
+      "error_types": [
+        "model_dependency_allowlist_mismatch",
+        "source_model_signature_mismatch",
+        "cache_filename_signature_mismatch"
+      ],
+      "is_electrical_PASS_evidence": false
+    },
+    {
+      "name": "wrong_allowed_own_SHA",
+      "kind": "software_execution_metadata_fixture",
+      "guard_expectation_satisfied": true,
+      "rejected": true,
+      "error_types": [
+        "own_dependency_allowlist_mismatch",
+        "source_model_signature_mismatch",
+        "cache_filename_signature_mismatch"
+      ],
+      "is_electrical_PASS_evidence": false
+    },
+    {
+      "name": "manifest_binding_rejection",
+      "kind": "software_execution_metadata_fixture",
+      "guard_expectation_satisfied": true,
+      "rejected": true,
+      "error_types": [
+        "manifest_sha256_binding_mismatch"
+      ],
+      "is_electrical_PASS_evidence": false
+    },
+    {
+      "name": "policy_binding_rejection",
+      "kind": "software_execution_metadata_fixture",
+      "guard_expectation_satisfied": true,
+      "rejected": true,
+      "error_types": [
+        "completion_policy_sha256_binding_mismatch"
+      ],
+      "is_electrical_PASS_evidence": false
+    },
+    {
+      "name": "wrong_cache_filename",
+      "kind": "software_execution_metadata_fixture",
+      "guard_expectation_satisfied": true,
+      "rejected": true,
+      "error_types": [
+        "cache_filename_signature_mismatch"
+      ],
+      "is_electrical_PASS_evidence": false
+    },
+    {
+      "name": "raw_outside_execution_directory",
+      "kind": "software_execution_metadata_fixture",
+      "guard_expectation_satisfied": true,
+      "rejected": true,
+      "error_types": [
+        "raw_not_inside_execution_raw_directory"
+      ],
+      "is_electrical_PASS_evidence": false
+    },
+    {
+      "name": "simulator_binary_not_allowed",
+      "kind": "software_execution_metadata_fixture",
+      "guard_expectation_satisfied": true,
+      "rejected": true,
+      "error_types": [
+        "simulator_binary_path_not_allowed"
+      ],
+      "is_electrical_PASS_evidence": false
+    },
+    {
+      "name": "simulator_engine_flag_mismatch",
+      "kind": "software_execution_metadata_fixture",
+      "guard_expectation_satisfied": true,
+      "rejected": true,
+      "error_types": [
+        "cache_filename_signature_mismatch",
+        "simulator_command_engine_mismatch"
+      ],
+      "is_electrical_PASS_evidence": false
+    }
+  ],
+  "fixture_count": 27,
+  "analog_vectors_created": false,
+  "PSF_files_created": false,
+  "simulator_started": false,
+  "physical_subset_unit_pass": null,
+  "is_electrical_PASS_evidence": false,
+  "reader_v2_sha256": "f801be937ebbccb34392d04dfee8c75fd1933cd5c20d2a6e3d70a8ba33e79211",
+  "completed_wrapper_sha256": "35b6247705ef8fcb173e9742d95755bd0a8ba9542f55ec204b62ddef61607a86",
+  "frozen_reader_v1_sha256": "1fa72a1552676fe839d51da5654e1f6c75b9a957fa1114daff032b09303e548e",
+  "counter_source_sha256": "35521452cdc051cc6dcdb2ab324949b9861735b0fad554b46c0acedf2d1c876c",
+  "bench_sha256": "ed75a6920ea355e3ad31c9005ff073ed1c7d491857b19d7119cfc6e5b7f90910",
+  "scope": "Pure metadata coverage and execution-binding tests. No waveform generation, circuit simulation or MOS PASS evidence."
+}

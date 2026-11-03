@@ -1,0 +1,26 @@
+{
+  "version": "monitor-v3-first-edge",
+  "sources": {
+    "measure_afc2009.py": "b76677ad532103da9302d83d96038a750691fdd833a93891c92d37a0f59f9e26",
+    "measure_afc2009_unit.py": "fbade5451121acfd56ec4a6b7d94fe4b0b4e8a39fbe853456d6dab52679aed13",
+    "physical_portmap_r1.json": "bf75a28dbd0a3dfad3c56db2e90b5a155faf0072a06a0cf2d38acaa1e94c26c9",
+    "physical_portmap_proposed.json": "db757ae1f03c0cd372a9b479220a275457bfb36325d14dabff7df5c0c5be73a4",
+    "postprocess_completed_case_v3.py": "5b506c459bd2710b1c069cef7eafea0f27d9d88a3aea907b76cd69bc47af9f0e",
+    "test_measure_afc2009.py": "54ce641324892b2a8550c29816f2e905f4f3d4bf0811ffbb9faa73b49236b92d",
+    "test_measure_afc2009_unit.py": "1773b7c10f85bfecd2b61a60fc2b34caf4abd5fcb0bf42efd344e580a1b8579a",
+    "test_first_edge_v3.py": "365394414f271b394d4059b3b190c0994df1c3fc48ed3b92dd303b3369fcfb5f",
+    "build_first_edge_audit_v3.py": "a66c02bafda8d5d5156936d3e9c30c8ff72fd8d040793c511e6238419937c4ae",
+    "README_zh.txt": "f0bd79eef0dbca0de4935606d63ff2cbf04b7d446898ccbf4ad085bd995b61c1"
+  },
+  "preserved_original_monitor_sources": {
+    "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\afc2009_20261007\\verification\\measure_afc2009.py": "b2898c42d28918f00b095e763427f4bacae7cb08e2b6c4ac4d551b328c214d10",
+    "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\afc2009_20261007\\verification\\measure_afc2009_unit.py": "4fbf769a54d7fd8f2abaf2204f88c6590c42dbaf15c90310abab464bc5c0bdf2",
+    "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\afc2009_20261007\\verification\\physical_portmap_r1.json": "bf75a28dbd0a3dfad3c56db2e90b5a155faf0072a06a0cf2d38acaa1e94c26c9",
+    "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\afc2009_20261007\\verification\\frozen_monitor_v2_terminal\\source_manifest.json": "805ba49053d838e73b820b0e7f6f84d3b4a2250c8951f64de0f210f5ce05f921",
+    "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\afc2009_20261007\\verification\\frozen_monitor_v2_terminal\\measure_afc2009.py": "b2898c42d28918f00b095e763427f4bacae7cb08e2b6c4ac4d551b328c214d10",
+    "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\afc2009_20261007\\verification\\frozen_monitor_v2_terminal\\measure_afc2009_unit.py": "4fbf769a54d7fd8f2abaf2204f88c6590c42dbaf15c90310abab464bc5c0bdf2",
+    "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\afc2009_20261007\\verification\\frozen_monitor_v2_terminal\\physical_portmap_r1.json": "bf75a28dbd0a3dfad3c56db2e90b5a155faf0072a06a0cf2d38acaa1e94c26c9"
+  },
+  "source_models_or_benches_modified": false,
+  "simulator_started": false
+}

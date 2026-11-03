@@ -1,0 +1,25 @@
+// Revision candidate: drain-switched 1.2V CP, no opamp/replica regulation.
+// Mirrors stay biased. Small output switches avoid charging the LONG mirror
+// gates every UP/DN pulse. This is NOT paper Fig.4 source-switched architecture.
+// Reference current is still ideal. Candidate sizes require unit validation.
+simulator lang=spectre
+
+subckt pll130_cpd_inv (vdd vss a z)
+MN (z a vss vss) n12 w=0.8u l=0.13u
+MP (z a vdd vdd) p12 w=2.4u l=0.13u
+ends pll130_cpd_inv
+
+subckt pll130_cp_drain (vdd vss up dn ctrl)
+parameters IREF_CP=20u WN_CP=4u WP_CP=12u L_CP=1.04u
+parameters WN_SW=2u WP_SW=6u L_SW=0.13u
+IREF (vdd bncp) isource dc=IREF_CP
+MNREF (bncp bncp vss vss) n12 w=WN_CP l=L_CP
+MNPMIRROR (bpcp bncp vss vss) n12 w=WN_CP l=L_CP
+MPREF (bpcp bpcp vdd vdd) p12 w=WP_CP l=L_CP
+XUI (vdd vss up upbar) pll130_cpd_inv
+// D,G,S,B: upper mirror above switch, lower mirror below switch.
+MPUP (pinternal bpcp vdd vdd) p12 w=WP_CP l=L_CP
+MPUSW (ctrl upbar pinternal vdd) p12 w=WP_SW l=L_SW
+MNDN (ninternal bncp vss vss) n12 w=WN_CP l=L_CP
+MNDSW (ctrl dn ninternal vss) n12 w=WN_SW l=L_SW
+ends pll130_cp_drain

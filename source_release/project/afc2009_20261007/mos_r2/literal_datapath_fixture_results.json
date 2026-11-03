@@ -1,0 +1,7 @@
+{
+  "status": "all_passed",
+  "source_sha256": "45654975e7b53873559fd157955c1d8a922f40550fea81687dfd675fe9de4cc0",
+  "literal_gate_subtractor_pairs": 262144,
+  "literal_gate_native_Gray_transitions": 512,
+  "limits": "Actual source-generator gate graph in Boolean ideal logic. Does not prove physical MOS timing/native-counter propagation, CDC or metastability."
+}

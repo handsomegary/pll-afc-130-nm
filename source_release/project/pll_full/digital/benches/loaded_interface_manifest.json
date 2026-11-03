@@ -1,0 +1,34 @@
+[
+  {
+    "name": "tb_loaded_interface_code28_ctrl835938",
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\digital\\benches\\tb_loaded_interface_code28_ctrl835938.scs",
+    "bench_sha256": "f74e1b060482a5663ce3290da5ef58f0a618a1ab9ad16b8c2fb81a35f593a288",
+    "source_vco_sha256": "7e3a3b99b097c4a2d4a3b8fbe0355f5d1ec01ea7451b4a18cfd284bf21eef342",
+    "receiver_case": "tb_receiverac_c40_r1000000",
+    "receiver_unit_bench_sha256": "f650eb23c1eea14f0e2e198c01afc214c77a04eba67e2dfaf642bd3258ac6c6c",
+    "code": 28,
+    "vctrl_V": 0.8359375,
+    "coupling_C_F": 4.0000000000000006e-14,
+    "bias_feedback_R_ohm": 1000000,
+    "duration_s": 8e-08,
+    "maxstep_s": 4e-12,
+    "errpreset": "moderate",
+    "scope": "Actual MOS VCO+RF receiver+AC selfbias CMOS+MOS divide32, ideal reference/passives, nominal open loop only; no PFD/CP/AFC/noise/PEX"
+  },
+  {
+    "name": "tb_loaded_interface_code27_ctrl1000000",
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\digital\\benches\\tb_loaded_interface_code27_ctrl1000000.scs",
+    "bench_sha256": "2c364735a57ee93b22fb9fda1680cb28c413691d524c7ec2ff4552f0440a0d70",
+    "source_vco_sha256": "7e3a3b99b097c4a2d4a3b8fbe0355f5d1ec01ea7451b4a18cfd284bf21eef342",
+    "receiver_case": "tb_receiverac_c40_r1000000",
+    "receiver_unit_bench_sha256": "f650eb23c1eea14f0e2e198c01afc214c77a04eba67e2dfaf642bd3258ac6c6c",
+    "code": 27,
+    "vctrl_V": 1.0,
+    "coupling_C_F": 4.0000000000000006e-14,
+    "bias_feedback_R_ohm": 1000000,
+    "duration_s": 8e-08,
+    "maxstep_s": 4e-12,
+    "errpreset": "moderate",
+    "scope": "Actual MOS VCO+RF receiver+AC selfbias CMOS+MOS divide32, ideal reference/passives, nominal open loop only; no PFD/CP/AFC/noise/PEX"
+  }
+]

@@ -1,0 +1,44 @@
+{
+  "version": "monitor-v4-counter9",
+  "source_design_status": "prepared_unverified_offline_candidate_not_selected",
+  "simulator_started": false,
+  "physical_R2_PASS": null,
+  "source_models_or_benches_modified": false,
+  "sources": {
+    "measure_afc2009.py": "b76677ad532103da9302d83d96038a750691fdd833a93891c92d37a0f59f9e26",
+    "measure_afc2009_unit.py": "e17f3d680890f4279a6fdbda4a6bcc133859954f45a1b1753914299b6651b55e",
+    "physical_portmap_proposed.json": "db757ae1f03c0cd372a9b479220a275457bfb36325d14dabff7df5c0c5be73a4",
+    "physical_portmap_r1.json": "bf75a28dbd0a3dfad3c56db2e90b5a155faf0072a06a0cf2d38acaa1e94c26c9",
+    "physical_portmap_r2.json": "f7781cd08077cfdcde57e479945daba2b0539203a670a1bbf44b908685c35798",
+    "postprocess_completed_case_v4.py": "6e421a58c17b5de0d79804841f038e8483e55fe78ef95bd8597fd87fe6ab87c6",
+    "prepare_v4_portmap.py": "a7b513f9e06e89c0133484ba73985e9a4759fb5dee8cfcc95c634655bf0ba165",
+    "test_measure_afc2009.py": "54ce641324892b2a8550c29816f2e905f4f3d4bf0811ffbb9faa73b49236b92d",
+    "test_measure_afc2009_unit.py": "1773b7c10f85bfecd2b61a60fc2b34caf4abd5fcb0bf42efd344e580a1b8579a",
+    "test_first_edge_v3.py": "365394414f271b394d4059b3b190c0994df1c3fc48ed3b92dd303b3369fcfb5f",
+    "test_counter9_v4.py": "baae2e01fc1a0bed2f87a3e48f8fac62ee70d4b86eaa11864361fd9963241be9",
+    "README_zh.txt": "b787146f3e7af4f053d23622b98993812fec94ce3441819e2308e086f715e24d",
+    "freeze_counter9_capsule.py": "27ee1a31f748f0621e0640acc85a8d3bb06ddfca742481fa2595b12384d217d3"
+  },
+  "checks_sha256": "3c36742903176283c5a385253f86af3649451484fb88af110bcce24e76e9de48",
+  "fixture_result_sha256": {
+    "postprocessor_fixture_results.json": "f0922f924c20af6deac246a5701b7b786e794191a10f72f9807b07f54a72791f",
+    "unit_postprocessor_fixture_results.json": "5aac59bcbd66daf94f3448660e8c08835ccec5b2514cc19a19540015faace55b",
+    "first_edge_fixture_results.json": "ed20eb034b1eef0b8cdd1a320cf7ce1e1c210abd1983f9f75977c7291949da9a",
+    "counter9_fixture_results.json": "97843afeba167e5b7ed69448005da0a6570b9c1e913cb8b5248567e8807cfb7a"
+  },
+  "preserved_v3_manifest_sha256": "e2de6d089da2e9b781cd313dd11e83c70b867fb6a7c26981a6cd6a07f7e8ab05",
+  "common_math_byte_identical_to_v3": true,
+  "prepared_R2_source": {
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\afc2009_20261007\\mos_r2\\afc2009_mos.scs",
+    "sha256": "45654975e7b53873559fd157955c1d8a922f40550fea81687dfd675fe9de4cc0"
+  },
+  "prepared_R2_port_manifest": {
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\afc2009_20261007\\mos_r2\\port_manifest.json",
+    "sha256": "f615fbd405211b6503829d1365866e81a1973b4893389901f91edb2fd29b2bec"
+  },
+  "revision_map": {
+    "r0": "physical_portmap_proposed.json",
+    "r1": "physical_portmap_r1.json",
+    "r2": "physical_portmap_r2.json"
+  }
+}

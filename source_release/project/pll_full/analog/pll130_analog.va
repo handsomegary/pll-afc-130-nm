@@ -1,0 +1,79 @@
+// Staged verification models, deliberately not transistor circuits.
+// No white/flicker/jitter noise is injected; transient spread is deterministic.
+`include "constants.vams"
+`include "disciplines.vams"
+
+module pll130_cp_va(vdd, vss, up, dn, enable, ctrl);
+    inout vdd, vss, ctrl;
+    input up, dn, enable;
+    electrical vdd, vss, up, dn, enable, ctrl;
+    parameter real icp = 20u from (0:inf);
+    parameter real mismatch = 0 from [-0.2:0.2];
+    parameter real ibias = 40u from [0:inf);
+    parameter real tr = 20p from (0:inf);
+    parameter real tf = 20p from (0:inf);
+    integer u, d, e;
+    analog begin
+        @(initial_step) begin
+            u = (V(up,vss) > 0.5*V(vdd,vss));
+            d = (V(dn,vss) > 0.5*V(vdd,vss));
+            e = (V(enable,vss) > 0.5*V(vdd,vss));
+        end
+        @(cross(V(up,vss)-0.5*V(vdd,vss), +1)) u = 1;
+        @(cross(V(up,vss)-0.5*V(vdd,vss), -1)) u = 0;
+        @(cross(V(dn,vss)-0.5*V(vdd,vss), +1)) d = 1;
+        @(cross(V(dn,vss)-0.5*V(vdd,vss), -1)) d = 0;
+        @(cross(V(enable,vss)-0.5*V(vdd,vss), +1)) e = 1;
+        @(cross(V(enable,vss)-0.5*V(vdd,vss), -1)) e = 0;
+        // Current UP flows from VDD into control; DN exits control to VSS.
+        I(vdd,ctrl) <+ icp*(1+mismatch)*transition(u*e, 0, tr, tf);
+        I(ctrl,vss) <+ icp*(1-mismatch)*transition(d*e, 0, tr, tf);
+        // A declared estimate, not a measured physical bias circuit.
+        I(vdd,vss) <+ ibias;
+    end
+endmodule
+
+module pll130_precharge_va(vdd, vss, ctrl, hold);
+    inout vdd, vss, ctrl;
+    input hold;
+    electrical vdd, vss, ctrl, hold;
+    parameter real vpre = 0.8359375;
+    parameter real ron = 1k from (0:inf);
+    parameter real roff = 1e15 from (0:inf);
+    parameter real tr = 100p from (0:inf);
+    integer h;
+    real conductance;
+    analog begin
+        @(initial_step) h = (V(hold,vss) > 0.5*V(vdd,vss));
+        @(cross(V(hold,vss)-0.5*V(vdd,vss),+1)) h = 1;
+        @(cross(V(hold,vss)-0.5*V(vdd,vss),-1)) h = 0;
+        conductance = 1.0/roff + (1.0/ron-1.0/roff)*transition(h,0,tr,tr);
+        I(ctrl,vss) <+ conductance*(V(ctrl,vss)-vpre);
+    end
+endmodule
+
+module pll130_vco_linear_va(vdd, vss, ctrl, outp, outn);
+    inout vdd, vss;
+    input ctrl;
+    output outp, outn;
+    electrical vdd, vss, ctrl, outp, outn;
+    parameter real f0 = 3.1985G from (0:inf);
+    parameter real v0 = 0.8359375;
+    parameter real kvco = 423M from (0:inf);
+    parameter real fmin = 2.7G from (0:inf);
+    parameter real fmax = 3.6G from (0:inf);
+    parameter real vcm = 0.934;
+    parameter real differential_vpp = 0.250 from (0:inf);
+    parameter real power = 2.088m from [0:inf);
+    parameter integer samples_per_cycle = 20 from [8:200];
+    real f, phase;
+    analog begin
+        f = f0 + kvco*(V(ctrl,vss)-v0);
+        f = max(fmin,min(fmax,f));
+        phase = idtmod(f, 0, 1);
+        V(outp,vss) <+ vcm + differential_vpp/4*sin(2*`M_PI*phase);
+        V(outn,vss) <+ vcm - differential_vpp/4*sin(2*`M_PI*phase);
+        I(vdd,vss) <+ power/max(V(vdd,vss),0.1);
+        $bound_step(1.0/(samples_per_cycle*f));
+    end
+endmodule

@@ -1,0 +1,16 @@
+// Prepared-only transistor counter/CDC exercise. No simulation has been launched.
+simulator lang=spectre
+global 0
+include "@TECH_ROOT@/models/spectre/ms013_io33_v2p6_7p_spe.lib" section=tt
+include "@PROJECT_ROOT@/afc2009_20261007/mos_r2_counter9/counter9_gray_cdc_mos.scs"
+simulatorOptions options temp=25 reltol=1e-4 vabstol=1e-6 iabstol=1e-12
+VDD (vdd 0) vsource dc=1.2
+VCLK (clk 0) vsource type=pulse val0=0 val1=1.2 delay=10n rise=20p fall=20p width=4.98n period=10n
+VREF (ref 0) vsource type=pulse val0=0 val1=1.2 delay=15n rise=20p fall=20p width=4.98n period=10n
+// Reset transitions are 2ns away from native rising edges and 3ns from REF rising edges.
+VRST (rst 0) vsource type=pwl wave=[0 1.2 102n 1.2 102.02n 0 5.402u 0 5.40202u 1.2 5.422u 1.2 5.42202u 0]
+XCNT (vdd 0 clk ref rst) counter9_gray_cdc_mos
+saveOptions options save=selected
+save clk ref rst vdd VDD:p
+save XCNT.zero_g0 XCNT.zero_g1 XCNT.zero_g2 XCNT.zero_g3 XCNT.zero_g4 XCNT.zero_g5 XCNT.zero_g6 XCNT.zero_g7 XCNT.zero_g8 XCNT.zero_native_b0 XCNT.zero_native_b1 XCNT.zero_native_b2 XCNT.zero_native_b3 XCNT.zero_native_b4 XCNT.zero_native_b5 XCNT.zero_native_b6 XCNT.zero_native_b7 XCNT.zero_native_b8 XCNT.zero_sync1_0 XCNT.zero_sync1_1 XCNT.zero_sync1_2 XCNT.zero_sync1_3 XCNT.zero_sync1_4 XCNT.zero_sync1_5 XCNT.zero_sync1_6 XCNT.zero_sync1_7 XCNT.zero_sync1_8 XCNT.zero_sync2_0 XCNT.zero_sync2_1 XCNT.zero_sync2_2 XCNT.zero_sync2_3 XCNT.zero_sync2_4 XCNT.zero_sync2_5 XCNT.zero_sync2_6 XCNT.zero_sync2_7 XCNT.zero_sync2_8 XCNT.zero_sync_b0 XCNT.zero_sync_b1 XCNT.zero_sync_b2 XCNT.zero_sync_b3 XCNT.zero_sync_b4 XCNT.zero_sync_b5 XCNT.zero_sync_b6 XCNT.zero_sync_b7 XCNT.zero_sync_b8 XCNT.one_g0 XCNT.one_g1 XCNT.one_g2 XCNT.one_g3 XCNT.one_g4 XCNT.one_g5 XCNT.one_g6 XCNT.one_g7 XCNT.one_g8 XCNT.one_native_b0 XCNT.one_native_b1 XCNT.one_native_b2 XCNT.one_native_b3 XCNT.one_native_b4 XCNT.one_native_b5 XCNT.one_native_b6 XCNT.one_native_b7 XCNT.one_native_b8 XCNT.one_sync1_0 XCNT.one_sync1_1 XCNT.one_sync1_2 XCNT.one_sync1_3 XCNT.one_sync1_4 XCNT.one_sync1_5 XCNT.one_sync1_6 XCNT.one_sync1_7 XCNT.one_sync1_8 XCNT.one_sync2_0 XCNT.one_sync2_1 XCNT.one_sync2_2 XCNT.one_sync2_3 XCNT.one_sync2_4 XCNT.one_sync2_5 XCNT.one_sync2_6 XCNT.one_sync2_7 XCNT.one_sync2_8 XCNT.one_sync_b0 XCNT.one_sync_b1 XCNT.one_sync_b2 XCNT.one_sync_b3 XCNT.one_sync_b4 XCNT.one_sync_b5 XCNT.one_sync_b6 XCNT.one_sync_b7 XCNT.one_sync_b8 XCNT.clk_low631 XCNT.clk_lowb632 XCNT.clk_high633 XCNT.clk_highb634 XCNT.clk_low898 XCNT.clk_lowb899 XCNT.clk_high900 XCNT.clk_highb901
+tran tran stop=5.7u maxstep=100p errpreset=moderate skipdc=no strobeperiod=100p strobeoutput=strobeonly

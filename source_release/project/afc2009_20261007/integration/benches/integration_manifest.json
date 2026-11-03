@@ -1,0 +1,44 @@
+[
+  {
+    "name": "pll_afc2009_physical_halfvdd_ref10000_4p",
+    "path": "@PROJECT_ROOT@/afc2009_20261007/integration/benches/pll_afc2009_physical_halfvdd_ref10000_4p.scs",
+    "bench_sha256": "b9345d5dfdba1626df417acb77da80f49a1464eac4103554aa7b3e0f0d69f91f",
+    "physical_baseline_sha256": "cc44e0bb56a8de35ff75d1780b99bc790311ec097f33556fa9046eb4bb0e8f44",
+    "baseline_path": "@PROJECT_ROOT@/pll_full/digital/benches/pll_stage3_physical_code28_ctrl835938_cpdrain_bounded2p.scs",
+    "target_Hz": 3200000000.0,
+    "reference_Hz": 100000000.0,
+    "temperature_C": 25,
+    "vdd_V": 1.2,
+    "initial_code": 16,
+    "clamp_reference_V": 0.6,
+    "clamp_reference_resistors_ohm": [
+      20000,
+      20000
+    ],
+    "duration_s": 4.5e-06,
+    "maxstep_s": 4e-12,
+    "strobeperiod_s": 4e-11,
+    "enable_midpoint_s": 3.0001e-07,
+    "ref_delay_s": 1e-08,
+    "physical_active_blocks": [
+      "VCO",
+      "AC/self-bias RX",
+      "5TG divider",
+      "PFD",
+      "drain CP",
+      "AFC",
+      "CP enable gates",
+      "two-node LPF clamp"
+    ],
+    "behavior_control_blocks": [],
+    "external_ideal_elements": [
+      "100MHz REF",
+      "13.5594uA IREF",
+      "R/C elements",
+      "oscillator IC startup seed"
+    ],
+    "status": "prepared_unverified",
+    "handover_note": "Physical2REF DONE delay; DONE is a provisional code, not lock. No CP operation on FAIL.",
+    "reference_adaptations": "100MHz REF/!REF first-FB phase selection, 2-count/2-sample guarded CDC;192REF watchdog; increasing ring-code polarity."
+  }
+]

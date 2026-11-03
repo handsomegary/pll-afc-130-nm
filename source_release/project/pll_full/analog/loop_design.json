@@ -1,0 +1,47 @@
+{
+  "Icp_A": 2e-05,
+  "Kvco_Hz_per_V": 423000000.0,
+  "divide": 32,
+  "target_unity_gain_Hz": 2000000.0,
+  "zero_Hz": 500000.0,
+  "pole_Hz": 10000000.0,
+  "R_ohm": 49501.467530048176,
+  "C_shunt_F": 3.3843747954018953e-13,
+  "C_series_F": 6.430312111263601e-12,
+  "phase_margin_deg": 64.65382405805332,
+  "unity_gain_magnitude": 0.9999999999999999,
+  "topology": "Vctrl--Cshunt--VSS; Vctrl--R--filter_mid--Cseries--VSS",
+  "scope": "Continuous-time small-signal nominal estimate only; ideal passives, constant Kvco and Icp, no sample delay/PEX/noise.",
+  "fixed_filter_gain_sensitivity": [
+    {
+      "unity_gain_Hz": 1083312.4204158138,
+      "phase_margin_deg": 59.04162685189077,
+      "Icp_times_Kvco_scale": 0.5
+    },
+    {
+      "unity_gain_Hz": 1541889.112228747,
+      "phase_margin_deg": 63.26794024002817,
+      "Icp_times_Kvco_scale": 0.75
+    },
+    {
+      "unity_gain_Hz": 1999999.9999999998,
+      "phase_margin_deg": 64.6538240580533,
+      "Icp_times_Kvco_scale": 1.0
+    },
+    {
+      "unity_gain_Hz": 2451692.214246858,
+      "phase_margin_deg": 64.69768067224574,
+      "Icp_times_Kvco_scale": 1.25
+    },
+    {
+      "unity_gain_Hz": 2893378.8295745826,
+      "phase_margin_deg": 64.05848173140313,
+      "Icp_times_Kvco_scale": 1.5
+    },
+    {
+      "unity_gain_Hz": 3739687.1650240025,
+      "phase_margin_deg": 61.880434224463244,
+      "Icp_times_Kvco_scale": 2.0
+    }
+  ]
+}

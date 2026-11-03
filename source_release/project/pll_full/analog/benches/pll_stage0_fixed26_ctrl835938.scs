@@ -1,0 +1,23 @@
+simulator lang=spectre
+global 0
+simulatorOptions options temp=25 reltol=1e-5 vabstol=1e-7 iabstol=1e-12
+VDD (vdd 0) vsource dc=1.2
+
+// Authored staged PLL loop. No physical noise simulation.
+ahdl_include "@PROJECT_ROOT@/pll_full/analog/pll130_analog.va"
+ahdl_include "@PROJECT_ROOT@/pll_full/digital/pll130_digital_va.va"
+XVCO (vdd 0 ctrl out0 out180) pll130_vco_linear_va
+VREF (ref 0) vsource type=pulse val0=0 val1=1.2 delay=10n rise=20p fall=20p width=4.98e-09 period=1e-08
+VRST (rst 0) vsource type=pwl wave=[0 1.2 1e-07 1.2 1.001e-07 0]
+VEN (enable 0) vsource type=pwl wave=[0 0 1e-07 0 1.001e-07 1.2]
+VDIVEN (div_enable 0) vsource dc=1.2
+XDIV (vdd 0 out0 out180 div_enable fb) pll130_div32_va
+XPFD (vdd 0 ref fb rst up dn) pll130_pfd_va
+XCP (vdd 0 up dn enable ctrl) pll130_cp_va icp=20u mismatch=0
+CSHUNT (ctrl 0) capacitor c=3.3843747954e-13
+RSERIES (ctrl filter_mid) resistor r=49501.46753
+CSERIES (filter_mid 0) capacitor c=6.43031211126e-12
+ic ctrl=0.8359375 filter_mid=0.8359375
+saveOptions options save=selected
+save vdd ctrl filter_mid ref fb rst enable up dn out0 out180 VDD:p
+tran tran stop=2e-06 maxstep=10p errpreset=conservative skipdc=no strobeperiod=10p strobeoutput=strobeonly

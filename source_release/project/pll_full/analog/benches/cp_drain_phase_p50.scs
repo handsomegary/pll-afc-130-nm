@@ -1,0 +1,13 @@
+simulator lang=spectre
+global 0
+include "@TECH_ROOT@/models/spectre/ms013_io33_v2p6_7p_spe.lib" section=tt
+include "@PROJECT_ROOT@/pll_full/analog/pll130_cp_drain_candidate.scs"
+simulatorOptions options temp=25 reltol=1e-5 vabstol=1e-7 iabstol=1e-12
+VDD (vdd 0) vsource dc=1.2
+VCLAMP (ctrl 0) vsource dc=0.8359375
+VUP (up 0) vsource type=pwl wave=[0 0 2e-08 0 2.002e-08 1.2 2.025e-08 1.2 2.027e-08 0 50n 0]
+VDN (dn 0) vsource type=pwl wave=[0 0 2.005e-08 0 2.007e-08 1.2 2.025e-08 1.2 2.027e-08 0 50n 0]
+XCP (vdd 0 up dn ctrl) pll130_cp_drain
+saveOptions options save=selected
+save vdd ctrl up dn VCLAMP:p VDD:p XCP.bncp XCP.bpcp XCP.pinternal XCP.ninternal XCP.MPUSW:d XCP.MNDSW:d
+tran tran stop=50n maxstep=2p errpreset=conservative skipdc=no

@@ -1,0 +1,190 @@
+{
+  "status": "prepared_not_simulated",
+  "simulation_started": false,
+  "scope": "Two lightly loaded native Gray counters plus matched two-stage CDC; not the complete AFC clock fanout, epoch or CDC proof.",
+  "fixed_R2_AFC_source_sha256": "45654975e7b53873559fd157955c1d8a922f40550fea81687dfd675fe9de4cc0",
+  "R2_builder_path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\afc2009_20261007\\mos_r2\\build_afc2009_mos.py",
+  "R2_builder_sha256": "f0d34ba7dcedfe0ea01ac41daef9c746787962e795dda7bf2ed1cfa8c77e3cb1",
+  "subset_source": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\afc2009_20261007\\mos_r2_counter9\\counter9_gray_cdc_mos.scs",
+  "subset_source_sha256": "35521452cdc051cc6dcdb2ab324949b9861735b0fad554b46c0acedf2d1c876c",
+  "bench": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\afc2009_20261007\\mos_r2_counter9\\counter9_gray_cdc_tb.scs",
+  "bench_sha256": "ed75a6920ea355e3ad31c9005ff073ed1c7d491857b19d7119cfc6e5b7f90910",
+  "subset_module": "counter9_gray_cdc_mos",
+  "instance": "XCNT",
+  "models": [
+    "n12",
+    "p12"
+  ],
+  "PDK_model_files_distributed": false,
+  "MOS_count": 2400,
+  "DFF_count": 54,
+  "counter_bits": 9,
+  "modulus": 512,
+  "native_clock_Hz": 100000000.0,
+  "reference_Hz": 100000000.0,
+  "REF_rising_after_CLK_rising_s": 5e-09,
+  "stop_s": 5.7e-06,
+  "maxstep_s": 1e-10,
+  "strobeperiod_s": 1e-10,
+  "planned_engine": "Spectre ++APS",
+  "planned_wall_deadline_s": 1800,
+  "nominal_active_CLK_edges_first_reset_epoch": 530,
+  "reset_preset_values": [
+    0,
+    1
+  ],
+  "sampling_contract": "Use actual saved CLK/REF/reset threshold crossing times, event ordinal modulo512, REF+2.5ns stable samples. Sync1 captures native Gray; sync2 captures previous sync1.",
+  "sample_delay_after_REF_s": 2.5e-09,
+  "threshold_V": 0.6,
+  "words": {
+    "zero": {
+      "initial_native": 0,
+      "native_gray": [
+        "XCNT.zero_g0",
+        "XCNT.zero_g1",
+        "XCNT.zero_g2",
+        "XCNT.zero_g3",
+        "XCNT.zero_g4",
+        "XCNT.zero_g5",
+        "XCNT.zero_g6",
+        "XCNT.zero_g7",
+        "XCNT.zero_g8"
+      ],
+      "native_binary": [
+        "XCNT.zero_native_b0",
+        "XCNT.zero_native_b1",
+        "XCNT.zero_native_b2",
+        "XCNT.zero_native_b3",
+        "XCNT.zero_native_b4",
+        "XCNT.zero_native_b5",
+        "XCNT.zero_native_b6",
+        "XCNT.zero_native_b7",
+        "XCNT.zero_native_b8"
+      ],
+      "sync1_gray": [
+        "XCNT.zero_sync1_0",
+        "XCNT.zero_sync1_1",
+        "XCNT.zero_sync1_2",
+        "XCNT.zero_sync1_3",
+        "XCNT.zero_sync1_4",
+        "XCNT.zero_sync1_5",
+        "XCNT.zero_sync1_6",
+        "XCNT.zero_sync1_7",
+        "XCNT.zero_sync1_8"
+      ],
+      "sync2_gray": [
+        "XCNT.zero_sync2_0",
+        "XCNT.zero_sync2_1",
+        "XCNT.zero_sync2_2",
+        "XCNT.zero_sync2_3",
+        "XCNT.zero_sync2_4",
+        "XCNT.zero_sync2_5",
+        "XCNT.zero_sync2_6",
+        "XCNT.zero_sync2_7",
+        "XCNT.zero_sync2_8"
+      ],
+      "sync2_binary": [
+        "XCNT.zero_sync_b0",
+        "XCNT.zero_sync_b1",
+        "XCNT.zero_sync_b2",
+        "XCNT.zero_sync_b3",
+        "XCNT.zero_sync_b4",
+        "XCNT.zero_sync_b5",
+        "XCNT.zero_sync_b6",
+        "XCNT.zero_sync_b7",
+        "XCNT.zero_sync_b8"
+      ]
+    },
+    "one": {
+      "initial_native": 1,
+      "native_gray": [
+        "XCNT.one_g0",
+        "XCNT.one_g1",
+        "XCNT.one_g2",
+        "XCNT.one_g3",
+        "XCNT.one_g4",
+        "XCNT.one_g5",
+        "XCNT.one_g6",
+        "XCNT.one_g7",
+        "XCNT.one_g8"
+      ],
+      "native_binary": [
+        "XCNT.one_native_b0",
+        "XCNT.one_native_b1",
+        "XCNT.one_native_b2",
+        "XCNT.one_native_b3",
+        "XCNT.one_native_b4",
+        "XCNT.one_native_b5",
+        "XCNT.one_native_b6",
+        "XCNT.one_native_b7",
+        "XCNT.one_native_b8"
+      ],
+      "sync1_gray": [
+        "XCNT.one_sync1_0",
+        "XCNT.one_sync1_1",
+        "XCNT.one_sync1_2",
+        "XCNT.one_sync1_3",
+        "XCNT.one_sync1_4",
+        "XCNT.one_sync1_5",
+        "XCNT.one_sync1_6",
+        "XCNT.one_sync1_7",
+        "XCNT.one_sync1_8"
+      ],
+      "sync2_gray": [
+        "XCNT.one_sync2_0",
+        "XCNT.one_sync2_1",
+        "XCNT.one_sync2_2",
+        "XCNT.one_sync2_3",
+        "XCNT.one_sync2_4",
+        "XCNT.one_sync2_5",
+        "XCNT.one_sync2_6",
+        "XCNT.one_sync2_7",
+        "XCNT.one_sync2_8"
+      ],
+      "sync2_binary": [
+        "XCNT.one_sync_b0",
+        "XCNT.one_sync_b1",
+        "XCNT.one_sync_b2",
+        "XCNT.one_sync_b3",
+        "XCNT.one_sync_b4",
+        "XCNT.one_sync_b5",
+        "XCNT.one_sync_b6",
+        "XCNT.one_sync_b7",
+        "XCNT.one_sync_b8"
+      ]
+    }
+  },
+  "clock_nonoverlap_groups": [
+    {
+      "clock": "clk",
+      "reset": "rst",
+      "master_open": "clk_low631",
+      "master_openb": "clk_lowb632",
+      "slave_open": "clk_high633",
+      "slave_openb": "clk_highb634"
+    },
+    {
+      "clock": "ref",
+      "reset": "rst",
+      "master_open": "clk_low898",
+      "master_openb": "clk_lowb899",
+      "slave_open": "clk_high900",
+      "slave_openb": "clk_highb901"
+    }
+  ],
+  "saved_internal_nodes": 98,
+  "required_observed_boundaries": [
+    "255_to_256",
+    "511_to_0",
+    "initial_reset_preset0",
+    "initial_reset_preset1",
+    "second_reset_preset0",
+    "second_reset_preset1"
+  ],
+  "limits": [
+    "No electrical simulation performed by this preparer.",
+    "Lightly loaded subset does not reproduce full AFC reset/CDC fanout.",
+    "100ps strobe cannot exclude narrow excursions or metastability.",
+    "Ideal external CLK/REF/reset test stimuli; actual state and logic are MOS."
+  ]
+}

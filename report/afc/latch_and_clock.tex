@@ -1,0 +1,50 @@
+\begin{figure}[t]
+\centering\resizebox{.98\columnwidth}{!}{%
+\begin{circuitikz}[american,x=1cm,y=1cm,font=\small,
+ c/.style={draw,minimum width=1.12cm,minimum height=.66cm,align=center},
+ ar/.style={->,>=latex}]
+ \node[c] (di) at (1.05,1.05) {TG}; \node[c] (ii) at (3.65,1.05) {INV};
+ \node[c] (io) at (5.5,1.05) {INV}; \node[c] (fb) at (3.65,2.7) {TG};
+ \draw (-.37,1.05) node[left]{$D$} -- (di.west);
+ \draw (di.east) -- (ii.west); \draw (ii.east) -- (io.west);
+ \draw (io.east) -- (6.67,1.05) node[right]{$Q$};
+ \draw (6.32,1.05) node[circ]{} |- (fb.east); \draw (fb.west) -| (2.32,1.05) node[circ]{};
+ \draw (di.north) -- ++(0,.28) node[above]{open};
+ \draw (fb.north) -- ++(0,.16) node[above]{hold};
+ \draw (4.58,1.05) node[circ]{} -- ++(0,.32) node[above]{$\overline Q$};
+ \node[nmos] (mr) at (2.32,-.12) {};
+ \draw (mr.D) -- (2.32,1.05); \draw (mr.G) -- ++(-.14,0) node[left]{RST};
+ \draw (mr.S) -- ++(0,-.12) node[below]{VSS};
+ \node[anchor=west,font=\scriptsize] at (2.45,.6) {$X$};
+ \node[anchor=west,font=\scriptsize] at (2.65,-.1) {$W_n=2~\mu$m};
+ \begin{scope}[shift={(0,-2.55)}]
+ \node[c] (ml) at (1.5,0) {Master latch};
+ \node[c] (sl) at (4.8,0) {Slave latch};
+ \draw[ar] (-.35,0) node[left]{$D$} -- (ml.west);
+ \draw[ar] (ml.east) -- node[above]{$Q_M$} (sl.west);
+ \draw[ar] (sl.east) -- (6.65,0) node[right]{$Q$};
+ \node[below,align=center] at (ml.south) {open $L$\\hold $H$};
+ \node[below,align=center] at (sl.south) {open $H$\\hold $L$};
+ \end{scope}
+\end{circuitikz}}
+\caption{R1 resettable static latch (top) and ordinary positive-edge DFF (bottom). Each TG receives an enable and its complement. The feedback TG returns $Q$ to storage node $X$ during hold. Active reset pulls $X$ to VSS in each latch.}
+\label{fig:r1afc-latch}
+\end{figure}
+
+Two latches form one DFF. The preset variant inverts $D$ and exposes
+the slave's complementary output. Each shared clock group forms $K_d$
+with six cascaded inverters. With active-high reset $R$, the interlock
+computes
+\begin{align}
+ L &= \overline K\,\overline{K_d}\,\overline H\,\overline R, &
+ H &= K\,K_d\,\overline L\,\overline R .
+\end{align}
+A NAND4 and two large inverters drive each phase and its complement.
+
+R1 contains 146 DFFs and one additional latch on the feedback clock
+gate. The 293 latches use 586 TGs, 586 latch inverters and 293 reset
+NMOS devices. Outside these latches, the generator emits 531 inverters
+(including clock drivers), 740 NAND2s, 79 NOR2s and 20 NAND4s. The
+total is $293(9)+531(2)+740(4)+79(4)+20(8)=7{,}135$ MOS instances
+in the AFC core. These counts can be checked against the selected R1
+gate generator, its port manifest and the generated transistor netlist.

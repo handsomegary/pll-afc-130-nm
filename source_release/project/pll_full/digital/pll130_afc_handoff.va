@@ -1,0 +1,22 @@
+`include "constants.vams"
+`include "disciplines.vams"
+// Functional handoff only. Failure leaves done=0 and therefore keeps the
+// fine-loop CP disabled/PFD reset/Vctrl clamped. Do not treat failed AFC
+// hold=0 as permission to operate the fine loop.
+module pll130_afc_handoff_va(vdd,vss,enable,done,fine_enable,hold_all);
+inout vdd,vss,enable,done,fine_enable,hold_all;
+electrical vdd,vss,enable,done,fine_enable,hold_all;
+parameter real TR=100p from (0:inf);
+integer operate;
+analog begin
+  @(initial_step
+    or cross(V(enable,vss)-0.5*V(vdd,vss),+1)
+    or cross(V(enable,vss)-0.5*V(vdd,vss),-1)
+    or cross(V(done,vss)-0.5*V(vdd,vss),+1)
+    or cross(V(done,vss)-0.5*V(vdd,vss),-1)) begin
+    operate = (V(enable,vss)>0.5*V(vdd,vss)) && (V(done,vss)>0.5*V(vdd,vss));
+  end
+  V(fine_enable,vss) <+ V(vdd,vss)*transition(operate,0,TR,TR);
+  V(hold_all,vss) <+ V(vdd,vss)*transition(1-operate,0,TR,TR);
+end
+endmodule

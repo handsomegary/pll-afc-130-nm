@@ -1,0 +1,1114 @@
+{
+  "status": "all_passed",
+  "source_sha256": "45654975e7b53873559fd157955c1d8a922f40550fea81687dfd675fe9de4cc0",
+  "source_design_status": "prepared_unverified_offline_candidate_not_selected",
+  "fixtures": [
+    {
+      "name": "global_age_includes_late_ARM",
+      "passed": true,
+      "acknowledgement_delay_REF_cycles": 29,
+      "injected_near_at_age": null,
+      "candidate_history": [
+        16
+      ],
+      "done_cycle": null,
+      "fail_cycle": 258,
+      "fine_cycle": null,
+      "boundary_rows": [
+        {
+          "cycle": 253,
+          "age": 243,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 1,
+          "state": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "age_after": 244,
+          "done": 0,
+          "fail": 0,
+          "fine_enable": 0,
+          "count_rst": 0
+        },
+        {
+          "cycle": 254,
+          "age": 244,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 1,
+          "state": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "age_after": 245,
+          "done": 0,
+          "fail": 0,
+          "fine_enable": 0,
+          "count_rst": 0
+        },
+        {
+          "cycle": 255,
+          "age": 245,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 1,
+          "state": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "age_after": 246,
+          "done": 0,
+          "fail": 0,
+          "fine_enable": 0,
+          "count_rst": 0
+        },
+        {
+          "cycle": 256,
+          "age": 246,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 1,
+          "state": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "age_after": 247,
+          "done": 0,
+          "fail": 0,
+          "fine_enable": 0,
+          "count_rst": 0
+        },
+        {
+          "cycle": 257,
+          "age": 247,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 1,
+          "state": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "age_after": 248,
+          "done": 0,
+          "fail": 0,
+          "fine_enable": 0,
+          "count_rst": 0
+        },
+        {
+          "cycle": 258,
+          "age": 248,
+          "decision": 0,
+          "watchdog": 1,
+          "count_run": 1,
+          "state": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "age_after": 0,
+          "done": 0,
+          "fail": 1,
+          "fine_enable": 0,
+          "count_rst": 1
+        },
+        {
+          "cycle": 259,
+          "age": 0,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 0,
+          "state": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "age_after": 0,
+          "done": 0,
+          "fail": 1,
+          "fine_enable": 0,
+          "count_rst": 1
+        },
+        {
+          "cycle": 260,
+          "age": 0,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 0,
+          "state": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "age_after": 0,
+          "done": 0,
+          "fail": 1,
+          "fine_enable": 0,
+          "count_rst": 1
+        },
+        {
+          "cycle": 261,
+          "age": 0,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 0,
+          "state": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "age_after": 0,
+          "done": 0,
+          "fail": 1,
+          "fine_enable": 0,
+          "count_rst": 1
+        },
+        {
+          "cycle": 262,
+          "age": 0,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 0,
+          "state": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "age_after": 0,
+          "done": 0,
+          "fail": 1,
+          "fine_enable": 0,
+          "count_rst": 1
+        },
+        {
+          "cycle": 263,
+          "age": 0,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 0,
+          "state": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "age_after": 0,
+          "done": 0,
+          "fail": 1,
+          "fine_enable": 0,
+          "count_rst": 1
+        },
+        {
+          "cycle": 264,
+          "age": 0,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 0,
+          "state": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "age_after": 0,
+          "done": 0,
+          "fail": 1,
+          "fine_enable": 0,
+          "count_rst": 1
+        },
+        {
+          "cycle": 265,
+          "age": 0,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 0,
+          "state": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "age_after": 0,
+          "done": 0,
+          "fail": 1,
+          "fine_enable": 0,
+          "count_rst": 1
+        },
+        {
+          "cycle": 266,
+          "age": 0,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 0,
+          "state": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "age_after": 0,
+          "done": 0,
+          "fail": 1,
+          "fine_enable": 0,
+          "count_rst": 1
+        },
+        {
+          "cycle": 267,
+          "age": 0,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 0,
+          "state": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "age_after": 0,
+          "done": 0,
+          "fail": 1,
+          "fine_enable": 0,
+          "count_rst": 1
+        },
+        {
+          "cycle": 268,
+          "age": 0,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 0,
+          "state": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "age_after": 0,
+          "done": 0,
+          "fail": 1,
+          "fine_enable": 0,
+          "count_rst": 1
+        },
+        {
+          "cycle": 269,
+          "age": 0,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 0,
+          "state": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "age_after": 0,
+          "done": 0,
+          "fail": 1,
+          "fine_enable": 0,
+          "count_rst": 1
+        },
+        {
+          "cycle": 270,
+          "age": 0,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 0,
+          "state": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "age_after": 0,
+          "done": 0,
+          "fail": 1,
+          "fine_enable": 0,
+          "count_rst": 1
+        },
+        {
+          "cycle": 271,
+          "age": 0,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 0,
+          "state": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "age_after": 0,
+          "done": 0,
+          "fail": 1,
+          "fine_enable": 0,
+          "count_rst": 1
+        }
+      ]
+    },
+    {
+      "name": "NEAR246_DRAIN248_remains_success",
+      "passed": true,
+      "acknowledgement_delay_REF_cycles": 5,
+      "injected_near_at_age": 246,
+      "candidate_history": [
+        16
+      ],
+      "done_cycle": 258,
+      "fail_cycle": null,
+      "fine_cycle": 260,
+      "boundary_rows": [
+        {
+          "cycle": 253,
+          "age": 243,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 1,
+          "state": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "age_after": 244,
+          "done": 0,
+          "fail": 0,
+          "fine_enable": 0,
+          "count_rst": 0
+        },
+        {
+          "cycle": 254,
+          "age": 244,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 1,
+          "state": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "age_after": 245,
+          "done": 0,
+          "fail": 0,
+          "fine_enable": 0,
+          "count_rst": 0
+        },
+        {
+          "cycle": 255,
+          "age": 245,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 1,
+          "state": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "age_after": 246,
+          "done": 0,
+          "fail": 0,
+          "fine_enable": 0,
+          "count_rst": 0
+        },
+        {
+          "cycle": 256,
+          "age": 246,
+          "decision": 1,
+          "watchdog": 0,
+          "count_run": 1,
+          "state": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "age_after": 247,
+          "done": 0,
+          "fail": 0,
+          "fine_enable": 0,
+          "count_rst": 0
+        },
+        {
+          "cycle": 257,
+          "age": 247,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 0,
+          "state": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "age_after": 248,
+          "done": 0,
+          "fail": 0,
+          "fine_enable": 0,
+          "count_rst": 0
+        },
+        {
+          "cycle": 258,
+          "age": 248,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 0,
+          "state": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "age_after": 0,
+          "done": 1,
+          "fail": 0,
+          "fine_enable": 0,
+          "count_rst": 1
+        },
+        {
+          "cycle": 259,
+          "age": 0,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 0,
+          "state": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "age_after": 0,
+          "done": 1,
+          "fail": 0,
+          "fine_enable": 0,
+          "count_rst": 1
+        },
+        {
+          "cycle": 260,
+          "age": 0,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 0,
+          "state": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "age_after": 0,
+          "done": 1,
+          "fail": 0,
+          "fine_enable": 1,
+          "count_rst": 1
+        },
+        {
+          "cycle": 261,
+          "age": 0,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 0,
+          "state": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "age_after": 0,
+          "done": 1,
+          "fail": 0,
+          "fine_enable": 1,
+          "count_rst": 1
+        },
+        {
+          "cycle": 262,
+          "age": 0,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 0,
+          "state": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "age_after": 0,
+          "done": 1,
+          "fail": 0,
+          "fine_enable": 1,
+          "count_rst": 1
+        },
+        {
+          "cycle": 263,
+          "age": 0,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 0,
+          "state": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "age_after": 0,
+          "done": 1,
+          "fail": 0,
+          "fine_enable": 1,
+          "count_rst": 1
+        },
+        {
+          "cycle": 264,
+          "age": 0,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 0,
+          "state": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "age_after": 0,
+          "done": 1,
+          "fail": 0,
+          "fine_enable": 1,
+          "count_rst": 1
+        },
+        {
+          "cycle": 265,
+          "age": 0,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 0,
+          "state": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "age_after": 0,
+          "done": 1,
+          "fail": 0,
+          "fine_enable": 1,
+          "count_rst": 1
+        },
+        {
+          "cycle": 266,
+          "age": 0,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 0,
+          "state": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "age_after": 0,
+          "done": 1,
+          "fail": 0,
+          "fine_enable": 1,
+          "count_rst": 1
+        },
+        {
+          "cycle": 267,
+          "age": 0,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 0,
+          "state": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "age_after": 0,
+          "done": 1,
+          "fail": 0,
+          "fine_enable": 1,
+          "count_rst": 1
+        },
+        {
+          "cycle": 268,
+          "age": 0,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 0,
+          "state": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "age_after": 0,
+          "done": 1,
+          "fail": 0,
+          "fine_enable": 1,
+          "count_rst": 1
+        },
+        {
+          "cycle": 269,
+          "age": 0,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 0,
+          "state": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "age_after": 0,
+          "done": 1,
+          "fail": 0,
+          "fine_enable": 1,
+          "count_rst": 1
+        },
+        {
+          "cycle": 270,
+          "age": 0,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 0,
+          "state": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "age_after": 0,
+          "done": 1,
+          "fail": 0,
+          "fine_enable": 1,
+          "count_rst": 1
+        },
+        {
+          "cycle": 271,
+          "age": 0,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 0,
+          "state": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "age_after": 0,
+          "done": 1,
+          "fail": 0,
+          "fine_enable": 1,
+          "count_rst": 1
+        },
+        {
+          "cycle": 272,
+          "age": 0,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 0,
+          "state": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "age_after": 0,
+          "done": 1,
+          "fail": 0,
+          "fine_enable": 1,
+          "count_rst": 1
+        },
+        {
+          "cycle": 273,
+          "age": 0,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 0,
+          "state": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "age_after": 0,
+          "done": 1,
+          "fail": 0,
+          "fine_enable": 1,
+          "count_rst": 1
+        }
+      ]
+    },
+    {
+      "name": "NEAR248_same_edge_watchdog_FAIL_priority",
+      "passed": true,
+      "acknowledgement_delay_REF_cycles": 5,
+      "injected_near_at_age": 248,
+      "candidate_history": [
+        16
+      ],
+      "done_cycle": null,
+      "fail_cycle": 258,
+      "fine_cycle": null,
+      "boundary_rows": [
+        {
+          "cycle": 253,
+          "age": 243,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 1,
+          "state": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "age_after": 244,
+          "done": 0,
+          "fail": 0,
+          "fine_enable": 0,
+          "count_rst": 0
+        },
+        {
+          "cycle": 254,
+          "age": 244,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 1,
+          "state": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "age_after": 245,
+          "done": 0,
+          "fail": 0,
+          "fine_enable": 0,
+          "count_rst": 0
+        },
+        {
+          "cycle": 255,
+          "age": 245,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 1,
+          "state": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "age_after": 246,
+          "done": 0,
+          "fail": 0,
+          "fine_enable": 0,
+          "count_rst": 0
+        },
+        {
+          "cycle": 256,
+          "age": 246,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 1,
+          "state": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "age_after": 247,
+          "done": 0,
+          "fail": 0,
+          "fine_enable": 0,
+          "count_rst": 0
+        },
+        {
+          "cycle": 257,
+          "age": 247,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 1,
+          "state": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "age_after": 248,
+          "done": 0,
+          "fail": 0,
+          "fine_enable": 0,
+          "count_rst": 0
+        },
+        {
+          "cycle": 258,
+          "age": 248,
+          "decision": 1,
+          "watchdog": 1,
+          "count_run": 1,
+          "state": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "age_after": 0,
+          "done": 0,
+          "fail": 1,
+          "fine_enable": 0,
+          "count_rst": 1
+        },
+        {
+          "cycle": 259,
+          "age": 0,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 0,
+          "state": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "age_after": 0,
+          "done": 0,
+          "fail": 1,
+          "fine_enable": 0,
+          "count_rst": 1
+        },
+        {
+          "cycle": 260,
+          "age": 0,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 0,
+          "state": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "age_after": 0,
+          "done": 0,
+          "fail": 1,
+          "fine_enable": 0,
+          "count_rst": 1
+        },
+        {
+          "cycle": 261,
+          "age": 0,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 0,
+          "state": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "age_after": 0,
+          "done": 0,
+          "fail": 1,
+          "fine_enable": 0,
+          "count_rst": 1
+        },
+        {
+          "cycle": 262,
+          "age": 0,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 0,
+          "state": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "age_after": 0,
+          "done": 0,
+          "fail": 1,
+          "fine_enable": 0,
+          "count_rst": 1
+        },
+        {
+          "cycle": 263,
+          "age": 0,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 0,
+          "state": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "age_after": 0,
+          "done": 0,
+          "fail": 1,
+          "fine_enable": 0,
+          "count_rst": 1
+        },
+        {
+          "cycle": 264,
+          "age": 0,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 0,
+          "state": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "age_after": 0,
+          "done": 0,
+          "fail": 1,
+          "fine_enable": 0,
+          "count_rst": 1
+        },
+        {
+          "cycle": 265,
+          "age": 0,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 0,
+          "state": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "age_after": 0,
+          "done": 0,
+          "fail": 1,
+          "fine_enable": 0,
+          "count_rst": 1
+        },
+        {
+          "cycle": 266,
+          "age": 0,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 0,
+          "state": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "age_after": 0,
+          "done": 0,
+          "fail": 1,
+          "fine_enable": 0,
+          "count_rst": 1
+        },
+        {
+          "cycle": 267,
+          "age": 0,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 0,
+          "state": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "age_after": 0,
+          "done": 0,
+          "fail": 1,
+          "fine_enable": 0,
+          "count_rst": 1
+        },
+        {
+          "cycle": 268,
+          "age": 0,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 0,
+          "state": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "age_after": 0,
+          "done": 0,
+          "fail": 1,
+          "fine_enable": 0,
+          "count_rst": 1
+        },
+        {
+          "cycle": 269,
+          "age": 0,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 0,
+          "state": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "age_after": 0,
+          "done": 0,
+          "fail": 1,
+          "fine_enable": 0,
+          "count_rst": 1
+        },
+        {
+          "cycle": 270,
+          "age": 0,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 0,
+          "state": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "age_after": 0,
+          "done": 0,
+          "fail": 1,
+          "fine_enable": 0,
+          "count_rst": 1
+        },
+        {
+          "cycle": 271,
+          "age": 0,
+          "decision": 0,
+          "watchdog": 0,
+          "count_run": 0,
+          "state": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "age_after": 0,
+          "done": 0,
+          "fail": 1,
+          "fine_enable": 0,
+          "count_rst": 1
+        }
+      ]
+    }
+  ],
+  "unsigned_NEAR_decode_values": 512,
+  "all_counter_CDC_snapshot_widths": 9,
+  "limits": "Actual generated Boolean gates + ideal edge FF with injected synchronized integer words. Not a MOS, CDC, metastability, timing, edge-credit or PLL capture proof."
+}

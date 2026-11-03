@@ -1,0 +1,131 @@
+{
+  "version": "monitor-v4-counter9-prepared-only",
+  "source_design_status": "prepared_unverified_offline_candidate_not_selected",
+  "simulator_started": false,
+  "physical_R2_PASS": null,
+  "common_math_byte_identical_to_v3": true,
+  "original_39_fixtures_pass": true,
+  "new_counter9_binding_fixtures_pass": true,
+  "total_synthetic_fixture_checks": 57,
+  "fixtures": {
+    "postprocessor_fixture_results.json": {
+      "fixtures_passed": 16,
+      "checks": [
+        "Success-gated handoff with frozen tested code",
+        "Actual-edge engineering lock with physical noise left unknown",
+        "Total integral retains diagnostic AFC power without double counting",
+        "Post-fine code mutation rejected",
+        "Fine-enable before two-REF delay rejected",
+        "Watchdog fail keeps CP disabled and control held",
+        "Failure plus fine-enable rejected",
+        "CP pulse while clamped rejected",
+        "Phase jump cannot qualify the pre-slip hold window",
+        "Absent CDC snapshot contract never becomes sign proof",
+        "Decision-falling anchor selects newly latched counters; exact guard2 accepted",
+        "One-count snapshot cannot substantiate guarded two-count direction",
+        "Contradictory fast and slow snapshot rejected",
+        "Interpolated exact-boundary integration matches analytic 44.2pJ",
+        "Streaming reader reconstructs coherent code and interpolated digital edge",
+        "Malformed saved-vector timeline rejected"
+      ],
+      "simulator_started": false,
+      "scope": "Postprocessor correctness and engineering-criterion fixtures only. No AFC MOS, CDC metastability, PVT, jitter or silicon verification implied."
+    },
+    "unit_postprocessor_fixture_results.json": {
+      "fixtures_passed": 10,
+      "cases": [
+        {
+          "name": "near100_phase_high",
+          "unit_functional_pass": true
+        },
+        {
+          "name": "near100_phase_low",
+          "unit_functional_pass": true
+        },
+        {
+          "name": "fast140",
+          "unit_functional_pass": true
+        },
+        {
+          "name": "slow70",
+          "unit_functional_pass": true
+        },
+        {
+          "name": "no_feedback",
+          "unit_functional_pass": true
+        },
+        {
+          "name": "post-fine-code-mutated",
+          "rejected": true
+        },
+        {
+          "name": "endpoint-failure-releases-fine",
+          "rejected": true
+        },
+        {
+          "name": "ARM-reentry-is-FSM-error-not-a-second-counter-trial",
+          "rejected": true
+        },
+        {
+          "name": "stable-one-hot-state-overlap",
+          "rejected": true
+        },
+        {
+          "name": "short-near-diagnostic-pending-terminal-not-functional-PASS",
+          "checked": true
+        }
+      ],
+      "simulator_started": false,
+      "scope": "Synthetic saved-vector monitor tests only. No physical MOS electrical result."
+    },
+    "first_edge_fixture_results.json": {
+      "fixtures_passed": 13,
+      "checks": [
+        "Reset-masked old first clock excluded; next eligible edge has adjacent 5ns low-phase bracket",
+        "Wrong captured phase fails instead of manufacturing preceding-fall/following-rise 15ns proof",
+        "Actually captured phase at epoch plus settling is checked; stimulus fixture expectation cannot replace it",
+        "Valid high-phase adjacent rise/fall bracket accepted",
+        "Missing bounding REF edge violates half-period adjacency rather than spanning longer interval",
+        "Epoch acknowledgment preceding actual first eligible clock rejected",
+        "REF tie aperture stays unknown rather than claiming a phase proof",
+        "Missing physical reset release cannot support an ARM-only first-edge proof",
+        "Clock after release but while reset reasserted remains ineligible",
+        "Raw stimulus FB edge cannot substitute for physically gated counter clock",
+        "Clock exactly at reset threshold release gets no credited post-reset first edge",
+        "Original lag before reset but buffered lag after reset remains credit-unproven; phase proof stays separate",
+        "Absent native-clock/reset increment evidence cannot become initial counter-credit proof"
+      ],
+      "simulator_started": false,
+      "scope": "Synthetic parser regressions only. No new MOS simulation, circuit repair, metastability, setup/hold, PVT, jitter or silicon proof."
+    },
+    "counter9_fixture_results.json": {
+      "fixtures_passed": 18,
+      "checks": [
+        "R2 map and dynamically derived unit sync words have 9 bits / NEAR224 / global age248",
+        "Streaming 9-bit scalar reader preserves exact 255 to 256 boundary rather than truncating MSB",
+        "Frozen slow snapshot 257 minus 255 equals guard2 across old 8-bit boundary",
+        "Frozen fast snapshot 257 minus 255 equals guard2 across old 8-bit boundary",
+        "256 minus 255 still only guard1 and cannot prove fast direction",
+        "Paired contradictory fast/slow frozen facts still rejected without changing common sign mathematics",
+        "Declared NEAR224 lower bound accepts exact 224 lag count in synthetic held snapshot",
+        "223 count does not pass a declared NEAR224 window even though it exceeds R1 128",
+        "Declared width8 with saved nine frozen bits fails before extraction",
+        "r0/r1/r2 select distinct explicit maps with exact source SHA binding",
+        "R2 source with R1 revision cannot silently use R1 eight-bit map",
+        "Unsupported explicit revision is rejected rather than falling back to R0 or R1",
+        "Legacy missing-revision cache resolves only through unique exact source SHA; R2 still maps to R2",
+        "Changed owned AFC source after execution is rejected before raw extraction",
+        "Wrapper binds actual synthetic cache/bench/source hashes while leaving physical PASS false",
+        "Wrapper refuses to overwrite existing measurement output before extraction",
+        "Cache mutation during extraction cannot receive a misleading final execution SHA binding",
+        "Bench mutation during extraction cannot receive a false bench_matches binding"
+      ],
+      "simulator_started": false,
+      "R2_status": "prepared_unverified_offline_candidate_not_selected",
+      "physical_R2_PASS": null,
+      "scope": "Synthetic parser/counter9/map/source-binding fixtures only. No physical R2 AFC, engineering PLL lock, noise, CDC, overflow or PVT result."
+    }
+  },
+  "root_scope": "Prepared monitoring only; root waits for actual R1 full-PLL evidence before selecting R2.",
+  "scope": "No physical R2 simulation, implementation change, watchdog/overflow, CDC/metastability, all-PVT or noise/FoM proof."
+}

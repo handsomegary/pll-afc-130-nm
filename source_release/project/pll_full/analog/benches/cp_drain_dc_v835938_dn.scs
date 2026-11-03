@@ -1,0 +1,16 @@
+simulator lang=spectre
+global 0
+include "@TECH_ROOT@/models/spectre/ms013_io33_v2p6_7p_spe.lib" section=tt
+include "@PROJECT_ROOT@/pll_full/analog/pll130_cp_drain_candidate.scs"
+simulatorOptions options temp=25 reltol=1e-5 vabstol=1e-7 iabstol=1e-12
+VDD (vdd 0) vsource dc=1.2
+// DC current/compliance screen. VCLAMP supplies balancing current.
+VCLAMP (ctrl 0) vsource dc=0.8359375
+VUP (up 0) vsource dc=0
+VDN (dn 0) vsource dc=1.2
+XCP (vdd 0 up dn ctrl) pll130_cp_drain
+saveOptions options save=selected
+save ctrl up dn VDD:p VCLAMP:p XCP.bncp XCP.bpcp XCP.pinternal XCP.ninternal
+save XCP.MPUSW:d XCP.MNDSW:d XCP.MNREF:d XCP.MNPMIRROR:d XCP.MPREF:d
+cpdc dc
+cpop info what=oppoint where=rawfile

@@ -1,0 +1,69 @@
+[
+  {
+    "name": "pll_afc_off_code16_ctrl600_ref10000_4p_6500n_v1",
+    "path": "@PROJECT_ROOT@/afc2009_20261007/integration/counterfactual_off/benches/pll_afc_off_code16_ctrl600_ref10000_4p_6500n_v1.scs",
+    "bench_sha256": "508ff6a196f23da3c2f5a9f7f6cec2127b42bce8ac52cf42e44d42e8ffb13f0f",
+    "physical_baseline_sha256": "cc44e0bb56a8de35ff75d1780b99bc790311ec097f33556fa9046eb4bb0e8f44",
+    "baseline_path": "@PROJECT_ROOT@/pll_full/digital/benches/pll_stage3_physical_code28_ctrl835938_cpdrain_bounded2p.scs",
+    "frozen_reader_sha256": "b2898c42d28918f00b095e763427f4bacae7cb08e2b6c4ac4d551b328c214d10",
+    "target_Hz": 3200000000.0,
+    "reference_Hz": 100000000.0,
+    "temperature_C": 25,
+    "vdd_V": 1.2,
+    "fixed_code": 16,
+    "initial_ctrl_V": 0.6,
+    "initial_filter_mid_V": 0.6,
+    "duration_s": 6.5e-06,
+    "maxstep_s": 4e-12,
+    "strobeperiod_s": 4e-11,
+    "enable_midpoint_s": 3.0001e-07,
+    "ref_delay_s": 1e-08,
+    "physical_active_blocks": [
+      "VCO",
+      "AC/self-bias RX",
+      "5TG divider",
+      "PFD",
+      "drain CP"
+    ],
+    "behavior_control_blocks": [],
+    "external_ideal_elements": [
+      "100MHz REF",
+      "13.5594uA IREF",
+      "five DC CODE drivers",
+      "R/C elements",
+      "LPF ICs",
+      "oscillator IC startup seed"
+    ],
+    "status": "prepared_unverified",
+    "interpretation": "Direct physical fine-loop capture from fixed code16. No AFC Done/Fail/success is manufactured. No lock in this window means only not captured within the measured6.5us.",
+    "comparison_differences": [
+      "AFC-on drives CODE using MOS outputs; this control uses the five original ideal DC voltage sources.",
+      "AFC-on adds AFC logic, two-node MOS clamp, clamp reference and CP enable gates; this control retains the guarded original fine-loop topology.",
+      "AFC-on physically holds both LPF nodes near half-supply before handoff; this control only specifies the same nominal initial IC. Actual enable-time LPF voltages must be measured.",
+      "This control consumes no AFC supply power. Power is a bounded whole-PLL observation, not an exact matched loading or FoM improvement claim."
+    ],
+    "scope": "TT1.2V25C, pre-layout, no stochastic noise; numerical maximum step and saved strobe require appropriate convergence checks.",
+    "literal_replacements": [
+      {
+        "before": "parameters CODE0=0 CODE1=0 CODE2=1 CODE3=1 CODE4=1",
+        "after": "parameters CODE0=0 CODE1=0 CODE2=0 CODE3=0 CODE4=1"
+      },
+      {
+        "before": "VRSTP (rst 0) vsource type=pwl wave=[0 1.2 300n 1.2 300.1n 0]",
+        "after": "VRSTP (rst 0) vsource type=pwl wave=[0 1.2 300n 1.2 300.02n 0]"
+      },
+      {
+        "before": "VEN (enable 0) vsource type=pwl wave=[0 0 300n 0 300.1n 1.2]",
+        "after": "VEN (enable 0) vsource type=pwl wave=[0 0 300n 0 300.02n 1.2]"
+      },
+      {
+        "before": "ic ctrl=0.8359375 filter_mid=0.8359375 out0=0.935 out180=0.933 out90=0.934 out270=0.934",
+        "after": "ic ctrl=0.6 filter_mid=0.6 out0=0.935 out180=0.933 out90=0.934 out270=0.934"
+      },
+      {
+        "before": "tran tran stop=2e-06 maxstep=2p errpreset=moderate skipdc=no strobeperiod=10p strobeoutput=strobeonly",
+        "after": "save s0 s1 s2 s3 s4\ntran tran stop=6.5e-06 maxstep=4p errpreset=moderate skipdc=no strobeperiod=40p strobeoutput=strobeonly"
+      }
+    ]
+  }
+]

@@ -1,0 +1,16 @@
+[
+  {
+    "name": "tb_loaded_accuracy_code28_step2p",
+    "maxstep_s": 2e-12,
+    "bench_sha256": "8f3403905fea410fe59f7c79cd302759384d0327ba6fecbc4b33bbaedd205992",
+    "original_bench_sha256": "f74e1b060482a5663ce3290da5ef58f0a618a1ab9ad16b8c2fb81a35f593a288",
+    "change": "analysis maxstep only; circuit/tolerances/strobe/duration identical"
+  },
+  {
+    "name": "tb_loaded_accuracy_code28_step1p",
+    "maxstep_s": 1e-12,
+    "bench_sha256": "fa1a3a0a118ac49ee6887ca1793d024563cb1c678cf1d021690cb95fdce66e41",
+    "original_bench_sha256": "f74e1b060482a5663ce3290da5ef58f0a618a1ab9ad16b8c2fb81a35f593a288",
+    "change": "analysis maxstep only; circuit/tolerances/strobe/duration identical"
+  }
+]

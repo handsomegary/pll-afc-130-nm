@@ -1,0 +1,92 @@
+[
+  {
+    "name": "cp_drain_phase_m200",
+    "phase_skew_s": -2e-10,
+    "common_reset_s": 2e-10,
+    "ctrl_V": 0.8359375,
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\analog\\benches\\cp_drain_phase_m200.scs",
+    "ideal_net_charge_C": -4e-15,
+    "source_sha256": "b793739f9588824973e10a776698763f605355e3629945cabc0ab4215fce4e1f",
+    "scope": "Physical drain-switched MOS CP with ideal reference/controls/voltage clamp; no PFD noise."
+  },
+  {
+    "name": "cp_drain_phase_m150",
+    "phase_skew_s": -1.5e-10,
+    "common_reset_s": 2e-10,
+    "ctrl_V": 0.8359375,
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\analog\\benches\\cp_drain_phase_m150.scs",
+    "ideal_net_charge_C": -3.0000000000000002e-15,
+    "source_sha256": "a1a78eaaf47990079e0de8f24654fe333e2d1d48808997bf2f924aa5928ec1da",
+    "scope": "Physical drain-switched MOS CP with ideal reference/controls/voltage clamp; no PFD noise."
+  },
+  {
+    "name": "cp_drain_phase_m100",
+    "phase_skew_s": -1e-10,
+    "common_reset_s": 2e-10,
+    "ctrl_V": 0.8359375,
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\analog\\benches\\cp_drain_phase_m100.scs",
+    "ideal_net_charge_C": -2e-15,
+    "source_sha256": "c5e92ef53f02e15057e948cef2d2c790d8bb4c01c0f0a25b9d322ae74faf67cb",
+    "scope": "Physical drain-switched MOS CP with ideal reference/controls/voltage clamp; no PFD noise."
+  },
+  {
+    "name": "cp_drain_phase_m50",
+    "phase_skew_s": -5e-11,
+    "common_reset_s": 2e-10,
+    "ctrl_V": 0.8359375,
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\analog\\benches\\cp_drain_phase_m50.scs",
+    "ideal_net_charge_C": -1e-15,
+    "source_sha256": "3455b2d81cff6d978b4c519efff013acab88a0cefcb303bd59c10b8ab46a792f",
+    "scope": "Physical drain-switched MOS CP with ideal reference/controls/voltage clamp; no PFD noise."
+  },
+  {
+    "name": "cp_drain_phase_p0",
+    "phase_skew_s": 0.0,
+    "common_reset_s": 2e-10,
+    "ctrl_V": 0.8359375,
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\analog\\benches\\cp_drain_phase_p0.scs",
+    "ideal_net_charge_C": 0.0,
+    "source_sha256": "d15a34b607c7db340e133b9dd0699174ee6f4370a61698988cbde682c56094c8",
+    "scope": "Physical drain-switched MOS CP with ideal reference/controls/voltage clamp; no PFD noise."
+  },
+  {
+    "name": "cp_drain_phase_p50",
+    "phase_skew_s": 5e-11,
+    "common_reset_s": 2e-10,
+    "ctrl_V": 0.8359375,
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\analog\\benches\\cp_drain_phase_p50.scs",
+    "ideal_net_charge_C": 1e-15,
+    "source_sha256": "b2d37b17798682e560be1e5fcdfd31b265f807d94493e4515903d1be6ed27f0b",
+    "scope": "Physical drain-switched MOS CP with ideal reference/controls/voltage clamp; no PFD noise."
+  },
+  {
+    "name": "cp_drain_phase_p100",
+    "phase_skew_s": 1e-10,
+    "common_reset_s": 2e-10,
+    "ctrl_V": 0.8359375,
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\analog\\benches\\cp_drain_phase_p100.scs",
+    "ideal_net_charge_C": 2e-15,
+    "source_sha256": "a406b0cb2a571ac9ae736500d033d5d5628d18159a69f07b524208f56f3550a1",
+    "scope": "Physical drain-switched MOS CP with ideal reference/controls/voltage clamp; no PFD noise."
+  },
+  {
+    "name": "cp_drain_phase_p150",
+    "phase_skew_s": 1.5e-10,
+    "common_reset_s": 2e-10,
+    "ctrl_V": 0.8359375,
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\analog\\benches\\cp_drain_phase_p150.scs",
+    "ideal_net_charge_C": 3.0000000000000002e-15,
+    "source_sha256": "a2b962d5e653288d0ee4e96af063e8cec741643d6c1be469895e8ac486a5d09a",
+    "scope": "Physical drain-switched MOS CP with ideal reference/controls/voltage clamp; no PFD noise."
+  },
+  {
+    "name": "cp_drain_phase_p200",
+    "phase_skew_s": 2e-10,
+    "common_reset_s": 2e-10,
+    "ctrl_V": 0.8359375,
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\analog\\benches\\cp_drain_phase_p200.scs",
+    "ideal_net_charge_C": 4e-15,
+    "source_sha256": "d5475dda26e2de7a5f9c5a53d27f5311e873aa1febd2618951fb0e64d57b35fe",
+    "scope": "Physical drain-switched MOS CP with ideal reference/controls/voltage clamp; no PFD noise."
+  }
+]

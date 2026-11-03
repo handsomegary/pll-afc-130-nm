@@ -1,0 +1,58 @@
+[
+  {
+    "case_id": "pll_stage1_fixed26_ctrl835938_bounded2p",
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\analog\\benches\\pll_stage1_fixed26_ctrl835938_bounded2p.scs",
+    "source_sha256": "3a4d32ba74d8bb7879651ec49e20290b96a0694ada7881926ffb3a38cc248f84",
+    "original_bench_sha256": "a44bde379eba4d8615ae0be3449a6e254d640a9e7735d9589a51fcc6acb7f03f",
+    "duration_s": 1.2e-06,
+    "maxstep_s": 2e-12,
+    "loop_enable_s": 3e-07,
+    "output_strobe_s": 1e-11,
+    "precision": "conservative, reltol1e-5, vabstol1e-7, iabstol1e-12",
+    "lock_required_hold_s": 5e-07,
+    "maximum_settling_after_enable_for_500ns_hold_s": 4e-07,
+    "scope": "Acquisition diagnostic at fixed code26, MOS VCO but VA PFD/CP/divider; not noise jitter."
+  },
+  {
+    "case_id": "pll_stage1_fixed26_ctrl835938_bounded1p",
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\analog\\benches\\pll_stage1_fixed26_ctrl835938_bounded1p.scs",
+    "source_sha256": "4e921fc064d9bffde6bf3a65207f3f065aa9152daaa561001d3c06d744652fb9",
+    "original_bench_sha256": "a44bde379eba4d8615ae0be3449a6e254d640a9e7735d9589a51fcc6acb7f03f",
+    "duration_s": 1.2e-06,
+    "maxstep_s": 1e-12,
+    "loop_enable_s": 3e-07,
+    "output_strobe_s": 1e-11,
+    "precision": "conservative, reltol1e-5, vabstol1e-7, iabstol1e-12",
+    "lock_required_hold_s": 5e-07,
+    "maximum_settling_after_enable_for_500ns_hold_s": 4e-07,
+    "scope": "Acquisition diagnostic at fixed code26, MOS VCO but VA PFD/CP/divider; not noise jitter."
+  },
+  {
+    "case_id": "pll_stage1_fixed26_ctrl835938_bounded4p",
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\analog\\benches\\pll_stage1_fixed26_ctrl835938_bounded4p.scs",
+    "source_sha256": "818d0edc2c2dcbf7ee7b3d4c4803b49b74db0b9a49ed93e7898406477acbf454",
+    "original_bench_sha256": "a44bde379eba4d8615ae0be3449a6e254d640a9e7735d9589a51fcc6acb7f03f",
+    "duration_s": 2e-06,
+    "maxstep_s": 4e-12,
+    "loop_enable_s": 3e-07,
+    "output_strobe_s": 1e-11,
+    "precision": "moderate, reltol1e-4, vabstol1e-6, iabstol1e-12",
+    "lock_required_hold_s": 5e-07,
+    "maximum_settling_after_enable_for_500ns_hold_s": 1.2e-06,
+    "scope": "Engineering acquisition only, fixed code26 MOS VCO with VA PFD/CP/divider; not noise jitter."
+  },
+  {
+    "case_id": "pll_stage1_fixed26_ctrl835938_bounded2p_moderate",
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\analog\\benches\\pll_stage1_fixed26_ctrl835938_bounded2p_moderate.scs",
+    "source_sha256": "fda1c0a3f2f6974f5f92f1fca75a8d40f0477eb7c8d900dc73ec0489282727fe",
+    "original_bench_sha256": "a44bde379eba4d8615ae0be3449a6e254d640a9e7735d9589a51fcc6acb7f03f",
+    "duration_s": 2e-06,
+    "maxstep_s": 2e-12,
+    "loop_enable_s": 3e-07,
+    "output_strobe_s": 1e-11,
+    "precision": "moderate, reltol1e-4, vabstol1e-6, iabstol1e-12",
+    "lock_required_hold_s": 5e-07,
+    "maximum_settling_after_enable_for_500ns_hold_s": 1.2e-06,
+    "scope": "Engineering acquisition only, fixed code26 MOS VCO with VA PFD/CP/divider; not noise jitter."
+  }
+]

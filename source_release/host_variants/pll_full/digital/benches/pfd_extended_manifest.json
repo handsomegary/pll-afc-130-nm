@@ -1,0 +1,54 @@
+[
+  {
+    "name": "tb_pfd_ref_lag",
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\digital\\benches\\tb_pfd_ref_lag.scs",
+    "bench_sha256": "6221c83991bac60d90c2732e193a4ec171eba024868dbda175219f130259b588",
+    "kind": "pfd",
+    "phase_ns": -1.0,
+    "ref_hz": 100000000.0,
+    "fb_hz": 100000000.0,
+    "measurement_begin_s": 2e-08,
+    "measurement_end_s": 9.5e-08,
+    "duration_s": 1e-07,
+    "scope": "Ideal clock inputs and real transistor PFD; nominal only."
+  },
+  {
+    "name": "tb_pfd_equal_phase",
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\digital\\benches\\tb_pfd_equal_phase.scs",
+    "bench_sha256": "62f75d4cbab3c6cd14cbc606dc1c53726ec423b37175a51c68b49427d45a6734",
+    "kind": "pfd",
+    "phase_ns": 0.0,
+    "ref_hz": 100000000.0,
+    "fb_hz": 100000000.0,
+    "measurement_begin_s": 2e-08,
+    "measurement_end_s": 9.5e-08,
+    "duration_s": 1e-07,
+    "scope": "Ideal clock inputs and real transistor PFD; nominal only."
+  },
+  {
+    "name": "tb_pfd_ref99_fb100",
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\digital\\benches\\tb_pfd_ref99_fb100.scs",
+    "bench_sha256": "c2ec90b20085823fa9f95b56f460ecf340ed62c23f70a5f23a96be87605ce0b4",
+    "kind": "pfd_frequency",
+    "phase_ns": null,
+    "ref_hz": 99000000.0,
+    "fb_hz": 100000000.0,
+    "measurement_begin_s": 5e-08,
+    "measurement_end_s": 4.9e-07,
+    "duration_s": 5e-07,
+    "scope": "Ideal clock inputs and real transistor PFD; nominal only."
+  },
+  {
+    "name": "tb_pfd_ref100_fb99",
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\digital\\benches\\tb_pfd_ref100_fb99.scs",
+    "bench_sha256": "01f2508128ee744bf7b540c8d011fade279a0cf95f027b07624df3136d35a11c",
+    "kind": "pfd_frequency",
+    "phase_ns": null,
+    "ref_hz": 100000000.0,
+    "fb_hz": 99000000.0,
+    "measurement_begin_s": 5e-08,
+    "measurement_end_s": 4.9e-07,
+    "duration_s": 5e-07,
+    "scope": "Ideal clock inputs and real transistor PFD; nominal only."
+  }
+]

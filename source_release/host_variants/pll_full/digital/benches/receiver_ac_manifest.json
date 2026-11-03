@@ -1,0 +1,41 @@
+[
+  {
+    "name": "tb_receiverac_c20_r1000000",
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\digital\\benches\\tb_receiverac_c20_r1000000.scs",
+    "bench_sha256": "2b23f6e083deeadb3e9e9ee69e916fc3192e7651a6b87e429750d8c2f1de692e",
+    "coupling_C_F": 2.0000000000000003e-14,
+    "bias_feedback_R_ohm": 1000000,
+    "input_each_total_width_um": 6.0,
+    "input_pair_total_width_um": 12.0,
+    "tail_nf": 12,
+    "tail_total_width_um": 30.0,
+    "R_load_ohm": 3000,
+    "scope": "Ideal diff clock into real RF receiver+AC selfbias CMOS+real divide32, nominal prelayout only"
+  },
+  {
+    "name": "tb_receiverac_c40_r1000000",
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\digital\\benches\\tb_receiverac_c40_r1000000.scs",
+    "bench_sha256": "f650eb23c1eea14f0e2e198c01afc214c77a04eba67e2dfaf642bd3258ac6c6c",
+    "coupling_C_F": 4.0000000000000006e-14,
+    "bias_feedback_R_ohm": 1000000,
+    "input_each_total_width_um": 6.0,
+    "input_pair_total_width_um": 12.0,
+    "tail_nf": 12,
+    "tail_total_width_um": 30.0,
+    "R_load_ohm": 3000,
+    "scope": "Ideal diff clock into real RF receiver+AC selfbias CMOS+real divide32, nominal prelayout only"
+  },
+  {
+    "name": "tb_receiverac_c40_r500000",
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\digital\\benches\\tb_receiverac_c40_r500000.scs",
+    "bench_sha256": "ed8d2892f2f34c064240a9c75c3118429e206e372594ab8bd7678bada37ba693",
+    "coupling_C_F": 4.0000000000000006e-14,
+    "bias_feedback_R_ohm": 500000,
+    "input_each_total_width_um": 6.0,
+    "input_pair_total_width_um": 12.0,
+    "tail_nf": 12,
+    "tail_total_width_um": 30.0,
+    "R_load_ohm": 3000,
+    "scope": "Ideal diff clock into real RF receiver+AC selfbias CMOS+real divide32, nominal prelayout only"
+  }
+]

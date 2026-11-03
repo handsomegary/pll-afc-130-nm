@@ -1,0 +1,80 @@
+[
+  {
+    "case_id": "tb_receiver_r5000_nf12_p3200",
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\digital\\benches\\tb_receiver_r5000_nf12_p3200.scs",
+    "name": "tb_receiver_r5000_nf12_p3200",
+    "source_sha256": "8fe40216d0e086d7cd531bd263ddbea370688ef0683501ad777318e0a3a34d45",
+    "R_load_ohm": 5000,
+    "tail_total_width_um": 30.0,
+    "tail_nf": 12,
+    "first_inverter_pmos_width_um": 3.2,
+    "input_each_total_width_um": 6.0,
+    "input_pair_total_width_um": 12.0,
+    "scope": "Ideal differential source into actual receiver+MOS divider; not loaded VCO"
+  },
+  {
+    "case_id": "tb_receiver_r6000_nf12_p3200",
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\digital\\benches\\tb_receiver_r6000_nf12_p3200.scs",
+    "name": "tb_receiver_r6000_nf12_p3200",
+    "source_sha256": "1d67466d41c08dd6102092fc2c411131e4a67c6d1e18a65e220ce0f89717e371",
+    "R_load_ohm": 6000,
+    "tail_total_width_um": 30.0,
+    "tail_nf": 12,
+    "first_inverter_pmos_width_um": 3.2,
+    "input_each_total_width_um": 6.0,
+    "input_pair_total_width_um": 12.0,
+    "scope": "Ideal differential source into actual receiver+MOS divider; not loaded VCO"
+  },
+  {
+    "case_id": "tb_receiver_r5000_nf12_p6400",
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\digital\\benches\\tb_receiver_r5000_nf12_p6400.scs",
+    "name": "tb_receiver_r5000_nf12_p6400",
+    "source_sha256": "5dd33c6695a1f5c91b9a5931334acf32defd4c4096f8012720dcbbe2656362a9",
+    "R_load_ohm": 5000,
+    "tail_total_width_um": 30.0,
+    "tail_nf": 12,
+    "first_inverter_pmos_width_um": 6.4,
+    "input_each_total_width_um": 6.0,
+    "input_pair_total_width_um": 12.0,
+    "scope": "Ideal differential source into actual receiver+MOS divider; not loaded VCO"
+  },
+  {
+    "case_id": "tb_receiver_r3000_nf20_p3200",
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\digital\\benches\\tb_receiver_r3000_nf20_p3200.scs",
+    "name": "tb_receiver_r3000_nf20_p3200",
+    "source_sha256": "057aa5fec954756351c92ac3da7000edf474818bd80a4000c7ad755a9a6f96d2",
+    "R_load_ohm": 3000,
+    "tail_total_width_um": 50.0,
+    "tail_nf": 20,
+    "first_inverter_pmos_width_um": 3.2,
+    "input_each_total_width_um": 6.0,
+    "input_pair_total_width_um": 12.0,
+    "scope": "Ideal differential source into actual receiver+MOS divider; not loaded VCO"
+  },
+  {
+    "case_id": "tb_receiver_r3000_nf24_p3200",
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\digital\\benches\\tb_receiver_r3000_nf24_p3200.scs",
+    "name": "tb_receiver_r3000_nf24_p3200",
+    "source_sha256": "9c122ded88b9f94f7b40449e14386004561829180fb8b63a13133be29a481d86",
+    "R_load_ohm": 3000,
+    "tail_total_width_um": 60.0,
+    "tail_nf": 24,
+    "first_inverter_pmos_width_um": 3.2,
+    "input_each_total_width_um": 6.0,
+    "input_pair_total_width_um": 12.0,
+    "scope": "Ideal differential source into actual receiver+MOS divider; not loaded VCO"
+  },
+  {
+    "case_id": "tb_receiver_r2500_nf24_p6400",
+    "path": "C:\\Users\\User\\Documents\\Codex\\2026-10-04\\new-chat\\work\\pll_full\\digital\\benches\\tb_receiver_r2500_nf24_p6400.scs",
+    "name": "tb_receiver_r2500_nf24_p6400",
+    "source_sha256": "7c31a2593289fd598ee6e6a75f3ead6ed1d9e5d5948d17b7c716e4c4fcf03418",
+    "R_load_ohm": 2500,
+    "tail_total_width_um": 60.0,
+    "tail_nf": 24,
+    "first_inverter_pmos_width_um": 6.4,
+    "input_each_total_width_um": 6.0,
+    "input_pair_total_width_um": 12.0,
+    "scope": "Ideal differential source into actual receiver+MOS divider; not loaded VCO"
+  }
+]

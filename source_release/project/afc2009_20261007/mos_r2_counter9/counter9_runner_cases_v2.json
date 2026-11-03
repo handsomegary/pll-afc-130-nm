@@ -1,0 +1,17 @@
+[
+  {
+    "name": "afc_counter9_gray_cdc_r2_prepared_v2",
+    "path": "@PROJECT_ROOT@/afc2009_20261007/mos_r2_counter9/counter9_gray_cdc_tb.scs",
+    "sha256": "ed75a6920ea355e3ad31c9005ff073ed1c7d491857b19d7119cfc6e5b7f90910",
+    "duration_s": 5.7e-06,
+    "maxstep_s": 1e-10,
+    "strobeperiod_s": 1e-10,
+    "counter9_manifest_sha256": "69e0a25b5a90ccb2b84c16db303548c8fdb2052918568c1ea5593871b397c8be",
+    "counter9_completion_policy_sha256": "eb664931de6b47400e37681feb75ed15586f252c47a7de4fd1f2abe59b38481b",
+    "mos_source_sha256": "35521452cdc051cc6dcdb2ab324949b9861735b0fad554b46c0acedf2d1c876c",
+    "fixed_R2_AFC_source_sha256": "45654975e7b53873559fd157955c1d8a922f40550fea81687dfd675fe9de4cc0",
+    "actual_status": "not_run",
+    "revision": "counter9-prepared-v2",
+    "scope": "Light-load 9-bit counter/CDC exercise only, not complete AFC."
+  }
+]

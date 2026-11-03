@@ -11,5 +11,6 @@ jobs:
         with:
           python-version: '3.12'
       - run: python tools/verify_repository.py
+      - run: python source_release/materialize.py verify
       - run: python tests/test_download.py
       - run: python tools/reproduce_saved_results.py
