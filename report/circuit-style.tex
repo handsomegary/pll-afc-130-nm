@@ -7,3 +7,15 @@
 \ctikzset{transistors/arrow pos=end}
 \ctikzset{amplifiers/scale=0.7}
 \ctikzset{blocks/scale=0.7}
+
+% Publication drawing profile: black circuits, bold Helvetica labels,
+% square functional blocks, and a separate, lighter wire weight.
+% Symbol proportions and MOS terminal arrows above follow the requested profile.
+\newcommand{\PLLfigurefont}{\sffamily\bfseries}
+\tikzset{every picture/.append style={line width=.60pt,
+  execute at begin picture={\PLLfigurefont}},
+  pll block/.style={draw=black,fill=white,line width=.85pt,
+    rounded corners=0pt,align=center,font=\PLLfigurefont\small},
+  pll group/.style={draw=none,fill=black!12},
+  pll wire/.style={draw=black,line width=.60pt}}
+\ctikzset{bipoles/thickness=1.25,tripoles/thickness=1.25}

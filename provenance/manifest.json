@@ -107,9 +107,10 @@
     {
       "path": "docs/architecture.md",
       "original_sha256": null,
-      "publication_sha256": "6aadf203517d1d8d2b49350fee5e501d660116110c0dcdd6ca17e4ff0ccc7e3b",
+      "publication_sha256": "61aed89957d335ea319a425a0be3f5bfabd392e283f9d86718112fefd4c322ef",
       "electrical_body_sha256": null,
-      "origin": "New English publication documentation, configuration or portable tool."
+      "origin": "New English publication documentation, configuration or portable tool.",
+      "packaging_change": "Shared monochrome CircuitikZ drawing profile and architecture illustration; electrical sources and historical results unchanged."
     },
     {
       "path": "docs/results.md",
@@ -219,31 +220,35 @@
     },
     {
       "path": "report/afc/device_cells.tex",
-      "publication_sha256": "3cc209431f6afc6de87a3780302897ea8da3d40cebd48ef7e2ef86a9756d44f2",
+      "publication_sha256": "5bd146f8ce79441e92fce7e4df741e046bb5564a14069ce0aabf645821754b5e",
       "original_sha256": null,
       "electrical_body_sha256": null,
-      "origin": "Source-derived design report, schematics and module atlas."
+      "origin": "Source-derived design report, schematics and module atlas.",
+      "packaging_change": "Shared monochrome CircuitikZ drawing profile and architecture illustration; electrical sources and historical results unchanged."
     },
     {
       "path": "report/afc/latch_and_clock.tex",
-      "publication_sha256": "ddc4841dd734d545c3640eec1598a9cd71b5436d54e31988ec1d909193a76cf0",
+      "publication_sha256": "8d2985e048e205b8f2eae5ee1e2ee3919237c38687c72b091ccd4e8aa9788ebc",
       "original_sha256": null,
       "electrical_body_sha256": null,
-      "origin": "Source-derived design report, schematics and module atlas."
+      "origin": "Source-derived design report, schematics and module atlas.",
+      "packaging_change": "Shared monochrome CircuitikZ drawing profile and architecture illustration; electrical sources and historical results unchanged."
     },
     {
       "path": "report/afc_modules.tex",
-      "publication_sha256": "dd4111a36fb3757f7912b88906307f33c05f649ebdc2d522d89129755f7cdbdc",
+      "publication_sha256": "891bc210f9cecfa04169ddfeab53f65df1355227233a3995b785604cafdda471",
       "original_sha256": null,
       "electrical_body_sha256": null,
-      "origin": "Source-derived design report, schematics and module atlas."
+      "origin": "Source-derived design report, schematics and module atlas.",
+      "packaging_change": "Shared monochrome CircuitikZ drawing profile and architecture illustration; electrical sources and historical results unchanged."
     },
     {
       "path": "report/analog_modules.tex",
-      "publication_sha256": "e95468f4c48cae0b418c3850d7912a9cb3294a9e2876bbd641d919581f02a117",
+      "publication_sha256": "cde5c41592e5726f54e632028886f8981e0d282aef08e7b34915323c3e2b2022",
       "original_sha256": null,
       "electrical_body_sha256": null,
-      "origin": "Source-derived design report, schematics and module atlas."
+      "origin": "Source-derived design report, schematics and module atlas.",
+      "packaging_change": "Shared monochrome CircuitikZ drawing profile and architecture illustration; electrical sources and historical results unchanged."
     },
     {
       "path": "report/atlas/catalog.json",
@@ -254,38 +259,43 @@
     },
     {
       "path": "report/atlas/draw_atlas.py",
-      "publication_sha256": "f976d65240b07d826aa122869a08a6dbfb7a2ef923403cbd61a1f302e66db5b3",
+      "publication_sha256": "28c5f8001bac870f5b62d08f7ffe80a8a02c32bdab082400c2153f3de2ff3f02",
       "original_sha256": null,
       "electrical_body_sha256": null,
-      "origin": "Source-derived design report, schematics and module atlas."
+      "origin": "Source-derived design report, schematics and module atlas.",
+      "packaging_change": "Shared monochrome CircuitikZ drawing profile and architecture illustration; electrical sources and historical results unchanged."
     },
     {
       "path": "report/atlas/gallery.tex",
-      "publication_sha256": "be275107389baa189184ac425c35bb93907e87a0276a952dfd7444cfbe0985c0",
+      "publication_sha256": "89f3a9e887a02e972594e4d16770a7d49ea4ef758606d53b4154762d85775c84",
       "original_sha256": null,
       "electrical_body_sha256": null,
-      "origin": "Source-derived design report, schematics and module atlas."
+      "origin": "Source-derived design report, schematics and module atlas.",
+      "packaging_change": "Shared monochrome CircuitikZ drawing profile and architecture illustration; electrical sources and historical results unchanged."
     },
     {
       "path": "report/atlas/README.md",
-      "publication_sha256": "915cc3915e5bf778dfc1c9a32721ed84162a6a4edc74ff64eac1e6449e28ad45",
+      "publication_sha256": "f82dd619a5d51c8371cc699a0cb36eee196d7bc2202391cbb8bbdba25ddce0c8",
       "original_sha256": null,
       "electrical_body_sha256": null,
-      "origin": "Source-derived design report, schematics and module atlas."
+      "origin": "Source-derived design report, schematics and module atlas.",
+      "packaging_change": "Shared monochrome CircuitikZ drawing profile and architecture illustration; electrical sources and historical results unchanged."
     },
     {
       "path": "report/historical_modules.tex",
-      "publication_sha256": "4aa38112d99216b394575368bfcdcd1556e8a3d0a29590adef4a0b333dc031cf",
+      "publication_sha256": "177d80f6a6d3e15d48533cd0f444a7145b668916b5c3a7f177076abd5d083414",
       "original_sha256": null,
       "electrical_body_sha256": null,
-      "origin": "Source-derived design report, schematics and module atlas."
+      "origin": "Source-derived design report, schematics and module atlas.",
+      "packaging_change": "Shared monochrome CircuitikZ drawing profile and architecture illustration; electrical sources and historical results unchanged."
     },
     {
       "path": "report/main.tex",
-      "publication_sha256": "64d04c6f2fe9516839b3c9fb03cee424544b05b6cb9d11c8768293c18b865904",
+      "publication_sha256": "b196fe4540168aaa9f0d9334c7487d04e3d4b5dd3bdbf80ab195e6ad3bde1cb9",
       "original_sha256": null,
       "electrical_body_sha256": null,
-      "origin": "Source-derived design report, schematics and module atlas."
+      "origin": "Source-derived design report, schematics and module atlas.",
+      "packaging_change": "Shared monochrome CircuitikZ drawing profile and architecture illustration; electrical sources and historical results unchanged."
     },
     {
       "path": "report/module-index.md",
@@ -296,31 +306,63 @@
     },
     {
       "path": "report/pll130-afc.pdf",
-      "publication_sha256": "93479e04bd07f68911cf4c9c40a6ff393e5374fa73b401166493f3a43948a30d",
+      "publication_sha256": "14de61916ea57611bae4c880f95dfa7bff7b3c1eeafa8e828b030f4c4f75b907",
       "original_sha256": null,
       "electrical_body_sha256": null,
-      "origin": "Source-derived design report, schematics and module atlas."
+      "origin": "Source-derived design report, schematics and module atlas.",
+      "packaging_change": "Shared monochrome CircuitikZ drawing profile and architecture illustration; electrical sources and historical results unchanged."
     },
     {
       "path": "report/README.md",
-      "publication_sha256": "9252b9c46acbad6343a641276c566108225ed70f0c8a258a07dcd21bbf4b50ee",
+      "publication_sha256": "c7ae38857a95320876df287f948668d07cb38f04cdeef732319463b2b4bb4145",
       "original_sha256": null,
       "electrical_body_sha256": null,
-      "origin": "Source-derived design report, schematics and module atlas."
+      "origin": "Source-derived design report, schematics and module atlas.",
+      "packaging_change": "Shared monochrome CircuitikZ drawing profile and architecture illustration; electrical sources and historical results unchanged."
     },
     {
       "path": "report/atlas/gallery.pdf",
-      "publication_sha256": "d04e6997882baa649e6ef3d986977c14c0fbe9a74597a0a51f89c7a795a5e96e",
+      "publication_sha256": "c9a93dd654b2b34944cde16b0fee53f431c46c1cbf6787a0f096a5fad4f0d339",
       "original_sha256": null,
       "electrical_body_sha256": null,
-      "origin": "Compiled American CircuitikZ transistor and subcircuit terminal atlas."
+      "origin": "Compiled American CircuitikZ transistor and subcircuit terminal atlas.",
+      "packaging_change": "Shared monochrome CircuitikZ drawing profile and architecture illustration; electrical sources and historical results unchanged."
     },
     {
       "path": "report/circuit-style.tex",
-      "publication_sha256": "8ef0adbc128b814ff8e73b7a7550ae7becb408ba14ae9f86c9d0bec8323f713b",
+      "publication_sha256": "35ff6386cc3fb06a618bf11293e356566b690d4bca4a965ccbc3188ddada43cd",
       "original_sha256": null,
       "electrical_body_sha256": null,
-      "origin": "Shared American CircuitikZ symbol settings for the report and standalone device drawings."
+      "origin": "Shared American CircuitikZ symbol settings for the report and standalone device drawings.",
+      "packaging_change": "Shared monochrome CircuitikZ drawing profile and architecture illustration; electrical sources and historical results unchanged."
+    },
+    {
+      "path": "docs/figures/system-architecture.svg",
+      "original_sha256": null,
+      "publication_sha256": "4cb8c064691011923b629715ed464701d4f452d7b7992dd7576a59b0fcc6fe2d",
+      "electrical_body_sha256": null,
+      "origin": "New shared American CircuitikZ architecture illustration or vector export tool; no circuit changes."
+    },
+    {
+      "path": "report/figures/system-architecture.tex",
+      "original_sha256": null,
+      "publication_sha256": "3199a56ea940d5358f6f54d38a801f891a369d9df9e1c6c4b0ce20f0fddde021",
+      "electrical_body_sha256": null,
+      "origin": "New shared American CircuitikZ architecture illustration or vector export tool; no circuit changes."
+    },
+    {
+      "path": "report/figures/system-architecture-standalone.tex",
+      "original_sha256": null,
+      "publication_sha256": "6cb9c6a1c9aceebcc88de71e1c0d402899f755507605afa308286d78fa2fe5b5",
+      "electrical_body_sha256": null,
+      "origin": "New shared American CircuitikZ architecture illustration or vector export tool; no circuit changes."
+    },
+    {
+      "path": "report/figures/render_architecture.py",
+      "original_sha256": null,
+      "publication_sha256": "769924dfcd81ec9e9c08c3d50e1ae46688f3ad1ca072582f6e94eb141bf6aebc",
+      "electrical_body_sha256": null,
+      "origin": "New shared American CircuitikZ architecture illustration or vector export tool; no circuit changes."
     }
   ],
   "publication_date": "2026-10-13",

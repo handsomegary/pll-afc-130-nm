@@ -11,7 +11,7 @@ measured loading and clock waveforms.
 
 \begin{figure*}[!t]
 \centering\resizebox{.90\textwidth}{!}{%
-\begin{circuitikz}[american,font=\small]
+\begin{circuitikz}[american,font=\PLLfigurefont\small]
 % Direct CML: positive input drives the negative output drain.
 \node[nmos] (hip) at (0,1.5) {}; \node[nmos,xscale=-1] (hin) at (2.8,1.5) {};
 \node[nmos] (ht) at (1.4,-.15) {};
@@ -54,7 +54,7 @@ measured loading and clock waveforms.
 
 \begin{figure*}[!t]
 \centering\resizebox{.80\textwidth}{!}{%
-\begin{circuitikz}[american,font=\small,
+\begin{circuitikz}[american,font=\PLLfigurefont\small,
  tx/.style={draw,align=center,inner sep=3pt,minimum width=1.8cm,minimum height=.58cm}]
 % Selector TG inputs are tied to named rail or mirror nodes.
 \node[tx] (ub) at (1.7,3.35) {TG, UP};

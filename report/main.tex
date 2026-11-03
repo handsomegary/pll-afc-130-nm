@@ -2,6 +2,8 @@
 \providecommand{\DoNotLoadEpstopdf}{}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern,amsmath,amssymb,graphicx,booktabs}
+\usepackage{mathptmx}
+\usepackage[scaled=.95]{helvet}
 \usepackage[american]{circuitikz}
 \input{circuit-style}
 \usepackage{pgfplots}
@@ -26,24 +28,8 @@ The starting 180\,nm project describes two gated counts, a numeric frequency err
 \section{Signal Path and Handoff}
 The physical feedback clock closes the analog loop and supplies the AFC measurement input (Fig.~\ref{fig:system}). During coarse search the pump inputs are disabled. Transmission gates connect CTRL and the midpoint of the filter branch to a common half-supply reservoir. Holding both nodes limits the initial voltage difference across the filter resistor at handoff. Once the controller accepts a band, it retains the code, releases the clamp and permits the PFD pulses to reach the pump.
 \begin{figure*}[!t]\centering
-\begin{circuitikz}[font=\small,blk/.style={draw,align=center,minimum height=9mm,minimum width=18mm},arr/.style={-{Latex[length=2mm]}}]
-\node[blk] (pfd) at (1.6,0) {PFD}; \node[blk] (cp) at (4.3,0) {Enable gates\\and pump};
-\node[blk] (lf) at (7.4,0) {Loop filter}; \node[blk] (vco) at (10.2,0) {Two-stage\\ring VCO};
-\node[blk] (rx) at (13.5,0) {AC receiver}; \node[blk] (div) at (12,-1.55) {CMOS $\div 32$};
-\node[blk] (afc) at (7.4,2) {Two-phase AFC\\and code register};
-\draw[arr] (-.25,0) node[left]{REF} -- (pfd.west); \draw[arr] (pfd) -- node[above,font=\tiny,align=center,inner sep=1pt]{UP\\DN} (cp);
-\draw[arr] (cp) -- (lf); \draw[arr] (lf) -- node[above,font=\scriptsize]{CTRL} (vco);
-\draw[arr] (vco) -- node[above,font=\scriptsize]{ring output} (rx);
-\draw[arr] (rx.south) |- (div.east); \draw[arr] (div.west) -| (pfd.south);
-\draw[arr] (.18,0) node[circ]{} |- (afc.west);
-\draw[arr] (afc.east) -| node[pos=.38,above,font=\scriptsize]{five-bit code} (vco.north);
-\draw[arr] (afc.south) -- node[right,font=\scriptsize]{hold} (lf.north);
-\draw[arr] (6.7,1.55) -- (6.7,1.02) -| (cp.north);
-\node[font=\scriptsize,anchor=south] at (5.3,1.04) {fine enable};
-\draw (8.5,-1.55) node[circ]{} -- ++(0,-.25) node[below,font=\scriptsize]{FB};
-\draw[arr] (8.1,2.95) node[above,font=\scriptsize]{FB} -- (8.1,2.45);
-\end{circuitikz}
-\caption{Selected PLL. Both FB labels identify the physical divided clock. AFC also supplies PFD reset. Each clamp connects one filter node to the half-supply reservoir.}\label{fig:system}\end{figure*}
+\resizebox{.98\textwidth}{!}{\input{figures/system-architecture}}
+\caption{Selected PLL and coarse-acquisition path. Equal REF, FB, control, CTRL and MID labels denote connected nets. Physical FB closes the fine loop; its gated copy clocks the AFC measurement. Each TG clamp connects one filter node to the half-supply reservoir. Filter values appear in Fig.~\ref{fig:apclamp}.}\label{fig:system}\end{figure*}
 \section{Acquisition Experiment}\label{sec:result}
 Spectre 18.1.0.077 simulated the selected netlist at the typical corner, 25\,$^\circ$C and 1.2\,V. The bench used ideal reference and bias sources, initial conditions for the ring and filter, a 4\,ps maximum integration step and a 40\,ps saved strobe. The deterministic 6.5\,$\mu$s observation contains 162\,501 points. Values below come from the archived runs \cite{evidence}.
 
@@ -56,10 +42,10 @@ Code & Lead & Lag & Feedback & Decision\\\midrule
 The first three decisions increased the coarse code. At code 30 the feedback count exceeded the lead count, so the last step selected 29. DONE rose at 3.850960\,$\mu$s and FineEnable at 3.870949\,$\mu$s. The final mean CTRL was 0.64750\,V and differential swing was 0.22705\,V peak to peak.
 
 \begin{figure}[!t]\centering\begin{tikzpicture}
-\begin{axis}[width=\columnwidth,height=4.6cm,xmin=0,xmax=6.5,ymin=2.1,ymax=3.6,xlabel={Time from simulation start ($\mu$s)},ylabel={$f_{\mathrm{win}}$ (GHz)},tick label style={font=\footnotesize},label style={font=\footnotesize},grid=major,legend style={font=\scriptsize,at={(.97,.04)},anchor=south east}]
-\addplot[blue!65!black,thick] table[x=time_us,y=on_GHz]{acquisition.dat};\addlegendentry{AFC enabled}
-\addplot[black,dashed,thick] table[x=time_us,y=off_GHz]{acquisition.dat};\addlegendentry{Fixed code 16}
-\addplot[gray,densely dotted,forget plot] coordinates {(0,3.2) (6.5,3.2)};
+\begin{axis}[width=\columnwidth,height=4.6cm,xmin=0,xmax=6.5,ymin=2.1,ymax=3.6,xlabel={Time from simulation start ($\mu$s)},ylabel={$f_{\mathrm{win}}$ (GHz)},tick label style={font=\PLLfigurefont\footnotesize},label style={font=\PLLfigurefont\footnotesize},axis line style={line width=.8pt},tick style={black,line width=.6pt},grid=major,major grid style={black!35,densely dotted},legend style={font=\PLLfigurefont\scriptsize,draw=black,fill=white,at={(.97,.04)},anchor=south east}]
+\addplot[black,line width=1pt] table[x=time_us,y=on_GHz]{acquisition.dat};\addlegendentry{AFC enabled}
+\addplot[black,dashed,line width=.8pt] table[x=time_us,y=off_GHz]{acquisition.dat};\addlegendentry{Fixed code 16}
+\addplot[black!65,densely dotted,forget plot] coordinates {(0,3.2) (6.5,3.2)};
 \end{axis}\end{tikzpicture}
 \caption{Output frequency at the centers of all 129 complete windows in each archived trace. The dotted line marks 3.2\,GHz.}\label{fig:freq}\end{figure}
 \begin{table}[!t]\centering\caption{Nominal closed-loop outcomes}
@@ -84,6 +70,6 @@ The selected controller reached code 29 and acquired sustained nominal lock 1.11
 \begin{thebibliography}{00}
 \bibitem{student} \emph{A 3.2 GHz Fast-Locking and Low-Jitter PLL with Automatic Frequency Calibration Technique in 0.18-$\mu$m CMOS Technology}, supplied undergraduate design report, Figs.~1, 2, 4, 7, 9, 11 and 12.
 \bibitem{jeong} C.-Y. Jeong, D.-H. Choi, and C. Yoo, \emph{A Fast Automatic Frequency Calibration (AFC) Scheme for Phase-Locked Loop (PLL) Frequency Synthesizer}, Proc. IEEE Radio Frequency Integrated Circuits Symp., 2009, pp.~583--586.
-\bibitem{evidence} PLL130-AFC Project, \emph{Nominal Transient and Acquisition Evidence}, Oct. 2026. \url{https://github.com/handsomegary/pll130-afc}.
+\bibitem{evidence} PLL130-AFC Project, \emph{Nominal Transient and Acquisition Evidence}, Oct. 2026. \url{https://github.com/handsomegary/pll-afc-130-nm}.
 \end{thebibliography}
 \end{document}

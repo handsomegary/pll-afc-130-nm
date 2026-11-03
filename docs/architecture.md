@@ -2,24 +2,9 @@
 
 The PLL separates coarse frequency selection from analog fine tuning. During AFC, a five-bit current-bank code selects the ring VCO's band while two MOS transmission gates hold the loop-filter nodes near half the supply. After a tested candidate is accepted, the code remains fixed and the analog loop performs final acquisition.
 
-```mermaid
-flowchart LR
-    REF[100 MHz reference] --> PFD[Phase-frequency detector]
-    PFD --> EN[Charge-pump enable gates]
-    EN --> CP[Drain-switched charge pump]
-    CP --> LPF[Passive loop filter]
-    LPF --> VCO[Two-stage differential ring VCO]
-    VCO --> RX[Differential receiver]
-    RX --> DIV[Divide by 32]
-    DIV --> PFD
-    REF --> AFC[MOS AFC controller]
-    DIV --> AFC
-    AFC --> BANK[Five-bit current bank]
-    BANK --> VCO
-    AFC --> EN
-    AFC --> HOLD[Half-supply clamp switches]
-    HOLD --> LPF
-```
+![PLL architecture with a physical divide-by-32 feedback loop, explicit passive filter, current-bank tuning, and a separately gated AFC measurement input.](figures/system-architecture.svg)
+
+The gray enclosure contains the AFC logic. Equal REF, FB, and control labels denote connected nets. The two hold transmission gates connect CTRL and MID to the common 0.6 V reservoir during calibration. The loop-filter symbols use the American CircuitikZ convention. This vector figure shares its [editable source](../report/figures/system-architecture.tex) with the IEEE report. Regenerate it with `python report/figures/render_architecture.py` from the repository root, with LaTeX and Poppler installed.
 
 The receiver converts the VCO waveform into the signal required by the physical divider. The feedback signal used for analog-loop evaluation is the actual divided VCO output. The AFC uses a separately gated version of that signal for its measurement epoch.
 

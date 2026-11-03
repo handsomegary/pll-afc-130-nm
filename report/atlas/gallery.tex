@@ -1,7 +1,9 @@
 \documentclass[10pt]{article}
 \usepackage[landscape,a4paper,margin=1.4cm]{geometry}
 \usepackage[T1]{fontenc}
-\usepackage{lmodern,graphicx,array,url}
+\providecommand{\DoNotLoadEpstopdf}{}
+\usepackage{lmodern,graphicx,array,url,mathptmx}
+\usepackage[scaled=.95]{helvet}
 \usepackage[american]{circuitikz}
 % Shared drawing settings; draw_atlas.py embeds these in standalone exports.
 \ctikzset{transistors/scale=0.8, resistors/scale=0.5, capacitors/scale=0.5, sources/scale=0.6}
@@ -12,6 +14,18 @@
 \ctikzset{transistors/arrow pos=end}
 \ctikzset{amplifiers/scale=0.7}
 \ctikzset{blocks/scale=0.7}
+
+% Publication drawing profile: black circuits, bold Helvetica labels,
+% square functional blocks, and a separate, lighter wire weight.
+% Symbol proportions and MOS terminal arrows above follow the requested profile.
+\newcommand{\PLLfigurefont}{\sffamily\bfseries}
+\tikzset{every picture/.append style={line width=.60pt,
+  execute at begin picture={\PLLfigurefont}},
+  pll block/.style={draw=black,fill=white,line width=.85pt,
+    rounded corners=0pt,align=center,font=\PLLfigurefont\small},
+  pll group/.style={draw=none,fill=black!12},
+  pll wire/.style={draw=black,line width=.60pt}}
+\ctikzset{bipoles/thickness=1.25,tripoles/thickness=1.25}
 \pagestyle{plain}
 \setlength{\parindent}{0pt}
 \urlstyle{tt}
@@ -26,7 +40,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{1.\quad \texttt{MN3}}\quad\texttt{n12}\hfill source line 10
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N18};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N13};
@@ -41,7 +55,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{2.\quad \texttt{MN4}}\quad\texttt{n12}\hfill source line 11
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N18};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N15};
@@ -56,7 +70,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{3.\quad \texttt{MP5}}\quad\texttt{p12}\hfill source line 12
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[pmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,-.32) node[right] {\tiny N18};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N13};
@@ -71,7 +85,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{4.\quad \texttt{MP6}}\quad\texttt{p12}\hfill source line 13
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[pmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,-.32) node[right] {\tiny N19};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N15};
@@ -92,7 +106,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{1.\quad \texttt{MN3}}\quad\texttt{n12}\hfill source line 9
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N18};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N13};
@@ -107,7 +121,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{2.\quad \texttt{MN4}}\quad\texttt{n12}\hfill source line 10
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N18};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N15};
@@ -122,7 +136,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{3.\quad \texttt{MP5}}\quad\texttt{p12}\hfill source line 11
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[pmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,-.32) node[right] {\tiny N18};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N13};
@@ -137,7 +151,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{4.\quad \texttt{MP6}}\quad\texttt{p12}\hfill source line 12
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[pmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,-.32) node[right] {\tiny N19};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N15};
@@ -158,7 +172,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{1.\quad \texttt{MN3}}\quad\texttt{n12}\hfill source line 11
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N18};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N13};
@@ -173,7 +187,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{2.\quad \texttt{MN4}}\quad\texttt{n12}\hfill source line 12
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N18};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N15};
@@ -188,7 +202,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{3.\quad \texttt{MP5}}\quad\texttt{p12}\hfill source line 13
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[pmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,-.32) node[right] {\tiny N18};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N13};
@@ -203,7 +217,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{4.\quad \texttt{MP6}}\quad\texttt{p12}\hfill source line 14
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[pmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,-.32) node[right] {\tiny N19};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N15};
@@ -224,7 +238,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{1.\quad \texttt{XNAND}}\quad\texttt{nand2}\hfill source line 45
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,1.1200);
 \draw (0.00,0.870) -- (-0.32,0.870) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.870) {vdd};
@@ -245,7 +259,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{2.\quad \texttt{XINV}}\quad\texttt{inv}\hfill source line 46
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,0.8000);
 \draw (0.00,0.550) -- (-0.32,0.550) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.550) {vdd};
@@ -270,7 +284,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{1.\quad \texttt{XINV0}}\quad\texttt{inv}\hfill source line 49
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,0.8000);
 \draw (0.00,0.550) -- (-0.32,0.550) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.550) {vdd};
@@ -289,7 +303,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{2.\quad \texttt{XINV1}}\quad\texttt{inv}\hfill source line 50
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,0.8000);
 \draw (0.00,0.550) -- (-0.32,0.550) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.550) {vdd};
@@ -314,7 +328,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{1.\quad \texttt{XINP}}\quad\texttt{n12\_ckt\_rf}\hfill source line 195
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N7};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N3};
@@ -329,7 +343,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{2.\quad \texttt{XINN}}\quad\texttt{n12\_ckt\_rf}\hfill source line 196
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N6};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N4};
@@ -344,7 +358,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{3.\quad \texttt{XTAIL}}\quad\texttt{n12\_ckt\_rf}\hfill source line 197
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N8};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N5};
@@ -359,7 +373,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{4.\quad \texttt{RXP}}\quad\texttt{resistor}\hfill source line 198
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[left]{\tiny N6} to[R] (2.3,0) node[right]{\tiny N1};
 \end{circuitikz}
 \par\raggedright\footnotesize \textbf{1}~N6~=~\texttt{op} \quad \textbf{2}~N1~=~\texttt{vdd}\par
@@ -376,7 +390,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{5.\quad \texttt{RXN}}\quad\texttt{resistor}\hfill source line 199
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[left]{\tiny N7} to[R] (2.3,0) node[right]{\tiny N1};
 \end{circuitikz}
 \par\raggedright\footnotesize \textbf{1}~N7~=~\texttt{on} \quad \textbf{2}~N1~=~\texttt{vdd}\par
@@ -393,7 +407,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{1.\quad \texttt{MN3}}\quad\texttt{n12}\hfill source line 6
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N6};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N7};
@@ -408,7 +422,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{2.\quad \texttt{MN4}}\quad\texttt{n12}\hfill source line 7
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N8};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N9};
@@ -423,7 +437,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{3.\quad \texttt{MP5}}\quad\texttt{p12}\hfill source line 8
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[pmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,-.32) node[right] {\tiny N6};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N7};
@@ -438,7 +452,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{4.\quad \texttt{MP6}}\quad\texttt{p12}\hfill source line 9
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[pmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,-.32) node[right] {\tiny N6};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N9};
@@ -459,7 +473,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{1.\quad \texttt{IREF}}\quad\texttt{isource}\hfill source line 59
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[left]{\tiny N1} to[I] (2.3,0) node[right]{\tiny N3};
 \end{circuitikz}
 \par\raggedright\footnotesize \textbf{1}~N1~=~\texttt{vdd} \quad \textbf{2}~N3~=~\texttt{bn}\par
@@ -470,7 +484,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{2.\quad \texttt{MNREF}}\quad\texttt{n12}\hfill source line 60
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N3};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N3};
@@ -485,7 +499,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{3.\quad \texttt{MNPMIRROR}}\quad\texttt{n12}\hfill source line 61
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N4};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N3};
@@ -500,7 +514,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{4.\quad \texttt{MPREF}}\quad\texttt{p12}\hfill source line 62
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[pmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,-.32) node[right] {\tiny N4};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N4};
@@ -521,7 +535,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{1.\quad \texttt{MN}}\quad\texttt{n12}\hfill source line 35
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N4};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N1};
@@ -536,7 +550,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{2.\quad \texttt{MP}}\quad\texttt{p12}\hfill source line 36
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[pmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,-.32) node[right] {\tiny N4};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N2};
@@ -557,7 +571,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{1.\quad \texttt{MN}}\quad\texttt{n12}\hfill source line 21
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N4};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N3};
@@ -572,7 +586,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{2.\quad \texttt{MP}}\quad\texttt{p12}\hfill source line 22
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[pmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,-.32) node[right] {\tiny N4};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N3};
@@ -593,7 +607,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{1.\quad \texttt{MN1}}\quad\texttt{n12}\hfill source line 35
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N5};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N3};
@@ -608,7 +622,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{2.\quad \texttt{MN2}}\quad\texttt{n12}\hfill source line 36
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N6};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N4};
@@ -623,7 +637,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{3.\quad \texttt{MP1}}\quad\texttt{p12}\hfill source line 37
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[pmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,-.32) node[right] {\tiny N5};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N3};
@@ -638,7 +652,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{4.\quad \texttt{MP2}}\quad\texttt{p12}\hfill source line 38
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[pmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,-.32) node[right] {\tiny N5};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N4};
@@ -659,7 +673,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{1.\quad \texttt{MN1}}\quad\texttt{n12}\hfill source line 29
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N5};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N3};
@@ -674,7 +688,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{2.\quad \texttt{MN2}}\quad\texttt{n12}\hfill source line 30
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N5};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N4};
@@ -689,7 +703,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{3.\quad \texttt{MP1}}\quad\texttt{p12}\hfill source line 31
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[pmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,-.32) node[right] {\tiny N5};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N3};
@@ -704,7 +718,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{4.\quad \texttt{MP2}}\quad\texttt{p12}\hfill source line 32
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[pmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,-.32) node[right] {\tiny N6};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N4};
@@ -725,7 +739,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{1.\quad \texttt{XNOR}}\quad\texttt{nor2}\hfill source line 41
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,1.1200);
 \draw (0.00,0.870) -- (-0.32,0.870) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.870) {vdd};
@@ -746,7 +760,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{2.\quad \texttt{XINV}}\quad\texttt{inv}\hfill source line 42
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,0.8000);
 \draw (0.00,0.550) -- (-0.32,0.550) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.550) {vdd};
@@ -771,7 +785,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{1.\quad \texttt{XN}}\quad\texttt{pll130\_nand2}\hfill source line 31
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,1.1200);
 \draw (0.00,0.870) -- (-0.32,0.870) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.870) {vdd};
@@ -792,7 +806,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{2.\quad \texttt{XI}}\quad\texttt{pll130\_inv}\hfill source line 32
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,0.8000);
 \draw (0.00,0.550) -- (-0.32,0.550) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.550) {vdd};
@@ -817,7 +831,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{1.\quad \texttt{IREF}}\quad\texttt{isource}\hfill source line 15
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[left]{\tiny N1} to[I] (2.3,0) node[right]{\tiny N6};
 \end{circuitikz}
 \par\raggedright\footnotesize \textbf{1}~N1~=~\texttt{vdd} \quad \textbf{2}~N6~=~\texttt{bncp}\par
@@ -828,7 +842,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{2.\quad \texttt{MNREF}}\quad\texttt{n12}\hfill source line 16
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N6};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N6};
@@ -843,7 +857,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{3.\quad \texttt{MNPMIRROR}}\quad\texttt{n12}\hfill source line 17
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N7};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N6};
@@ -858,7 +872,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{4.\quad \texttt{MPREF}}\quad\texttt{p12}\hfill source line 18
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[pmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,-.32) node[right] {\tiny N7};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N7};
@@ -879,7 +893,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{5.\quad \texttt{XUI}}\quad\texttt{pll130\_cpd\_inv}\hfill source line 19
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,0.8000);
 \draw (0.00,0.550) -- (-0.32,0.550) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.550) {vdd};
@@ -898,7 +912,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{6.\quad \texttt{MPUP}}\quad\texttt{p12}\hfill source line 21
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[pmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,-.32) node[right] {\tiny N9};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N7};
@@ -913,7 +927,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{7.\quad \texttt{MPUSW}}\quad\texttt{p12}\hfill source line 22
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[pmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,-.32) node[right] {\tiny N5};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N8};
@@ -928,7 +942,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{8.\quad \texttt{MNDN}}\quad\texttt{n12}\hfill source line 23
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N10};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N6};
@@ -949,7 +963,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{9.\quad \texttt{MNDSW}}\quad\texttt{n12}\hfill source line 24
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N5};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N4};
@@ -970,7 +984,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{1.\quad \texttt{MN}}\quad\texttt{n12}\hfill source line 8
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N4};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N3};
@@ -985,7 +999,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{2.\quad \texttt{MP}}\quad\texttt{p12}\hfill source line 9
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[pmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,-.32) node[right] {\tiny N4};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N3};
@@ -1006,7 +1020,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{1.\quad \texttt{IREF}}\quad\texttt{isource}\hfill source line 15
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[left]{\tiny N1} to[I] (2.3,0) node[right]{\tiny N6};
 \end{circuitikz}
 \par\raggedright\footnotesize \textbf{1}~N1~=~\texttt{vdd} \quad \textbf{2}~N6~=~\texttt{bncp}\par
@@ -1017,7 +1031,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{2.\quad \texttt{MNREF}}\quad\texttt{n12}\hfill source line 16
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N6};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N6};
@@ -1032,7 +1046,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{3.\quad \texttt{MNPMIRROR}}\quad\texttt{n12}\hfill source line 17
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N7};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N6};
@@ -1047,7 +1061,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{4.\quad \texttt{MPREF}}\quad\texttt{p12}\hfill source line 18
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[pmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,-.32) node[right] {\tiny N7};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N7};
@@ -1068,7 +1082,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{5.\quad \texttt{XUPINV}}\quad\texttt{pll130\_cp\_inv}\hfill source line 20
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,0.8000);
 \draw (0.00,0.550) -- (-0.32,0.550) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.550) {vdd};
@@ -1087,7 +1101,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{6.\quad \texttt{XDNINV}}\quad\texttt{pll130\_cp\_inv}\hfill source line 21
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,0.8000);
 \draw (0.00,0.550) -- (-0.32,0.550) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.550) {vdd};
@@ -1106,7 +1120,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{7.\quad \texttt{MNUPBIAS}}\quad\texttt{n12}\hfill source line 24
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N10};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N3};
@@ -1121,7 +1135,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{8.\quad \texttt{MPUPBIAS}}\quad\texttt{p12}\hfill source line 25
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[pmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,-.32) node[right] {\tiny N10};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N8};
@@ -1142,7 +1156,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{9.\quad \texttt{MNUPRAIL}}\quad\texttt{n12}\hfill source line 26
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N10};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N8};
@@ -1157,7 +1171,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{10.\quad \texttt{MPUPRAIL}}\quad\texttt{p12}\hfill source line 27
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[pmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,-.32) node[right] {\tiny N10};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N3};
@@ -1172,7 +1186,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{11.\quad \texttt{MPUP}}\quad\texttt{p12}\hfill source line 28
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[pmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,-.32) node[right] {\tiny N5};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N10};
@@ -1187,7 +1201,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{12.\quad \texttt{MNDNBIAS}}\quad\texttt{n12}\hfill source line 31
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N11};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N4};
@@ -1208,7 +1222,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{13.\quad \texttt{MPDNBIAS}}\quad\texttt{p12}\hfill source line 32
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[pmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,-.32) node[right] {\tiny N11};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N9};
@@ -1223,7 +1237,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{14.\quad \texttt{MNDNRAIL}}\quad\texttt{n12}\hfill source line 33
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N11};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N9};
@@ -1238,7 +1252,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{15.\quad \texttt{MPDNRAIL}}\quad\texttt{p12}\hfill source line 34
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[pmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,-.32) node[right] {\tiny N11};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N4};
@@ -1253,7 +1267,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{16.\quad \texttt{MNDN}}\quad\texttt{n12}\hfill source line 35
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N5};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N11};
@@ -1274,7 +1288,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{1.\quad \texttt{MN}}\quad\texttt{n12}\hfill source line 8
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N4};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N3};
@@ -1289,7 +1303,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{2.\quad \texttt{MP}}\quad\texttt{p12}\hfill source line 9
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[pmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,-.32) node[right] {\tiny N4};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N3};
@@ -1310,7 +1324,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{1.\quad \texttt{XCLK}}\quad\texttt{pll130\_inv}\hfill source line 83
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,0.8000);
 \draw (0.00,0.550) -- (-0.32,0.550) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.550) {vdd};
@@ -1329,7 +1343,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{2.\quad \texttt{XRST}}\quad\texttt{pll130\_inv}\hfill source line 84
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,0.8000);
 \draw (0.00,0.550) -- (-0.32,0.550) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.550) {vdd};
@@ -1348,7 +1362,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{3.\quad \texttt{XL}}\quad\texttt{pll130\_and2}\hfill source line 85
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,1.1200);
 \draw (0.00,0.870) -- (-0.32,0.870) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.870) {vdd};
@@ -1369,7 +1383,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{4.\quad \texttt{XH}}\quad\texttt{pll130\_and2}\hfill source line 86
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,1.1200);
 \draw (0.00,0.870) -- (-0.32,0.870) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.870) {vdd};
@@ -1396,7 +1410,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{5.\quad \texttt{XLN}}\quad\texttt{pll130\_inv}\hfill source line 87
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,0.8000);
 \draw (0.00,0.550) -- (-0.32,0.550) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.550) {vdd};
@@ -1415,7 +1429,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{6.\quad \texttt{XHN}}\quad\texttt{pll130\_inv}\hfill source line 88
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,0.8000);
 \draw (0.00,0.550) -- (-0.32,0.550) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.550) {vdd};
@@ -1434,7 +1448,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{7.\quad \texttt{XM}}\quad\texttt{pll130\_latch}\hfill source line 89
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,1.7600);
 \draw (0.00,1.510) -- (-0.32,1.510) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,1.510) {vdd};
@@ -1465,7 +1479,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{8.\quad \texttt{XS}}\quad\texttt{pll130\_latch}\hfill source line 90
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,1.7600);
 \draw (0.00,1.510) -- (-0.32,1.510) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,1.510) {vdd};
@@ -1502,7 +1516,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{1.\quad \texttt{XF}}\quad\texttt{pll130\_dff}\hfill source line 94
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,1.4400);
 \draw (0.00,1.190) -- (-0.32,1.190) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,1.190) {vdd};
@@ -1533,7 +1547,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{1.\quad \texttt{XD0}}\quad\texttt{pll130\_div2}\hfill source line 100
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,1.1200);
 \draw (0.00,0.870) -- (-0.32,0.870) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.870) {vdd};
@@ -1556,7 +1570,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{2.\quad \texttt{XD1}}\quad\texttt{pll130\_div2}\hfill source line 101
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,1.1200);
 \draw (0.00,0.870) -- (-0.32,0.870) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.870) {vdd};
@@ -1579,7 +1593,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{3.\quad \texttt{XD2}}\quad\texttt{pll130\_div2}\hfill source line 102
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,1.1200);
 \draw (0.00,0.870) -- (-0.32,0.870) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.870) {vdd};
@@ -1602,7 +1616,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{4.\quad \texttt{XD3}}\quad\texttt{pll130\_div2}\hfill source line 103
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,1.1200);
 \draw (0.00,0.870) -- (-0.32,0.870) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.870) {vdd};
@@ -1631,7 +1645,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{5.\quad \texttt{XD4}}\quad\texttt{pll130\_div2}\hfill source line 104
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,1.1200);
 \draw (0.00,0.870) -- (-0.32,0.870) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.870) {vdd};
@@ -1660,7 +1674,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{1.\quad \texttt{MN}}\quad\texttt{n12}\hfill source line 10
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N4};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N3};
@@ -1675,7 +1689,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{2.\quad \texttt{MP}}\quad\texttt{p12}\hfill source line 11
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[pmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,-.32) node[right] {\tiny N4};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N3};
@@ -1696,7 +1710,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{1.\quad \texttt{XIN}}\quad\texttt{pll130\_tg}\hfill source line 72
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,1.1200);
 \draw (0.00,0.870) -- (-0.32,0.870) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.870) {vdd};
@@ -1719,7 +1733,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{2.\quad \texttt{XFB}}\quad\texttt{pll130\_tg}\hfill source line 73
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,1.1200);
 \draw (0.00,0.870) -- (-0.32,0.870) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.870) {vdd};
@@ -1742,7 +1756,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{3.\quad \texttt{XINV0}}\quad\texttt{pll130\_inv}\hfill source line 74
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,0.8000);
 \draw (0.00,0.550) -- (-0.32,0.550) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.550) {vdd};
@@ -1761,7 +1775,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{4.\quad \texttt{XINV1}}\quad\texttt{pll130\_inv}\hfill source line 75
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,0.8000);
 \draw (0.00,0.550) -- (-0.32,0.550) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.550) {vdd};
@@ -1786,7 +1800,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{5.\quad \texttt{MRST}}\quad\texttt{n12}\hfill source line 76
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N11};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N8};
@@ -1807,7 +1821,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{1.\quad \texttt{MN0}}\quad\texttt{n12}\hfill source line 16
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N5};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N3};
@@ -1822,7 +1836,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{2.\quad \texttt{MN1}}\quad\texttt{n12}\hfill source line 17
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N6};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N4};
@@ -1837,7 +1851,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{3.\quad \texttt{MP0}}\quad\texttt{p12}\hfill source line 18
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[pmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,-.32) node[right] {\tiny N5};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N3};
@@ -1852,7 +1866,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{4.\quad \texttt{MP1}}\quad\texttt{p12}\hfill source line 19
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[pmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,-.32) node[right] {\tiny N5};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N4};
@@ -1873,7 +1887,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{1.\quad \texttt{MN0}}\quad\texttt{n12}\hfill source line 24
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N5};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N3};
@@ -1888,7 +1902,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{2.\quad \texttt{MN1}}\quad\texttt{n12}\hfill source line 25
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N5};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N4};
@@ -1903,7 +1917,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{3.\quad \texttt{MP0}}\quad\texttt{p12}\hfill source line 26
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[pmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,-.32) node[right] {\tiny N5};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N3};
@@ -1918,7 +1932,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{4.\quad \texttt{MP1}}\quad\texttt{p12}\hfill source line 27
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[pmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,-.32) node[right] {\tiny N6};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N4};
@@ -1939,7 +1953,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{1.\quad \texttt{XN}}\quad\texttt{pll130\_nor2}\hfill source line 36
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,1.1200);
 \draw (0.00,0.870) -- (-0.32,0.870) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.870) {vdd};
@@ -1960,7 +1974,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{2.\quad \texttt{XI}}\quad\texttt{pll130\_inv}\hfill source line 37
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,0.8000);
 \draw (0.00,0.550) -- (-0.32,0.550) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.550) {vdd};
@@ -1985,7 +1999,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{1.\quad \texttt{XU}}\quad\texttt{pll130\_pfd\_tspc}\hfill source line 53
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,1.1200);
 \draw (0.00,0.870) -- (-0.32,0.870) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.870) {vdd};
@@ -2006,7 +2020,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{2.\quad \texttt{XD}}\quad\texttt{pll130\_pfd\_tspc}\hfill source line 54
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,1.1200);
 \draw (0.00,0.870) -- (-0.32,0.870) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.870) {vdd};
@@ -2027,7 +2041,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{3.\quad \texttt{XN}}\quad\texttt{pll130\_nor2}\hfill source line 55
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,1.1200);
 \draw (0.00,0.870) -- (-0.32,0.870) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.870) {vdd};
@@ -2048,7 +2062,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{4.\quad \texttt{XI0}}\quad\texttt{pll130\_inv}\hfill source line 56
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,0.8000);
 \draw (0.00,0.550) -- (-0.32,0.550) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.550) {vdd};
@@ -2073,7 +2087,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{5.\quad \texttt{XI1}}\quad\texttt{pll130\_inv}\hfill source line 57
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,0.8000);
 \draw (0.00,0.550) -- (-0.32,0.550) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.550) {vdd};
@@ -2092,7 +2106,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{6.\quad \texttt{XRST}}\quad\texttt{pll130\_or2}\hfill source line 58
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,1.1200);
 \draw (0.00,0.870) -- (-0.32,0.870) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.870) {vdd};
@@ -2113,7 +2127,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{7.\quad \texttt{XIU}}\quad\texttt{pll130\_inv}\hfill source line 59
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,0.8000);
 \draw (0.00,0.550) -- (-0.32,0.550) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.550) {vdd};
@@ -2132,7 +2146,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{8.\quad \texttt{XID}}\quad\texttt{pll130\_inv}\hfill source line 60
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,0.8000);
 \draw (0.00,0.550) -- (-0.32,0.550) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.550) {vdd};
@@ -2157,7 +2171,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{1.\quad \texttt{MP0}}\quad\texttt{p12}\hfill source line 44
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[pmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,-.32) node[right] {\tiny N6};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N4};
@@ -2172,7 +2186,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{2.\quad \texttt{MP1}}\quad\texttt{p12}\hfill source line 45
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[pmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,-.32) node[right] {\tiny N7};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N3};
@@ -2187,7 +2201,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{3.\quad \texttt{MN0}}\quad\texttt{n12}\hfill source line 46
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N7};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N4};
@@ -2202,7 +2216,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{4.\quad \texttt{MP2}}\quad\texttt{p12}\hfill source line 47
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[pmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,-.32) node[right] {\tiny N5};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N7};
@@ -2223,7 +2237,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{5.\quad \texttt{MN1}}\quad\texttt{n12}\hfill source line 48
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N5};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N3};
@@ -2238,7 +2252,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{6.\quad \texttt{MN2}}\quad\texttt{n12}\hfill source line 49
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N8};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N7};
@@ -2259,7 +2273,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{1.\quad \texttt{XIP}}\quad\texttt{n12\_ckt\_rf}\hfill source line 114
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N8};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N4};
@@ -2274,7 +2288,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{2.\quad \texttt{XIN}}\quad\texttt{n12\_ckt\_rf}\hfill source line 115
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N7};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N5};
@@ -2289,7 +2303,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{3.\quad \texttt{XT}}\quad\texttt{n12\_ckt\_rf}\hfill source line 116
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N9};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N3};
@@ -2304,7 +2318,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{4.\quad \texttt{RP}}\quad\texttt{resistor}\hfill source line 117
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[left]{\tiny N7} to[R] (2.3,0) node[right]{\tiny N1};
 \end{circuitikz}
 \par\raggedright\footnotesize \textbf{1}~N7~=~\texttt{rxp} \quad \textbf{2}~N1~=~\texttt{vdd}\par
@@ -2321,7 +2335,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{5.\quad \texttt{RN}}\quad\texttt{resistor}\hfill source line 118
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[left]{\tiny N8} to[R] (2.3,0) node[right]{\tiny N1};
 \end{circuitikz}
 \par\raggedright\footnotesize \textbf{1}~N8~=~\texttt{rxn} \quad \textbf{2}~N1~=~\texttt{vdd}\par
@@ -2332,7 +2346,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{6.\quad \texttt{XI0}}\quad\texttt{pll130\_inv}\hfill source line 119
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,0.8000);
 \draw (0.00,0.550) -- (-0.32,0.550) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.550) {vdd};
@@ -2351,7 +2365,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{7.\quad \texttt{XI1}}\quad\texttt{pll130\_inv}\hfill source line 120
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,0.8000);
 \draw (0.00,0.550) -- (-0.32,0.550) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.550) {vdd};
@@ -2376,7 +2390,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{1.\quad \texttt{XIP}}\quad\texttt{n12\_ckt\_rf}\hfill source line 9
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N8};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N4};
@@ -2391,7 +2405,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{2.\quad \texttt{XIN}}\quad\texttt{n12\_ckt\_rf}\hfill source line 10
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N7};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N5};
@@ -2406,7 +2420,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{3.\quad \texttt{XT}}\quad\texttt{n12\_ckt\_rf}\hfill source line 11
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N9};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N3};
@@ -2421,7 +2435,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{4.\quad \texttt{RP}}\quad\texttt{resistor}\hfill source line 12
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[left]{\tiny N7} to[R] (2.3,0) node[right]{\tiny N1};
 \end{circuitikz}
 \par\raggedright\footnotesize \textbf{1}~N7~=~\texttt{rxp} \quad \textbf{2}~N1~=~\texttt{vdd}\par
@@ -2438,7 +2452,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{5.\quad \texttt{RN}}\quad\texttt{resistor}\hfill source line 13
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[left]{\tiny N8} to[R] (2.3,0) node[right]{\tiny N1};
 \end{circuitikz}
 \par\raggedright\footnotesize \textbf{1}~N8~=~\texttt{rxn} \quad \textbf{2}~N1~=~\texttt{vdd}\par
@@ -2449,7 +2463,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{6.\quad \texttt{CAC}}\quad\texttt{capacitor}\hfill source line 14
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[left]{\tiny N7} to[C] (2.3,0) node[right]{\tiny N10};
 \end{circuitikz}
 \par\raggedright\footnotesize \textbf{1}~N7~=~\texttt{rxp} \quad \textbf{2}~N10~=~\texttt{inv\_bias}\par
@@ -2460,7 +2474,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{7.\quad \texttt{RBIAS}}\quad\texttt{resistor}\hfill source line 15
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[left]{\tiny N11} to[R] (2.3,0) node[right]{\tiny N10};
 \end{circuitikz}
 \par\raggedright\footnotesize \textbf{1}~N11~=~\texttt{clkn} \quad \textbf{2}~N10~=~\texttt{inv\_bias}\par
@@ -2471,7 +2485,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{8.\quad \texttt{XI0}}\quad\texttt{pll130\_inv}\hfill source line 16
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,0.8000);
 \draw (0.00,0.550) -- (-0.32,0.550) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.550) {vdd};
@@ -2496,7 +2510,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{9.\quad \texttt{XI1}}\quad\texttt{pll130\_inv}\hfill source line 17
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,0.8000);
 \draw (0.00,0.550) -- (-0.32,0.550) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.550) {vdd};
@@ -2521,7 +2535,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{1.\quad \texttt{MN}}\quad\texttt{n12}\hfill source line 64
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N3};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N5};
@@ -2536,7 +2550,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{2.\quad \texttt{MP}}\quad\texttt{p12}\hfill source line 65
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[pmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,-.32) node[right] {\tiny N3};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N6};
@@ -2557,7 +2571,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{1.\quad \texttt{XINV0}}\quad\texttt{inv}\hfill source line 69
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,0.8000);
 \draw (0.00,0.550) -- (-0.32,0.550) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.550) {vdd};
@@ -2576,7 +2590,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{2.\quad \texttt{XDELAY}}\quad\texttt{delay}\hfill source line 70
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,0.8000);
 \draw (0.00,0.550) -- (-0.32,0.550) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.550) {vdd};
@@ -2595,7 +2609,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{3.\quad \texttt{XINV1}}\quad\texttt{inv}\hfill source line 71
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,0.8000);
 \draw (0.00,0.550) -- (-0.32,0.550) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.550) {vdd};
@@ -2614,7 +2628,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{4.\quad \texttt{XINV2}}\quad\texttt{inv}\hfill source line 72
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,0.8000);
 \draw (0.00,0.550) -- (-0.32,0.550) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.550) {vdd};
@@ -2639,7 +2653,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{1.\quad \texttt{XINV0}}\quad\texttt{inv}\hfill source line 53
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,0.8000);
 \draw (0.00,0.550) -- (-0.32,0.550) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.550) {vdd};
@@ -2658,7 +2672,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{2.\quad \texttt{XDELAY}}\quad\texttt{tg\_delay}\hfill source line 54
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,0.8000);
 \draw (0.00,0.550) -- (-0.32,0.550) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.550) {vdd};
@@ -2677,7 +2691,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{3.\quad \texttt{XINV1}}\quad\texttt{inv}\hfill source line 55
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,0.8000);
 \draw (0.00,0.550) -- (-0.32,0.550) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.550) {vdd};
@@ -2696,7 +2710,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{4.\quad \texttt{XINV2}}\quad\texttt{inv}\hfill source line 56
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,0.8000);
 \draw (0.00,0.550) -- (-0.32,0.550) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.550) {vdd};
@@ -2721,7 +2735,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{1.\quad \texttt{MN}}\quad\texttt{n12}\hfill source line 25
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N4};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N1};
@@ -2736,7 +2750,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{2.\quad \texttt{MP}}\quad\texttt{p12}\hfill source line 26
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[pmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,-.32) node[right] {\tiny N4};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N2};
@@ -2757,7 +2771,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{1.\quad \texttt{MMAIN1}}\quad\texttt{n12}\hfill source line 86
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N13};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N10};
@@ -2772,7 +2786,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{2.\quad \texttt{MMAIN2}}\quad\texttt{n12}\hfill source line 87
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N12};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N11};
@@ -2787,7 +2801,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{3.\quad \texttt{MTAILMAIN}}\quad\texttt{n12}\hfill source line 88
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N14};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N3};
@@ -2802,7 +2816,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{4.\quad \texttt{MREGEN1}}\quad\texttt{n12}\hfill source line 91
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N13};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N12};
@@ -2823,7 +2837,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{5.\quad \texttt{MREGEN2}}\quad\texttt{n12}\hfill source line 92
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N12};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N13};
@@ -2838,7 +2852,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{6.\quad \texttt{MTAILREGEN}}\quad\texttt{n12}\hfill source line 93
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N15};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N3};
@@ -2853,7 +2867,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{7.\quad \texttt{RNEG}}\quad\texttt{resistor}\hfill source line 95
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[left]{\tiny N13} to[R] (2.3,0) node[right]{\tiny N1};
 \end{circuitikz}
 \par\raggedright\footnotesize \textbf{1}~N13~=~\texttt{out\_n} \quad \textbf{2}~N1~=~\texttt{vdd}\par
@@ -2864,7 +2878,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{8.\quad \texttt{RPOS}}\quad\texttt{resistor}\hfill source line 96
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[left]{\tiny N12} to[R] (2.3,0) node[right]{\tiny N1};
 \end{circuitikz}
 \par\raggedright\footnotesize \textbf{1}~N12~=~\texttt{out\_p} \quad \textbf{2}~N1~=~\texttt{vdd}\par
@@ -2881,7 +2895,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{9.\quad \texttt{MFINE}}\quad\texttt{n12}\hfill source line 99
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N14};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N4};
@@ -2896,7 +2910,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{10.\quad \texttt{MSUP0}}\quad\texttt{n12}\hfill source line 100
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N14};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N16};
@@ -2911,7 +2925,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{11.\quad \texttt{MSUP1}}\quad\texttt{n12}\hfill source line 101
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N14};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N17};
@@ -2926,7 +2940,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{12.\quad \texttt{MSUP2}}\quad\texttt{n12}\hfill source line 102
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N14};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N18};
@@ -2947,7 +2961,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{13.\quad \texttt{MSUPCTRL0}}\quad\texttt{n12}\hfill source line 104
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N16};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N19};
@@ -2962,7 +2976,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{14.\quad \texttt{PSUPCTRL0}}\quad\texttt{p12}\hfill source line 105
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[pmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,-.32) node[right] {\tiny N16};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N20};
@@ -2977,7 +2991,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{15.\quad \texttt{MSUPGND0}}\quad\texttt{n12}\hfill source line 106
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N16};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N20};
@@ -2992,7 +3006,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{16.\quad \texttt{MSUPCTRL1}}\quad\texttt{n12}\hfill source line 107
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N17};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N21};
@@ -3013,7 +3027,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{17.\quad \texttt{PSUPCTRL1}}\quad\texttt{p12}\hfill source line 108
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[pmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,-.32) node[right] {\tiny N17};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N22};
@@ -3028,7 +3042,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{18.\quad \texttt{MSUPGND1}}\quad\texttt{n12}\hfill source line 109
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N17};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N22};
@@ -3043,7 +3057,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{19.\quad \texttt{MSUPCTRL2}}\quad\texttt{n12}\hfill source line 110
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N18};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N23};
@@ -3058,7 +3072,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{20.\quad \texttt{PSUPCTRL2}}\quad\texttt{p12}\hfill source line 111
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[pmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,-.32) node[right] {\tiny N18};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N24};
@@ -3079,7 +3093,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{21.\quad \texttt{MSUPGND2}}\quad\texttt{n12}\hfill source line 112
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N18};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N24};
@@ -3094,7 +3108,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{22.\quad \texttt{XSTD0}}\quad\texttt{s\_to\_d}\hfill source line 114
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,1.1200);
 \draw (0.00,0.870) -- (-0.32,0.870) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.870) {vdd};
@@ -3115,7 +3129,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{23.\quad \texttt{XSTD1}}\quad\texttt{s\_to\_d}\hfill source line 115
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,1.1200);
 \draw (0.00,0.870) -- (-0.32,0.870) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.870) {vdd};
@@ -3136,7 +3150,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{24.\quad \texttt{XSTD2}}\quad\texttt{s\_to\_d}\hfill source line 116
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,1.1200);
 \draw (0.00,0.870) -- (-0.32,0.870) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.870) {vdd};
@@ -3163,7 +3177,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{25.\quad \texttt{XSTD3}}\quad\texttt{s\_to\_d}\hfill source line 117
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,1.1200);
 \draw (0.00,0.870) -- (-0.32,0.870) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.870) {vdd};
@@ -3184,7 +3198,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{26.\quad \texttt{XSTD4}}\quad\texttt{s\_to\_d}\hfill source line 118
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,1.1200);
 \draw (0.00,0.870) -- (-0.32,0.870) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.870) {vdd};
@@ -3205,7 +3219,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{27.\quad \texttt{XSTD8}}\quad\texttt{s\_to\_d}\hfill source line 119
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,1.1200);
 \draw (0.00,0.870) -- (-0.32,0.870) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.870) {vdd};
@@ -3226,7 +3240,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{28.\quad \texttt{XSTD16}}\quad\texttt{s\_to\_d}\hfill source line 120
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,1.1200);
 \draw (0.00,0.870) -- (-0.32,0.870) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.870) {vdd};
@@ -3253,7 +3267,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{29.\quad \texttt{XSTD24}}\quad\texttt{s\_to\_d}\hfill source line 121
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,1.1200);
 \draw (0.00,0.870) -- (-0.32,0.870) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.870) {vdd};
@@ -3274,7 +3288,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{30.\quad \texttt{MBAND0}}\quad\texttt{n12}\hfill source line 123
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N14};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N38};
@@ -3289,7 +3303,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{31.\quad \texttt{MBAND1}}\quad\texttt{n12}\hfill source line 124
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N14};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N39};
@@ -3304,7 +3318,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{32.\quad \texttt{MBAND2}}\quad\texttt{n12}\hfill source line 125
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N14};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N40};
@@ -3325,7 +3339,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{33.\quad \texttt{MBAND3}}\quad\texttt{n12}\hfill source line 126
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N14};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N41};
@@ -3340,7 +3354,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{34.\quad \texttt{MBAND4}}\quad\texttt{n12}\hfill source line 127
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N14};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N42};
@@ -3355,7 +3369,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{35.\quad \texttt{MBAND24UP}}\quad\texttt{n12}\hfill source line 130
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N14};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N43};
@@ -3370,7 +3384,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{36.\quad \texttt{MBAND16UP}}\quad\texttt{n12}\hfill source line 131
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N14};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N44};
@@ -3391,7 +3405,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{37.\quad \texttt{MSWBN0}}\quad\texttt{n12}\hfill source line 133
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N38};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N25};
@@ -3406,7 +3420,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{38.\quad \texttt{MSWGND0}}\quad\texttt{n12}\hfill source line 134
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N38};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N26};
@@ -3421,7 +3435,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{39.\quad \texttt{MSWBN1}}\quad\texttt{n12}\hfill source line 135
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N39};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N27};
@@ -3436,7 +3450,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{40.\quad \texttt{MSWGND1}}\quad\texttt{n12}\hfill source line 136
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N39};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N28};
@@ -3457,7 +3471,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{41.\quad \texttt{MSWBN2}}\quad\texttt{n12}\hfill source line 137
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N40};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N29};
@@ -3472,7 +3486,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{42.\quad \texttt{MSWGND2}}\quad\texttt{n12}\hfill source line 138
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N40};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N30};
@@ -3487,7 +3501,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{43.\quad \texttt{MSWBN3}}\quad\texttt{n12}\hfill source line 139
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N41};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N31};
@@ -3502,7 +3516,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{44.\quad \texttt{MSWGND3}}\quad\texttt{n12}\hfill source line 140
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N41};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N32};
@@ -3523,7 +3537,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{45.\quad \texttt{MSWBN4}}\quad\texttt{n12}\hfill source line 141
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N42};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N33};
@@ -3538,7 +3552,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{46.\quad \texttt{MSWGND4}}\quad\texttt{n12}\hfill source line 142
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N42};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N34};
@@ -3553,7 +3567,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{47.\quad \texttt{MSWBN5}}\quad\texttt{n12}\hfill source line 143
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N43};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N23};
@@ -3568,7 +3582,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{48.\quad \texttt{MSWGND5}}\quad\texttt{n12}\hfill source line 144
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N43};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N24};
@@ -3589,7 +3603,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{49.\quad \texttt{MSWBN6}}\quad\texttt{n12}\hfill source line 145
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N44};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N21};
@@ -3604,7 +3618,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{50.\quad \texttt{MSWGND6}}\quad\texttt{n12}\hfill source line 146
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N44};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N22};
@@ -3619,7 +3633,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{51.\quad \texttt{XOR8}}\quad\texttt{or2}\hfill source line 149
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,1.1200);
 \draw (0.00,0.870) -- (-0.32,0.870) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.870) {vdd};
@@ -3640,7 +3654,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{52.\quad \texttt{XBUF16}}\quad\texttt{bf\_2inv}\hfill source line 150
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,0.8000);
 \draw (0.00,0.550) -- (-0.32,0.550) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.550) {vdd};
@@ -3665,7 +3679,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{53.\quad \texttt{XAND24}}\quad\texttt{and2}\hfill source line 151
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,1.1200);
 \draw (0.00,0.870) -- (-0.32,0.870) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.870) {vdd};
@@ -3692,7 +3706,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{1.\quad \texttt{XMAIN1}}\quad\texttt{n12\_ckt\_rf}\hfill source line 65
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N13};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N10};
@@ -3707,7 +3721,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{2.\quad \texttt{XMAIN2}}\quad\texttt{n12\_ckt\_rf}\hfill source line 66
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N12};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N11};
@@ -3722,7 +3736,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{3.\quad \texttt{XTAILMAIN}}\quad\texttt{n12\_ckt\_rf}\hfill source line 67
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N14};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N3};
@@ -3737,7 +3751,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{4.\quad \texttt{XREGEN1}}\quad\texttt{n12\_ckt\_rf}\hfill source line 68
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N13};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N12};
@@ -3758,7 +3772,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{5.\quad \texttt{XREGEN2}}\quad\texttt{n12\_ckt\_rf}\hfill source line 69
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N12};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N13};
@@ -3773,7 +3787,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{6.\quad \texttt{XTAILREGEN}}\quad\texttt{n12\_ckt\_rf}\hfill source line 70
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N15};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N3};
@@ -3788,7 +3802,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{7.\quad \texttt{RNEG}}\quad\texttt{resistor}\hfill source line 71
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[left]{\tiny N13} to[R] (2.3,0) node[right]{\tiny N1};
 \end{circuitikz}
 \par\raggedright\footnotesize \textbf{1}~N13~=~\texttt{out\_n} \quad \textbf{2}~N1~=~\texttt{vdd}\par
@@ -3799,7 +3813,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{8.\quad \texttt{RPOS}}\quad\texttt{resistor}\hfill source line 72
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[left]{\tiny N12} to[R] (2.3,0) node[right]{\tiny N1};
 \end{circuitikz}
 \par\raggedright\footnotesize \textbf{1}~N12~=~\texttt{out\_p} \quad \textbf{2}~N1~=~\texttt{vdd}\par
@@ -3816,7 +3830,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{9.\quad \texttt{MFINE}}\quad\texttt{n12}\hfill source line 73
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N14};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N4};
@@ -3831,7 +3845,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{10.\quad \texttt{MSUP0}}\quad\texttt{n12}\hfill source line 74
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N14};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N16};
@@ -3846,7 +3860,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{11.\quad \texttt{MSUP1}}\quad\texttt{n12}\hfill source line 75
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N14};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N17};
@@ -3861,7 +3875,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{12.\quad \texttt{MSUP2}}\quad\texttt{n12}\hfill source line 76
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N14};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N18};
@@ -3882,7 +3896,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{13.\quad \texttt{MSUPCTRL0}}\quad\texttt{n12}\hfill source line 77
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N16};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N19};
@@ -3897,7 +3911,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{14.\quad \texttt{PSUPCTRL0}}\quad\texttt{p12}\hfill source line 78
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[pmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,-.32) node[right] {\tiny N16};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N20};
@@ -3912,7 +3926,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{15.\quad \texttt{MSUPGND0}}\quad\texttt{n12}\hfill source line 79
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N16};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N20};
@@ -3927,7 +3941,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{16.\quad \texttt{MSUPCTRL1}}\quad\texttt{n12}\hfill source line 80
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N17};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N21};
@@ -3948,7 +3962,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{17.\quad \texttt{PSUPCTRL1}}\quad\texttt{p12}\hfill source line 81
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[pmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,-.32) node[right] {\tiny N17};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N22};
@@ -3963,7 +3977,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{18.\quad \texttt{MSUPGND1}}\quad\texttt{n12}\hfill source line 82
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N17};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N22};
@@ -3978,7 +3992,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{19.\quad \texttt{MSUPCTRL2}}\quad\texttt{n12}\hfill source line 83
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N18};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N23};
@@ -3993,7 +4007,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{20.\quad \texttt{PSUPCTRL2}}\quad\texttt{p12}\hfill source line 84
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[pmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,-.32) node[right] {\tiny N18};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N24};
@@ -4014,7 +4028,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{21.\quad \texttt{MSUPGND2}}\quad\texttt{n12}\hfill source line 85
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N18};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N24};
@@ -4029,7 +4043,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{22.\quad \texttt{XSTD0}}\quad\texttt{s\_to\_d}\hfill source line 86
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,1.1200);
 \draw (0.00,0.870) -- (-0.32,0.870) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.870) {vdd};
@@ -4050,7 +4064,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{23.\quad \texttt{XSTD1}}\quad\texttt{s\_to\_d}\hfill source line 87
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,1.1200);
 \draw (0.00,0.870) -- (-0.32,0.870) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.870) {vdd};
@@ -4071,7 +4085,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{24.\quad \texttt{XSTD2}}\quad\texttt{s\_to\_d}\hfill source line 88
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,1.1200);
 \draw (0.00,0.870) -- (-0.32,0.870) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.870) {vdd};
@@ -4098,7 +4112,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{25.\quad \texttt{XSTD3}}\quad\texttt{s\_to\_d}\hfill source line 89
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,1.1200);
 \draw (0.00,0.870) -- (-0.32,0.870) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.870) {vdd};
@@ -4119,7 +4133,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{26.\quad \texttt{XSTD4}}\quad\texttt{s\_to\_d}\hfill source line 90
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,1.1200);
 \draw (0.00,0.870) -- (-0.32,0.870) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.870) {vdd};
@@ -4140,7 +4154,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{27.\quad \texttt{XSTD8}}\quad\texttt{s\_to\_d}\hfill source line 91
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,1.1200);
 \draw (0.00,0.870) -- (-0.32,0.870) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.870) {vdd};
@@ -4161,7 +4175,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{28.\quad \texttt{XSTD16}}\quad\texttt{s\_to\_d}\hfill source line 92
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,1.1200);
 \draw (0.00,0.870) -- (-0.32,0.870) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.870) {vdd};
@@ -4188,7 +4202,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{29.\quad \texttt{XSTD24}}\quad\texttt{s\_to\_d}\hfill source line 93
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,1.1200);
 \draw (0.00,0.870) -- (-0.32,0.870) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.870) {vdd};
@@ -4209,7 +4223,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{30.\quad \texttt{MBAND0}}\quad\texttt{n12}\hfill source line 94
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N14};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N38};
@@ -4224,7 +4238,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{31.\quad \texttt{MBAND1}}\quad\texttt{n12}\hfill source line 95
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N14};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N39};
@@ -4239,7 +4253,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{32.\quad \texttt{MBAND2}}\quad\texttt{n12}\hfill source line 96
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N14};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N40};
@@ -4260,7 +4274,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{33.\quad \texttt{MBAND3}}\quad\texttt{n12}\hfill source line 97
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N14};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N41};
@@ -4275,7 +4289,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{34.\quad \texttt{MBAND4}}\quad\texttt{n12}\hfill source line 98
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N14};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N42};
@@ -4290,7 +4304,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{35.\quad \texttt{MBAND24UP}}\quad\texttt{n12}\hfill source line 99
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N14};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N43};
@@ -4305,7 +4319,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{36.\quad \texttt{MBAND16UP}}\quad\texttt{n12}\hfill source line 100
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N14};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N44};
@@ -4326,7 +4340,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{37.\quad \texttt{MSWBN0}}\quad\texttt{n12}\hfill source line 101
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N38};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N25};
@@ -4341,7 +4355,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{38.\quad \texttt{MSWGND0}}\quad\texttt{n12}\hfill source line 102
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N38};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N26};
@@ -4356,7 +4370,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{39.\quad \texttt{MSWBN1}}\quad\texttt{n12}\hfill source line 103
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N39};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N27};
@@ -4371,7 +4385,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{40.\quad \texttt{MSWGND1}}\quad\texttt{n12}\hfill source line 104
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N39};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N28};
@@ -4392,7 +4406,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{41.\quad \texttt{MSWBN2}}\quad\texttt{n12}\hfill source line 105
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N40};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N29};
@@ -4407,7 +4421,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{42.\quad \texttt{MSWGND2}}\quad\texttt{n12}\hfill source line 106
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N40};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N30};
@@ -4422,7 +4436,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{43.\quad \texttt{MSWBN3}}\quad\texttt{n12}\hfill source line 107
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N41};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N31};
@@ -4437,7 +4451,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{44.\quad \texttt{MSWGND3}}\quad\texttt{n12}\hfill source line 108
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N41};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N32};
@@ -4458,7 +4472,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{45.\quad \texttt{MSWBN4}}\quad\texttt{n12}\hfill source line 109
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N42};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N33};
@@ -4473,7 +4487,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{46.\quad \texttt{MSWGND4}}\quad\texttt{n12}\hfill source line 110
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N42};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N34};
@@ -4488,7 +4502,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{47.\quad \texttt{MSWBN5}}\quad\texttt{n12}\hfill source line 111
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N43};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N23};
@@ -4503,7 +4517,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{48.\quad \texttt{MSWGND5}}\quad\texttt{n12}\hfill source line 112
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N43};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N24};
@@ -4524,7 +4538,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{49.\quad \texttt{MSWBN6}}\quad\texttt{n12}\hfill source line 113
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N44};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N21};
@@ -4539,7 +4553,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{50.\quad \texttt{MSWGND6}}\quad\texttt{n12}\hfill source line 114
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N44};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N22};
@@ -4554,7 +4568,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{51.\quad \texttt{XOR8}}\quad\texttt{or2}\hfill source line 115
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,1.1200);
 \draw (0.00,0.870) -- (-0.32,0.870) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.870) {vdd};
@@ -4575,7 +4589,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{52.\quad \texttt{XBUF16}}\quad\texttt{bf\_2inv}\hfill source line 116
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,0.8000);
 \draw (0.00,0.550) -- (-0.32,0.550) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.550) {vdd};
@@ -4600,7 +4614,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{53.\quad \texttt{XAND24}}\quad\texttt{and2}\hfill source line 117
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,1.1200);
 \draw (0.00,0.870) -- (-0.32,0.870) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.870) {vdd};
@@ -4627,7 +4641,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{1.\quad \texttt{MMAIN1}}\quad\texttt{n12}\hfill source line 86
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N13};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N10};
@@ -4642,7 +4656,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{2.\quad \texttt{MMAIN2}}\quad\texttt{n12}\hfill source line 87
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N12};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N11};
@@ -4657,7 +4671,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{3.\quad \texttt{MTAILMAIN}}\quad\texttt{n12}\hfill source line 88
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N14};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N3};
@@ -4672,7 +4686,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{4.\quad \texttt{MREGEN1}}\quad\texttt{n12}\hfill source line 91
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N13};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N12};
@@ -4693,7 +4707,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{5.\quad \texttt{MREGEN2}}\quad\texttt{n12}\hfill source line 92
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N12};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N13};
@@ -4708,7 +4722,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{6.\quad \texttt{MTAILREGEN}}\quad\texttt{n12}\hfill source line 93
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N15};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N3};
@@ -4723,7 +4737,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{7.\quad \texttt{RNEG}}\quad\texttt{resistor}\hfill source line 95
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[left]{\tiny N13} to[R] (2.3,0) node[right]{\tiny N1};
 \end{circuitikz}
 \par\raggedright\footnotesize \textbf{1}~N13~=~\texttt{out\_n} \quad \textbf{2}~N1~=~\texttt{vdd}\par
@@ -4734,7 +4748,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{8.\quad \texttt{RPOS}}\quad\texttt{resistor}\hfill source line 96
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[left]{\tiny N12} to[R] (2.3,0) node[right]{\tiny N1};
 \end{circuitikz}
 \par\raggedright\footnotesize \textbf{1}~N12~=~\texttt{out\_p} \quad \textbf{2}~N1~=~\texttt{vdd}\par
@@ -4751,7 +4765,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{9.\quad \texttt{MFINE}}\quad\texttt{n12}\hfill source line 99
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N14};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N4};
@@ -4766,7 +4780,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{10.\quad \texttt{MSUP0}}\quad\texttt{n12}\hfill source line 100
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N14};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N16};
@@ -4781,7 +4795,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{11.\quad \texttt{MSUP1}}\quad\texttt{n12}\hfill source line 101
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N14};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N17};
@@ -4796,7 +4810,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{12.\quad \texttt{MSUP2}}\quad\texttt{n12}\hfill source line 102
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N14};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N18};
@@ -4817,7 +4831,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{13.\quad \texttt{MSUPCTRL0}}\quad\texttt{n12}\hfill source line 104
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N16};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N19};
@@ -4832,7 +4846,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{14.\quad \texttt{MSUPGND0}}\quad\texttt{n12}\hfill source line 105
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N16};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N20};
@@ -4847,7 +4861,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{15.\quad \texttt{MSUPCTRL1}}\quad\texttt{n12}\hfill source line 106
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N17};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N21};
@@ -4862,7 +4876,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{16.\quad \texttt{MSUPGND1}}\quad\texttt{n12}\hfill source line 107
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N17};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N22};
@@ -4883,7 +4897,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{17.\quad \texttt{MSUPCTRL2}}\quad\texttt{n12}\hfill source line 108
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N18};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N23};
@@ -4898,7 +4912,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{18.\quad \texttt{MSUPGND2}}\quad\texttt{n12}\hfill source line 109
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N18};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N24};
@@ -4913,7 +4927,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{19.\quad \texttt{XSTD0}}\quad\texttt{s\_to\_d}\hfill source line 111
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,1.1200);
 \draw (0.00,0.870) -- (-0.32,0.870) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.870) {vdd};
@@ -4934,7 +4948,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{20.\quad \texttt{XSTD1}}\quad\texttt{s\_to\_d}\hfill source line 112
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,1.1200);
 \draw (0.00,0.870) -- (-0.32,0.870) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.870) {vdd};
@@ -4961,7 +4975,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{21.\quad \texttt{XSTD2}}\quad\texttt{s\_to\_d}\hfill source line 113
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,1.1200);
 \draw (0.00,0.870) -- (-0.32,0.870) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.870) {vdd};
@@ -4982,7 +4996,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{22.\quad \texttt{XSTD3}}\quad\texttt{s\_to\_d}\hfill source line 114
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,1.1200);
 \draw (0.00,0.870) -- (-0.32,0.870) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.870) {vdd};
@@ -5003,7 +5017,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{23.\quad \texttt{XSTD4}}\quad\texttt{s\_to\_d}\hfill source line 115
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,1.1200);
 \draw (0.00,0.870) -- (-0.32,0.870) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.870) {vdd};
@@ -5024,7 +5038,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{24.\quad \texttt{XSTD8}}\quad\texttt{s\_to\_d}\hfill source line 116
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,1.1200);
 \draw (0.00,0.870) -- (-0.32,0.870) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.870) {vdd};
@@ -5051,7 +5065,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{25.\quad \texttt{XSTD16}}\quad\texttt{s\_to\_d}\hfill source line 117
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,1.1200);
 \draw (0.00,0.870) -- (-0.32,0.870) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.870) {vdd};
@@ -5072,7 +5086,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{26.\quad \texttt{XSTD24}}\quad\texttt{s\_to\_d}\hfill source line 118
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,1.1200);
 \draw (0.00,0.870) -- (-0.32,0.870) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.870) {vdd};
@@ -5093,7 +5107,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{27.\quad \texttt{MBAND0}}\quad\texttt{n12}\hfill source line 120
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N14};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N38};
@@ -5108,7 +5122,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{28.\quad \texttt{MBAND1}}\quad\texttt{n12}\hfill source line 121
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N14};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N39};
@@ -5129,7 +5143,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{29.\quad \texttt{MBAND2}}\quad\texttt{n12}\hfill source line 122
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N14};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N40};
@@ -5144,7 +5158,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{30.\quad \texttt{MBAND3}}\quad\texttt{n12}\hfill source line 123
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N14};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N41};
@@ -5159,7 +5173,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{31.\quad \texttt{MBAND4}}\quad\texttt{n12}\hfill source line 124
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N14};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N42};
@@ -5174,7 +5188,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{32.\quad \texttt{MBAND24UP}}\quad\texttt{n12}\hfill source line 127
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N14};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N43};
@@ -5195,7 +5209,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{33.\quad \texttt{MBAND16UP}}\quad\texttt{n12}\hfill source line 128
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N14};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N44};
@@ -5210,7 +5224,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{34.\quad \texttt{MSWBN0}}\quad\texttt{n12}\hfill source line 130
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N38};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N25};
@@ -5225,7 +5239,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{35.\quad \texttt{MSWGND0}}\quad\texttt{n12}\hfill source line 131
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N38};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N26};
@@ -5240,7 +5254,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{36.\quad \texttt{MSWBN1}}\quad\texttt{n12}\hfill source line 132
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N39};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N27};
@@ -5261,7 +5275,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{37.\quad \texttt{MSWGND1}}\quad\texttt{n12}\hfill source line 133
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N39};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N28};
@@ -5276,7 +5290,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{38.\quad \texttt{MSWBN2}}\quad\texttt{n12}\hfill source line 134
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N40};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N29};
@@ -5291,7 +5305,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{39.\quad \texttt{MSWGND2}}\quad\texttt{n12}\hfill source line 135
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N40};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N30};
@@ -5306,7 +5320,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{40.\quad \texttt{MSWBN3}}\quad\texttt{n12}\hfill source line 136
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N41};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N31};
@@ -5327,7 +5341,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{41.\quad \texttt{MSWGND3}}\quad\texttt{n12}\hfill source line 137
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N41};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N32};
@@ -5342,7 +5356,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{42.\quad \texttt{MSWBN4}}\quad\texttt{n12}\hfill source line 138
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N42};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N33};
@@ -5357,7 +5371,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{43.\quad \texttt{MSWGND4}}\quad\texttt{n12}\hfill source line 139
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N42};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N34};
@@ -5372,7 +5386,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{44.\quad \texttt{MSWBN5}}\quad\texttt{n12}\hfill source line 140
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N43};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N23};
@@ -5393,7 +5407,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{45.\quad \texttt{MSWGND5}}\quad\texttt{n12}\hfill source line 141
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N43};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N24};
@@ -5408,7 +5422,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{46.\quad \texttt{MSWBN6}}\quad\texttt{n12}\hfill source line 142
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N44};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N21};
@@ -5423,7 +5437,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{47.\quad \texttt{MSWGND6}}\quad\texttt{n12}\hfill source line 143
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) node[nmos,bulk] (Q) {};
 \draw (Q.D) -- ++(0,.32) node[right] {\tiny N44};
 \draw (Q.G) -- ++(-.45,0) node[left] {\tiny N22};
@@ -5438,7 +5452,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{48.\quad \texttt{XOR8}}\quad\texttt{or2}\hfill source line 146
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,1.1200);
 \draw (0.00,0.870) -- (-0.32,0.870) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.870) {vdd};
@@ -5465,7 +5479,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{49.\quad \texttt{XBUF16}}\quad\texttt{bf\_2inv}\hfill source line 147
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,0.8000);
 \draw (0.00,0.550) -- (-0.32,0.550) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.550) {vdd};
@@ -5484,7 +5498,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{50.\quad \texttt{XAND24}}\quad\texttt{and2}\hfill source line 148
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,1.1200);
 \draw (0.00,0.870) -- (-0.32,0.870) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,0.870) {vdd};
@@ -5511,7 +5525,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{1.\quad \texttt{XSTAGE0}}\quad\texttt{two\_stage\_ring}\hfill source line 120
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,2.4000);
 \draw (0.00,2.150) -- (-0.32,2.150) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,2.150) {vdd};
@@ -5548,7 +5562,7 @@
 \begin{minipage}[t][5.95cm][t]{.475\linewidth}
 \raggedright\small \textbf{2.\quad \texttt{XSTAGE1}}\quad\texttt{two\_stage\_ring}\hfill source line 121
 \par\smallskip\centering
-\begin{circuitikz}[american,font=\scriptsize]
+\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]
 \draw (0,0) rectangle (2.0,2.4000);
 \draw (0.00,2.150) -- (-0.32,2.150) node[left]{\tiny N1};
 \node[right,font=\tiny] at (0.00,2.150) {vdd};

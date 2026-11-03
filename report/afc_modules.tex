@@ -9,8 +9,8 @@ the controller can hand it to the fine loop.
 
 \begin{figure*}[t]
 \centering\resizebox{0.98\textwidth}{!}{%
-\begin{circuitikz}[american,x=1cm,y=1cm,font=\small,
- blk/.style={draw,rounded corners=1.5pt,align=center,minimum width=2.5cm,
+\begin{circuitikz}[american,x=1cm,y=1cm,font=\PLLfigurefont\small,
+ blk/.style={draw,line width=.85pt,align=center,minimum width=2.5cm,
  minimum height=.76cm,inner sep=4pt}, ar/.style={->,>=latex}]
   \node[blk] (ep) at (1.7,2.2) {First FB edge\\sample REF level};
   \node[blk] (sel) at (5.1,2.2) {Phase selector\\REF or inverted REF};
@@ -51,24 +51,24 @@ Reaching lag count 128 without a qualified direction ends a trial as near.
 
 \begin{figure}[t]
 \centering\resizebox{.93\columnwidth}{!}{%
-\begin{circuitikz}[american,x=1cm,y=1cm,font=\small,
- s/.style={draw,rounded corners=1.5pt,minimum width=1.72cm,
+\begin{circuitikz}[american,x=1cm,y=1cm,font=\PLLfigurefont\small,
+ s/.style={draw,line width=.85pt,minimum width=1.72cm,
  minimum height=.60cm,inner sep=3pt,align=center}, a/.style={->,>=latex}]
  \node[s] (set) at (1,1.5) {SETTLE}; \node[s] (arm) at (4.8,1.5) {ARM};
  \node[s] (meas) at (4.8,0) {MEASURE}; \node[s] (dr) at (1,0) {DRAIN};
  \node[s] (ok) at (1,-1.8) {DONE}; \node[s] (fail) at (4.8,-1.8) {FAIL};
  \draw[a] (1,2.32) node[above]{START} -- (set.north);
  \draw[a] (set.east) -- node[above]{4 REF} (arm.west);
- \draw[a] (arm.south) -- node[right,font=\scriptsize]{epoch valid} (meas.north);
+ \draw[a] (arm.south) -- node[right,font=\PLLfigurefont\scriptsize]{epoch valid} (meas.north);
  \draw[a] (meas.west) -- node[above]{decision} (dr.east);
  \draw[a] (dr.west) -- ++(-.45,0) |- ([yshift=-1mm]set.west);
- \node[rotate=90,anchor=south,font=\scriptsize] at (-.33,.75) {next code};
- \draw[a] (dr.south) -- node[left,font=\scriptsize]{accept} (ok.north);
- \draw[a] (meas.south) -- node[right,font=\scriptsize]{watchdog / conflict} (fail.north);
+ \node[rotate=90,anchor=south,font=\PLLfigurefont\scriptsize] at (-.33,.75) {next code};
+ \draw[a] (dr.south) -- node[left,font=\PLLfigurefont\scriptsize]{accept} (ok.north);
+ \draw[a] (meas.south) -- node[right,font=\PLLfigurefont\scriptsize,align=left]{watchdog /\\conflict} (fail.north);
  \draw[a] ([yshift=1mm]arm.east) -- ++(1.62,0) |- (fail.east);
- \node[rotate=90,anchor=south,font=\scriptsize] at (7.15,.5) {ARM timeout};
+ \node[rotate=90,anchor=south,font=\PLLfigurefont\scriptsize] at (7.15,.5) {ARM timeout};
  \draw[a] ([xshift=4mm]dr.south) -- ++(0,-.91) -| ([xshift=-5mm]fail.north);
- \node[anchor=south,font=\scriptsize] at (2.95,-1.2) {endpoint failure};
+ \node[anchor=south,font=\PLLfigurefont\scriptsize] at (2.95,-1.2) {endpoint failure};
 \end{circuitikz}}
 \caption{R1 state transitions. DRAIN holds the captured counts for two controller cycles. A terminal decision accepts a near result or the last tested candidate. An outward direction at code 1 or 31 on a terminal decision sets FAIL.}
 \label{fig:r1afc-fsm}

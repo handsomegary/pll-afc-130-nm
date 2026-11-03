@@ -29,9 +29,9 @@ Top-level passives and switches & \texttt{CSHUNT, RSERIES, CSERIES, CHOLD, MHOLD
 \end{table*}
 
 
-\tikzset{apbox/.style={draw,align=center,minimum height=6mm,inner xsep=4pt,font=\footnotesize},
-apnote/.style={align=left,font=\footnotesize},
-aphead/.style={font=\bfseries\small,anchor=west}}
+\tikzset{apbox/.style={draw,line width=.85pt,align=center,minimum height=6mm,inner xsep=4pt,font=\PLLfigurefont\footnotesize},
+apnote/.style={align=left,font=\PLLfigurefont\footnotesize},
+aphead/.style={font=\PLLfigurefont\small,anchor=west}}
 \newcommand{\APgleft}[2]{\draw (#1.G) -- ++(-.24,0) node[left]{#2};}
 \newcommand{\APgright}[2]{\draw (#1.G) -- ++(.24,0) node[right]{#2};}
 \newcommand{\APtop}[2]{\draw (#1) -- ++(0,.27) node[above]{#2};}
@@ -49,7 +49,7 @@ of width $3\,\mu$m each.
 
 \begin{figure*}[!t]
 \centering\resizebox{.92\textwidth}{!}{%
-\begin{circuitikz}[font=\footnotesize]
+\begin{circuitikz}[font=\PLLfigurefont\footnotesize]
 \node[aphead] at (-1.4,5.35) {(a) Main differential pair};
 \node[nmos] (am1) at (0,2.75) {};
 \node[nmos,xscale=-1] (am2) at (2.5,2.75) {};
@@ -95,7 +95,7 @@ of width $3\,\mu$m each.
 
 \begin{figure*}[!t]
 \centering\resizebox{.91\textwidth}{!}{%
-\begin{circuitikz}[font=\footnotesize]
+\begin{circuitikz}[font=\PLLfigurefont\footnotesize]
 \node[aphead] at (-1.2,4.35) {(a) Fine tuning};
 \node[nmos] (af) at (0,1.7) {};
 \APgleft{af}{CTRL}\APtop{af.D}{$c_{s1}$}\draw (af.S) node[ground]{};
@@ -125,7 +125,7 @@ of width $3\,\mu$m each.
 
 \begin{figure*}[!t]
 \centering\resizebox{.67\textwidth}{!}{%
-\begin{circuitikz}[font=\footnotesize]
+\begin{circuitikz}[font=\PLLfigurefont\footnotesize]
 \node[aphead] at (-.65,3.1) {(a) Complementary drive\ \texttt{s\_to\_d}};
 \node[american not port] (sd1) at (2,2) {};
 \node[american not port] (sd2) at (4.65,2) {};
@@ -160,7 +160,7 @@ switching threshold. Five toggle stages then divide the recovered clock by
 
 \begin{figure*}[!t]
 \centering\resizebox{.80\textwidth}{!}{%
-\begin{circuitikz}[font=\footnotesize]
+\begin{circuitikz}[font=\PLLfigurefont\footnotesize]
 \node[nmos] (ai1) at (0,2.0) {};\node[nmos,xscale=-1] (ai2) at (3.1,2.0) {};
 \draw (0,4.5) node[above]{$V_{DD,\rm dig}$} to[R,l=$3\,$k$\Omega$] (0,3.05) node[circ]{} -- (ai1.D);
 \draw (3.1,4.5) node[above]{$V_{DD,\rm dig}$} to[R,l=$3\,$k$\Omega$] (3.1,3.05) node[circ]{} -- (ai2.D);
@@ -183,7 +183,7 @@ switching threshold. Five toggle stages then divide the recovered clock by
 
 \begin{figure*}[!t]
 \centering\resizebox{.94\textwidth}{!}{%
-\begin{circuitikz}[font=\footnotesize]
+\begin{circuitikz}[font=\PLLfigurefont\footnotesize]
 \node[aphead] at (-.5,4.8) {(a) Transmission-gate latch};
 \node[apbox] (dIn) at (1.8,3.6) {TG$_{\rm open}$};
 \node[american not port] (dX) at (5.5,3.6) {};
@@ -226,7 +226,7 @@ reservoir (Fig.~\ref{fig:apclamp}).
 
 \begin{figure*}[!t]
 \centering\resizebox{.84\textwidth}{!}{%
-\begin{circuitikz}[font=\footnotesize]
+\begin{circuitikz}[font=\PLLfigurefont\footnotesize]
 \node[aphead] at (-1.4,6.65) {(a) One PFD slice};
 \node[pmos] (pA) at (0,4.95) {};\node[pmos] (pB) at (0,3.45) {};\node[nmos] (pC) at (0,1.55) {};
 \APtop{pA.S}{$V_{DD}$}\APgleft{pA}{reset}\APgleft{pB}{edge}\APgleft{pC}{reset}
@@ -253,7 +253,7 @@ reservoir (Fig.~\ref{fig:apclamp}).
 
 \begin{figure*}[!t]
 \centering\resizebox{.81\textwidth}{!}{%
-\begin{circuitikz}[font=\footnotesize]
+\begin{circuitikz}[font=\PLLfigurefont\footnotesize]
 \node[aphead] at (-1.2,6.65) {(a) Pump bias};
 \node[nmos] (cN) at (0,1.25) {};\node[nmos] (cN2) at (3.1,1.25) {};
 \node[pmos] (cP) at (3.1,4.3) {};
@@ -283,7 +283,7 @@ reservoir (Fig.~\ref{fig:apclamp}).
 
 \begin{figure*}[!t]
 \centering\resizebox{.90\textwidth}{!}{%
-\begin{circuitikz}[font=\footnotesize]
+\begin{circuitikz}[font=\PLLfigurefont\footnotesize]
 \node[aphead] at (-1.2,5.7) {(a) Half-supply reservoir};
 \draw (0,4.75) node[above]{$V_{DD,\rm AFC}$} to[R,l=$20\,$k$\Omega$] (0,2.6) node[circ]{} to[R,l=$20\,$k$\Omega$] (0,.65) node[ground]{};
 \draw (0,2.6) -- (2,2.6) node[circ]{} node[above]{vhold} to[C,l=$10\,$pF] (2,.65) node[ground]{};

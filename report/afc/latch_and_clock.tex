@@ -1,6 +1,6 @@
 \begin{figure}[t]
 \centering\resizebox{.98\columnwidth}{!}{%
-\begin{circuitikz}[american,x=1cm,y=1cm,font=\small,
+\begin{circuitikz}[american,x=1cm,y=1cm,font=\PLLfigurefont\small,
  c/.style={draw,minimum width=1.12cm,minimum height=.66cm,align=center},
  ar/.style={->,>=latex}]
  \node[c] (di) at (1.05,1.05) {TG}; \node[c] (ii) at (3.65,1.05) {INV};
@@ -15,8 +15,8 @@
  \node[nmos] (mr) at (2.32,-.12) {};
  \draw (mr.D) -- (2.32,1.05); \draw (mr.G) -- ++(-.14,0) node[left]{RST};
  \draw (mr.S) -- ++(0,-.12) node[below]{VSS};
- \node[anchor=west,font=\scriptsize] at (2.45,.6) {$X$};
- \node[anchor=west,font=\scriptsize] at (2.65,-.1) {$W_n=2~\mu$m};
+ \node[anchor=west,font=\PLLfigurefont\scriptsize] at (2.45,.6) {$X$};
+ \node[anchor=west,font=\PLLfigurefont\scriptsize] at (2.65,-.1) {$W_n=2~\mu$m};
  \begin{scope}[shift={(0,-2.55)}]
  \node[c] (ml) at (1.5,0) {Master latch};
  \node[c] (sl) at (4.8,0) {Slave latch};

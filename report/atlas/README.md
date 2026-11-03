@@ -2,7 +2,7 @@
 
 Open the [compiled device gallery](gallery.pdf) for a terminal-level lookup or the [IEEE-style report](../pll130-afc.pdf) to follow the complete circuit signal paths.
 
-The gallery uses the American CircuitikZ style. Each device has the terminal order from its Spectre card, repeated net labels, local parameters and a source line. Matching net IDs within a module identify an electrical connection. The RF device symbol exposes the four terminals connected by the project. Its internal process model remains part of the licensed technology installation.
+The gallery uses the shared American CircuitikZ profile from [circuit-style.tex](../circuit-style.tex), with black circuit strokes and bold sans-serif terminal labels. The generator embeds these settings in every standalone export. Its TeX dependencies include PSNFSS (Times and Helvetica). Each device has the terminal order from its Spectre card, repeated net labels, local parameters and a source line. Matching net IDs within a module identify an electrical connection. The RF device symbol exposes the four terminals connected by the project. Its internal process model remains part of the licensed technology installation.
 
 The catalog covers all 719 archived decks, including the ones that instantiate blocks through include files. Across those decks it enumerates 6,727 named subcircuit definitions, 33 distinct module names, 38 connectivity families and 50 distinct parameterized bodies. A connectivity family retains each instance name, model name, net, terminal order and formal port. Body variants also distinguish parameters written inside the module. Deck-level parameter values, bias and analysis settings still come from the particular source deck.
 

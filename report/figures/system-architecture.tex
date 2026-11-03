@@ -1,0 +1,73 @@
+% Shared report and GitHub figure. Electrical connections follow pll_afc_on.scs.
+% Equal REF, FB and named control labels identify connected nets.
+\begin{circuitikz}[american,x=1cm,y=1cm,font=\sffamily\small,
+  line width=.65pt,
+  sysblock/.style={draw,line width=.85pt,fill=white,align=center,
+    font=\sffamily\bfseries\small,minimum height=.85cm,inner sep=4pt},
+  syssignal/.style={-{Latex[length=2.0mm,width=1.4mm]},line width=.75pt},
+  syscontrol/.style={-{Latex[length=1.7mm,width=1.2mm]},line width=.55pt},
+  syslabel/.style={font=\sffamily\scriptsize,fill=white,inner sep=1.4pt}]
+% The lightly shaded enclosure groups the physical AFC logic only.
+\fill[black!10] (.25,2.14) rectangle (7.9,5.45);
+\node[font=\sffamily\bfseries\small,anchor=north west] at (.4,5.38)
+  {MOS AFC};
+\node[sysblock,text width=3.05cm,minimum height=1.7cm,font=\sffamily\bfseries\footnotesize] (search)
+  at (5.8,3.85) {Two-phase detector\\Gray counters + CDC\\Search and code register};
+\node[sysblock,minimum width=1.55cm,minimum height=.65cm] (fbg)
+  at (1.65,2.95) {FB gate};
+\draw[syssignal] (-.4,4.35) node[left,align=right]{REF\\100 MHz}
+  -- ([yshift=.5cm]search.west);
+\draw[syssignal] (-.4,2.95) node[left]{FB} -- (fbg.west);
+\draw[syssignal] (fbg.east) -- (3.25,2.95) |- ([yshift=-.4cm]search.west);
+\node[syslabel,anchor=north,fill=black!10] at (3.27,2.85) {gated FB};
+\draw[syscontrol] ([xshift=-1.0cm]search.south) -- (4.8,2.5) -| (fbg.south);
+\node[syslabel,fill=black!10,anchor=north] at (4.15,2.48) {epoch enable};
+\draw[syscontrol] ([xshift=.7cm]search.north) -- (6.5,5.02) -- (8.5,5.02)
+  node[right]{DONE / FAIL};
+\node[sysblock,minimum width=2.1cm] (bank) at (11.65,4.35)
+  {Five-bit\\current bank};
+\draw[syscontrol] ([yshift=.5cm]search.east) -- node[syslabel,above] {$S[4{:}0]$} (bank.west);
+\draw[syscontrol] (bank.south) -- (11.65,.55);
+\node[syslabel,rotate=90] at (11.65,2.2) {coarse tuning};
+\draw[syscontrol] ([yshift=-.2cm]search.east) -- (8.55,3.65) node[right]{FineEnable};
+\draw[syscontrol] ([yshift=-.7cm]search.east) -- (8.55,3.15) node[right]{HOLD};
+\draw[syscontrol] ([xshift=-.15cm]search.south) -- (5.65,2.12) node[below]{PFD reset};
+% Main closed-loop signal path.
+\node[sysblock,minimum width=1.25cm] (pfd) at (1.45,0) {PFD};
+\node[sysblock,minimum width=1.55cm] (en) at (3.7,0) {Enable\\gates};
+\node[sysblock,minimum width=1.55cm] (cp) at (6.0,0) {Charge\\pump};
+\node[sysblock,minimum width=2.25cm,minimum height=1.1cm] (vco)
+  at (11.65,0) {Two-stage\\ring VCO};
+\node[sysblock,minimum width=1.65cm] (rx) at (14.6,0) {AC\\receiver};
+\draw[syssignal] (-.4,0) node[left]{REF} -- (pfd.west);
+\draw[syssignal] (pfd.east) -- (en.west);
+\node[syslabel] at (2.6,.72) {UP, DN};
+\draw[syssignal] (en.east) -- (cp.west);
+\draw[syssignal] (cp.east) -- (vco.west);
+\node[syslabel,above] at (9.9,0) {CTRL};
+\draw[syssignal] ([yshift=1.2mm]vco.east) -- ([yshift=1.2mm]rx.west);
+\draw[syssignal] ([yshift=-1.2mm]vco.east) -- ([yshift=-1.2mm]rx.west);
+\node[syslabel] at (13.15,.77) {$v_0, v_{180}$};
+\draw[syssignal] (rx.east) -- (16.15,0) node[right]{CLK};
+\node[syslabel,above] at (15.95,.05) {3.2 GHz};
+\draw[syscontrol] (1.45,1.55) node[above]{PFD reset} -- (pfd.north);
+\draw[syscontrol] (3.7,1.55) node[above]{FineEnable} -- (en.north);
+% The passive loop filter is drawn explicitly, including its held midpoint.
+\draw (7.65,0) node[circ]{} to[C,l_=$C_1$] (7.65,-2.0) node[ground]{};
+\draw (9.1,0) node[circ]{} to[R,l=$R$] (9.1,-1.0)
+  node[circ]{} to[C,l=$C_2$] (9.1,-2.0) node[ground]{};
+\draw (9.1,-1.0) -- (9.65,-1.0) node[right,font=\sffamily\scriptsize]{MID};
+\node[font=\sffamily\bfseries\scriptsize] at (8.35,.65) {Loop filter};
+% Physical divided feedback returns directly to the PFD.
+\node[sysblock,minimum width=1.6cm,minimum height=.7cm] (div)
+  at (13.0,-3.0) {$\div 32$};
+\draw[syssignal] (15.65,0) node[circ]{} |- (div.east);
+\draw[syssignal] (div.west) -| (pfd.south);
+\node[syslabel,above] at (5.4,-3.0) {FB: physical divider output};
+% A separate hold block makes the two physical filter connections explicit.
+\node[sysblock,minimum width=2.1cm,minimum height=1.0cm] (hold)
+  at (14.6,3.35) {Two TG clamps\\0.6 V reservoir};
+\draw[syscontrol] (14.6,5.0) node[above]{HOLD} -- (hold.north);
+\draw (14.15,2.85) -- (14.15,2.25) node[below]{CTRL};
+\draw (15.05,2.85) -- (15.05,2.25) node[below]{MID};
+\end{circuitikz}

@@ -15,7 +15,9 @@ CARD = re.compile(r'^(\S+)\s*\(([^)]*)\)\s+(\S+)(?:\s+(.*))?$')
 PREAMBLE = r"""\documentclass[10pt]{article}
 \usepackage[landscape,a4paper,margin=1.4cm]{geometry}
 \usepackage[T1]{fontenc}
-\usepackage{lmodern,graphicx,array,url}
+\providecommand{\DoNotLoadEpstopdf}{}
+\usepackage{lmodern,graphicx,array,url,mathptmx}
+\usepackage[scaled=.95]{helvet}
 \usepackage[american]{circuitikz}
 @CIRCUIT_STYLE@
 \pagestyle{plain}
@@ -129,7 +131,7 @@ def net_index(mod):
 def cell(card, number, nets, headers):
     inst,pins,model,params,lo,hi=card
     number_label = [r'\tiny N%d' % nets[p] for p in pins]
-    pic = [r'\begin{circuitikz}[american,font=\scriptsize]']
+    pic = [r'\begin{circuitikz}[american,font=\PLLfigurefont\scriptsize]']
     if model in ('n12','p12','n12_ckt_rf'):
         terms=['D','G','S','B']
         if len(pins)!=4:raise ValueError('Expected 4 MOS terminals')
