@@ -17,6 +17,7 @@ PREAMBLE = r"""\documentclass[10pt]{article}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern,graphicx,array,url}
 \usepackage[american]{circuitikz}
+@CIRCUIT_STYLE@
 \pagestyle{plain}
 \setlength{\parindent}{0pt}
 \urlstyle{tt}
@@ -214,7 +215,8 @@ def main():
                 deck,mod=args.deck,args.module
             if deck not in idx['decks'] or mod not in idx['decks'][deck]:ap.error('Unknown deck/module pair')
             groups=[pages(idx,headers,args.source_root,deck,mod,args.first,args.count)]
-        data=PREAMBLE+'\n'.join(groups)+'\n\\end{document}\n'
+        style = (HERE.parent / 'circuit-style.tex').read_text(encoding='ascii').rstrip()
+        data = PREAMBLE.replace('@CIRCUIT_STYLE@', style) + '\n'.join(groups) + '\n\\end{document}\n'
     args.output.write_bytes(data.encode('ascii'))
     print(json.dumps({'decks':idx['deck_count'],'module_names':idx['module_names'],'families':idx['family_count'],
                       'definitions':idx['subcircuit_definitions'],'output':str(args.output),'bytes':len(data)}))

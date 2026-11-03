@@ -29,8 +29,8 @@ measured loading and clock waveforms.
 \node[align=center] at (1.4,-1.88) {(a) Shared CML front end};
 % Repeated labels refer to the same OP drain. Do not connect OP through a capacitor.
 \begin{scope}[xshift=6.4cm]
-\node[american not port,scale=.85] (a) at (1.1,2.45) {};
-\node[american not port,scale=.85] (b) at (3.9,2.45) {};
+\node[american not port] (a) at (1.1,2.45) {};
+\node[american not port] (b) at (3.9,2.45) {};
 \draw (-.63,2.45) node[left]{OP} -- (a.in);
 \draw (a.out) -- node[above]{$\overline{\mathrm{CLK}}$} (b.in);
 \draw (b.out) -- ++(.3,0) node[right]{CLK};
@@ -73,8 +73,8 @@ measured loading and clock waveforms.
 \draw (mu.S) -- ++(0,.32) node[above]{VDD}; \draw (md.S) -- ++(0,-.32) node[below]{VSS};
 \draw (mu.D) -- (md.D); \draw (5.15,1.7) node[circ]{} -- ++(.5,0) node[right]{CTRL};
 \begin{scope}[xshift=8.4cm]
-\node[american not port,scale=.75] (iu) at (1.2,2.9) {};
-\node[american not port,scale=.75] (idn) at (1.2,1.80) {};
+\node[american not port] (iu) at (1.2,2.9) {};
+\node[american not port] (idn) at (1.2,1.80) {};
 \draw (iu.in) -- ++(-.3,0) node[left]{UP}; \draw (iu.out) -- ++(.3,0) node[right]{$\overline{\rm UP}$};
 \draw (idn.in) -- ++(-.3,0) node[left]{DN}; \draw (idn.out) -- ++(.3,0) node[right]{$\overline{\rm DN}$};
 \node[align=center] at (1.18,.30) {Mirror bias network\\as in Fig.~\ref{fig:apcp}};

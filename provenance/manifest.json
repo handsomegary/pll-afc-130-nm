@@ -219,7 +219,7 @@
     },
     {
       "path": "report/afc/device_cells.tex",
-      "publication_sha256": "77bed38dbe9b47f05fbc7cf0273f2d46509d7bba77ea4303af1098d86463d540",
+      "publication_sha256": "3cc209431f6afc6de87a3780302897ea8da3d40cebd48ef7e2ef86a9756d44f2",
       "original_sha256": null,
       "electrical_body_sha256": null,
       "origin": "Source-derived design report, schematics and module atlas."
@@ -254,14 +254,14 @@
     },
     {
       "path": "report/atlas/draw_atlas.py",
-      "publication_sha256": "c6691fe81bdb1bed04e975fb5aaf2a337fadc5fdde2f7d85bd23a838b283f462",
+      "publication_sha256": "f976d65240b07d826aa122869a08a6dbfb7a2ef923403cbd61a1f302e66db5b3",
       "original_sha256": null,
       "electrical_body_sha256": null,
       "origin": "Source-derived design report, schematics and module atlas."
     },
     {
       "path": "report/atlas/gallery.tex",
-      "publication_sha256": "a5ca9535c54a8498664e48d1c0976207ae9632bd79725f05b9b7a0f05e46cdd4",
+      "publication_sha256": "be275107389baa189184ac425c35bb93907e87a0276a952dfd7444cfbe0985c0",
       "original_sha256": null,
       "electrical_body_sha256": null,
       "origin": "Source-derived design report, schematics and module atlas."
@@ -275,14 +275,14 @@
     },
     {
       "path": "report/historical_modules.tex",
-      "publication_sha256": "cb52494fb6bd9b7e45ddc118a16eec0799d61f8c64feb8cf6e21787cde5d5bea",
+      "publication_sha256": "4aa38112d99216b394575368bfcdcd1556e8a3d0a29590adef4a0b333dc031cf",
       "original_sha256": null,
       "electrical_body_sha256": null,
       "origin": "Source-derived design report, schematics and module atlas."
     },
     {
       "path": "report/main.tex",
-      "publication_sha256": "3f32b4d11f6c0696bf4eb29189009bee234981a3181c175e7c3fb6f1d3aa2f4a",
+      "publication_sha256": "64d04c6f2fe9516839b3c9fb03cee424544b05b6cb9d11c8768293c18b865904",
       "original_sha256": null,
       "electrical_body_sha256": null,
       "origin": "Source-derived design report, schematics and module atlas."
@@ -296,24 +296,31 @@
     },
     {
       "path": "report/pll130-afc.pdf",
-      "publication_sha256": "398fe24b4dd8adaa001c71d7797fb69b1e4e72638a6f68e764c3a7966b72d1f6",
+      "publication_sha256": "93479e04bd07f68911cf4c9c40a6ff393e5374fa73b401166493f3a43948a30d",
       "original_sha256": null,
       "electrical_body_sha256": null,
       "origin": "Source-derived design report, schematics and module atlas."
     },
     {
       "path": "report/README.md",
-      "publication_sha256": "71d2ee938b2963c9acf8bb9f93e1b64222208c9b1a6764aa9821417bd6350c1e",
+      "publication_sha256": "9252b9c46acbad6343a641276c566108225ed70f0c8a258a07dcd21bbf4b50ee",
       "original_sha256": null,
       "electrical_body_sha256": null,
       "origin": "Source-derived design report, schematics and module atlas."
     },
     {
       "path": "report/atlas/gallery.pdf",
-      "publication_sha256": "a0b3b8d5cb0b54645195383af398a01bb499201cd23544ec99429c4839950cd1",
+      "publication_sha256": "d04e6997882baa649e6ef3d986977c14c0fbe9a74597a0a51f89c7a795a5e96e",
       "original_sha256": null,
       "electrical_body_sha256": null,
       "origin": "Compiled American CircuitikZ transistor and subcircuit terminal atlas."
+    },
+    {
+      "path": "report/circuit-style.tex",
+      "publication_sha256": "8ef0adbc128b814ff8e73b7a7550ae7becb408ba14ae9f86c9d0bec8323f713b",
+      "original_sha256": null,
+      "electrical_body_sha256": null,
+      "origin": "Shared American CircuitikZ symbol settings for the report and standalone device drawings."
     }
   ],
   "publication_date": "2026-10-13",

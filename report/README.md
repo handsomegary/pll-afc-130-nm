@@ -2,6 +2,8 @@
 
 [Read the report](pll130-afc.pdf) or open [main.tex](main.tex). The report uses the IEEEtran conference class and the American CircuitikZ symbol convention. All circuit figures are editable vectors.
 
+[circuit-style.tex](circuit-style.tex) sets symbol sizes and places MOS arrows at the terminal ends. The report loads it directly, and the atlas generator embeds the same settings in each standalone drawing.
+
 | To study | Open |
 |---|---|
 | System feedback, acquisition criteria and AFC-on/off frequency curves | [Main report source](main.tex) |
